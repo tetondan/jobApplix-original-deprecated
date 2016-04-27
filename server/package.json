@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/tetondan/jobApplix/issues"
   },
-  "homepage": "https://github.com/tetondan/jobApplix#readme"
+  "homepage": "https://github.com/tetondan/jobApplix#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
