@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const app = express();
 const port = process.env.PORT || 3000;
 const db = require ('./dbConfig.js')
@@ -68,16 +69,19 @@ app.post('/businessSignup', (req, res) => {
 });
 
 app.post('/businessLogin', (req, res) => {
-  var info = req.body
+  var info = req.body;
+  var sess = req.session;
   Business.findOne({username: info.username}, (err, results) => {
-    console.log('results:',results)
     if(results === null){
       res.status(404).send("Incorrect Username or Password 1")
     } else {
       Auth.logIn(info.password, results.password)
         .then((isPass) => {
           if(isPass === true){
-            res.status(200).send("Correct password")
+            results.password = '';
+            results.__v = '';
+            console.log(results)
+            res.status(200).send(results)
           } else {
             res.status(404).send("Incorrect Username or Password 2")
           }

@@ -1,41 +1,20 @@
 <html ng-app="myApp">
+  <head>
+      <title>JobApplix</title>
+  </head>
 
-<head>
-    <title>JobApplix</title>
+  <body ng-view>    
+  </body>
+    <!-- Angular -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js"></script>
+    <!-- Angular Route -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular-route.js"></script>
+<!--     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular-aria.js"></script> -->
+    <script src="app/app.js"></script>
+    <script src="app/controllers/applicationController.js"></script>
+    <script src="app/controllers/splash.js"></script>
     <!-- Bootstrap CSS -->
     <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body class="container" ng-controller="myApp.cont" >
-  <div style=' margin-top: 20; margin-bottom: 20;'>
-    <strong style='color: rgb(27,203,249); font-size: 40;'>JobApplix </strong>
-    <strong style='font-size: 20;'>"When can you start?"</strong>
-  </div>
-  <div>
-    <div class='form-fields'>
-      <p>First Name:</p>
-      <input ng-model='info.firstName'/>
-      <p>Last Name:</p>
-      <input ng-model='info.lastName'/>
-      <p>Phone Number(include area code, (xxx)xxx-xxxx):</p>
-      <input ng-model='info.phone'/>
-      <p>Email(optional):</p>
-      <input ng-model='info.email'/>
-      <p>Zip code:</p>
-      <input ng-model='info.zip'/>
-    </div>
-    <div class='form-results'>
-      <p><strong style="font-size: 18">Name: </strong><text>{{info.firstName}} {{info.lastName}}</text></p>
-      <p><strong style="font-size: 18">Phone: </strong><text>{{info.phone}}</text></p>
-      <p><strong style="font-size: 18">Email: </strong><text>{{info.email}}</text></p>
-      <p><strong style="font-size: 18">Zip Code: </strong><text>{{info.zip}}</text></p>
-    </div>
-  </div>
-  <!-- Angular -->
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js"></script>
-  <!-- UI-Router -->
-  <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
-  <script src="./app/app.js"></script>
-</body>
 
 </html>
+

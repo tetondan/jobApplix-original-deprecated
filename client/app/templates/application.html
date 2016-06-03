@@ -1,0 +1,26 @@
+
+  <div style=' margin-top: 20; margin-bottom: 20;'>
+    <strong style='color: rgb(27,203,249); font-size: 40;'>JobApplix </strong>
+    <strong style='font-size: 20;'>"When can you start?"</strong>
+  </div>
+  <div>
+    <div class='form-fields'>
+      <p>First Name:</p>
+      <input ng-model='info.firstName'/>
+      <p>Last Name:</p>
+      <input ng-model='info.lastName'/>
+      <p>Phone Number(include area code, (xxx)xxx-xxxx):</p>
+      <input ng-model='info.phone'/>
+      <p>Email(optional):</p>
+      <input ng-model='info.email'/>
+      <p>Zip code:</p>
+      <input ng-model='info.zip'/>
+      <button ng-click='submit(info)'>Submit</button>
+    </div>
+    <div class='form-results'>
+      <p><strong style="font-size: 18">Name: </strong><text>{{info.firstName}} {{info.lastName}}</text></p>
+      <p><strong style="font-size: 18">Phone: </strong><text>{{info.phone}}</text></p>
+      <p><strong style="font-size: 18">Email: </strong><text>{{info.email}}</text></p>
+      <p><strong style="font-size: 18">Zip Code: </strong><text>{{info.zip}}</text></p>
+    </div>
+  </div>
