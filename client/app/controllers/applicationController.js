@@ -7,12 +7,13 @@ angular.module('myApp.applicationCont', [])
     $scope.info.phone = '';
     $scope.info.email = '';
     $scope.info.zip = '';
+    $scope.info.businessName = ''
     //submit application to server. 
     $scope.submit = function(appInfo){
       console.log(appInfo)
       $http({
         method: 'POST',
-        url: '/applications/Daniel Frehner',
+        url: '/applications/' + appInfo.businessName,
         data: appInfo
       }).then( function (data) {
         console.log(data, "dataaaaaaaaaaaaaaaaaaaa");

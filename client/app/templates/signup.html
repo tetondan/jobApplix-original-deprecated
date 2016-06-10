@@ -1,1 +1,33 @@
-signup.html
+  <div style=' margin-top: 20; margin-bottom: 20;'>
+    <strong style='color: rgb(27,203,249); font-size: 40;'>JobApplix </strong>
+    <strong style='font-size: 20;'>"When can you start?"</strong>
+  </div>
+  <div>
+    <div class='form-fields'>
+      <p>Username:</p>
+      <input ng-model='business.username'/>
+      <p>Password:</p>
+      <input type="password" ng-model='business.password'/>
+      <p>Password:</p>
+      <input type="password"/>
+      <p>Business Name:</p>
+      <input ng-model='business.name'/>
+      <p>Phone Number(include area code, (xxx)xxx-xxxx):</p>
+      <input ng-model='business.phone'/>
+      <p>Address:</p>
+      <input ng-model='business.address'/>
+      <p>Email:</p>
+      <input ng-model='business.email'/>
+      <p>Website:</p>
+      <input ng-model='business.website'/>
+      <button ng-click='businessSignUp(business)'>Submit</button>
+    </div>
+    <div class='form-results'>
+      <p><strong style="font-size: 18">Username: </strong><text>{{business.username}}</text></p>
+      <p><strong style="font-size: 18">Business Name: </strong><text>{{business.name}}</text></p>
+      <p><strong style="font-size: 18">Phone: </strong><text>{{business.phone}}</text></p>
+      <p><strong style="font-size: 18">Address: </strong><text>{{business.address}}</text></p>
+      <p><strong style="font-size: 18">Email: </strong><text>{{business.email}}</text></p>
+      <p><strong style="font-size: 18">Website: </strong><text>{{business.website}}</text></p>
+    </div>
+  </div>

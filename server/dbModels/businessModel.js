@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
 
 var businessSchema = mongoose.Schema({
+  /*username will be the name businesses give to applicants eg. if name is "target",
+   address for application will be "http://www.jobapplix.com/apply/target" */
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  //name will be the actual name of the business, how they would like it to appear on the website
   name: { type: String, required: true },
   address: {type: String},
-  phone: {type: String},
+  phone: {type: String, required: true},
   website: {type: String},
-  email: {type: String},
-  // salt: String
+  email: {type: String, required: true},
+  questions: [{type: Array}]
 }, {collection: 'business'});
 
 

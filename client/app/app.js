@@ -1,12 +1,12 @@
-angular.module('myApp',['myApp.applicationCont','myApp.splashCont','ngRoute']) 
-  
+angular.module('myApp',['myApp.applicationCont','myApp.splashCont','myApp.signupCont','myApp.loginCont', 'myApp.businessDashBoard', 'ngRoute']) 
+  //TODO reconfigure to use UI router to allow for nested routes
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'app/templates/splash.html',
         controller: 'Splash'
       })
-      .when('/application', {
+      .when('/apply/:businessName', {
         templateUrl: 'app/templates/application.html',
         controller: 'ApplicationController'
       })
@@ -20,6 +20,10 @@ angular.module('myApp',['myApp.applicationCont','myApp.splashCont','ngRoute'])
       .when('/login', {
         templateUrl: 'app/templates/login.html',
         controller: 'LoginController'
+      })
+      .when('/businessDashboard', {
+        templateUrl: 'app/templates/businessFrontpage.html',
+        controller: 'BusinessDashboard'
       })
       .otherwise('/')
     })
