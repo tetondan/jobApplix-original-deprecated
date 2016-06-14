@@ -1,3 +1,5 @@
+'use strict'
+
 const mongoose = require('mongoose');
 
 var businessSchema = mongoose.Schema({
@@ -11,7 +13,7 @@ var businessSchema = mongoose.Schema({
   phone: {type: String, required: true},
   website: {type: String},
   email: {type: String, required: true},
-  questions: [{type: Array}]
+  questions: []
 }, {collection: 'business'});
 
 

@@ -1,3 +1,5 @@
+'use strict'
+
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,6 +13,6 @@ const server = app.listen(port, () => {
   console.log('listening at http://%s:%s', host, port);
 });
 
-app.get('*', function(req, res){
+app.get('/', function(req, res){
   res.redirect('/#' + req.url);
 })

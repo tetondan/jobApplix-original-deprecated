@@ -1,6 +1,8 @@
+'use strict'
+
 var mongoose = require('mongoose');
 //MongoDb address variable, an adress is supplied it will use that adress otherwise it will use the adress provided here. 
-mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI_TEST || 'mongodb://localhost/jobApplix';
+const mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI_TEST || 'mongodb://localhost/jobApplix';
 //connect MongoDb to Db residing at address variable
 mongoose.connect(mongoURI);
 // Run in seperate terminal window using 'mongod'

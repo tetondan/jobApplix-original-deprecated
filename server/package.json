@@ -19,6 +19,7 @@
   "dependencies": {
     "bcrypt": "^0.8.6",
     "body-parser": "^1.15.0",
+    "connect-mongo": "^1.2.0",
     "express": "^4.13.4",
     "mongoose": "^4.4.14"
   }
