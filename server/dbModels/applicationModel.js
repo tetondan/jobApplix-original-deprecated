@@ -35,7 +35,7 @@ const applicationSchema = mongoose.Schema({
   firedExplanation: {type: String},
   crimes: {type: Boolean},
   crimesExplanation: {type: String},
-  References: [],
+  references: [],
   physicalLimitation: {type: Boolean},
   authWorkInUS: {type: Boolean},
   overEighteen: {type: Boolean},
@@ -46,6 +46,7 @@ const applicationSchema = mongoose.Schema({
   specializedSkills: {type: String},
   otherComments: {type: String},
   zip: {type: Number},
+  state: {type: Number},
   businessId: {type: String}
 }, {collection: 'application'});
 

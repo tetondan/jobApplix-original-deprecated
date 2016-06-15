@@ -1,4 +1,4 @@
-angular.module('myApp',['myApp.applicationCont','myApp.splashCont','myApp.signupCont','myApp.loginCont', 'myApp.businessDashBoard', 'ngRoute']) 
+angular.module('myApp',['myApp.applicationCont','myApp.splashCont','myApp.signupCont','myApp.loginCont', 'myApp.businessDashBoard', 'myApp.businessSetup','ngRoute']) 
   //TODO reconfigure to use UI router to allow for nested routes
   .config(function ($routeProvider) {
     $routeProvider
@@ -24,6 +24,14 @@ angular.module('myApp',['myApp.applicationCont','myApp.splashCont','myApp.signup
       .when('/businessDashboard', {
         templateUrl: 'app/templates/businessFrontpage.html',
         controller: 'BusinessDashboard'
+      })
+      .when('/businessSetup', {
+        templateUrl: 'app/templates/businessSetup.html',
+        controller: 'BusinessSetup'
+      })
+      .when('/applicationPreview', {
+        templateUrl: 'app/templates/applicationPreview.html',
+        controller: 'BusinessSetup'
       })
       .otherwise('/')
     })

@@ -14,5 +14,6 @@ const server = app.listen(port, () => {
 });
 
 app.get('/', function(req, res){
-  res.redirect('/#' + req.url);
+  console.log('got in here')
+  res.redirect('/#/login' + req.url);
 })

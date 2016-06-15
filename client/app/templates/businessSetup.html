@@ -1,0 +1,34 @@
+  <div style=' margin-top: 20; margin-bottom: 20;'>
+    <strong style='color: rgb(27,203,249); font-size: 40;'>JobApplix </strong>
+    <strong style='font-size: 20;'>"When can you start?"</strong>
+    <button ng-click='logout()'>LOGOUT</button>
+  </div>
+  <div class='setup'>
+  <!-- TODO: get more questions, and add them to this page and the application schema -->
+    <h2>Great lets set up your custom application!</h2>
+    <p>If you'd like to skip this step and continue without setting up a custom application, we'll set you up with our normal application. (You can always set up a custom application later!)</p>
+    <button ng-click='saveForm()'>SKIP</button>
+    <p>Simply click on the checkbox next to the questions you would like to see on your custom application</p>
+    <p><input type="checkbox" ng-checked="application.firstName"><span>First Name</span></p>
+    <p><input type="checkbox" ng-checked="application.lastName"><span>Last Name</span></p>
+    <p><input type="checkbox" ng-checked="application.phone"><span>Phone Number</span></p>
+    <p><input type="checkbox" ng-checked="application.email"><span>E-mail Address</span></p>
+    <p><input type="checkbox" ng-checked="application.city"><span>City of Residence</span></p>
+    <p><input type="checkbox" ng-checked="application.availability"><span>Availability (days, hours)</span></p>
+    <p><input type="checkbox" ng-checked="application.fired"><span>Have you ever been fired from a job?</span></p>
+    <p><input type="checkbox" ng-checked="application.firedExplanation"><span>If so(fired), please explain</span></p>
+    <p><input type="checkbox" ng-checked="application.crimes"><span>Have you ever been convicted of a crime(except minor traffic violations)</span></p>
+    <p><input type="checkbox" ng-checked="application.crimesExplanation"><span>If so(crime), please explain.</span></p>
+    <p><input type="checkbox" ng-checked="application.references"><span>Please provide references</span></p>
+    <p><input type="checkbox" ng-checked="application.physicalLimitation"><span>Do you have any physical limitations that would interfere with working here?</span></p>
+    <p><input type="checkbox" ng-checked="application.authWorkInUS"><span>Are you authorized to work in the United States?</span></p>
+    <p><input type="checkbox" ng-checked="application.overEighteen"><span>Are you over 18?</span></p>
+    <p><input type="checkbox" ng-checked="application.overTwentyone"><span>Are you over 21?</span></p>
+    <p><input type="checkbox" ng-checked="application.otherLanguages"><span>Are You Fluent in any other languages?</span></p>
+    <p><input type="checkbox" ng-checked="application.whichLanguages"><span>If So(languages) please list</span></p>
+    <p><input type="checkbox" ng-checked="application.adequateTrans"><span>Do you have adequate transportation to and from work?</span></p>
+    <p><input type="checkbox" ng-checked="application.specializedSkills"><span>If you have any other specialized skills please list them</span></p>
+    <p><input type="checkbox" ng-checked="application.otherComments"><span>Do you have any other comments you would like to add?</span></p>
+    <p><input type="checkbox" ng-checked="application.zip"><span>What is Your Zip code?</span></p>
+    <button ng-click='saveForm()'>Preview Application</button>
+  </div>
