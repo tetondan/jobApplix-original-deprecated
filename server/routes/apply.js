@@ -1,9 +1,9 @@
 'use strict'
 
-var Application = require('../dbModels/applicationModel.js');
-var Business = require('../dbModels/businessModel.js')
-var express = require('express');
-var router = express.Router();
+const Application = require('../dbModels/applicationModel');
+const Business = require('../dbModels/businessModel')
+const express = require('express');
+const router = express.Router();
 
 
 //submit an application to a business
