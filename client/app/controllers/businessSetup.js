@@ -13,7 +13,7 @@ angular.module('myApp.businessSetup', [])
       crimes: false,
       crimesExplanation: false,
       drugTest: false,
-      workReferences: false,
+      workReferences: true,
       personalReferences: false,
       education: false,
       physicalLimitation: false,
@@ -33,12 +33,21 @@ angular.module('myApp.businessSetup', [])
       proffesionalCerts: false,
       typingSpeed: false,
       veteran: false,
-      datAvailableToBeginWork: false,
+      dateAvailableToBeginWork: false,
       otherComments: false,
       zip: true
     }
 
-    $scope.saveForm = function(){
-      $location.path('/applicationPreview')
+    $scope.saveForm = function(application){
+      $http({
+        method: 'PUT',
+        url: '/api/businesses/updateApplication',
+        data: application
+      }).then( function (data) {
+        console.log(data);
+        $location.path('/applicationPreview')
+        
+      })
     }
+
   })

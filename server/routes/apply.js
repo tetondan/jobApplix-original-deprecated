@@ -1,5 +1,6 @@
 'use strict'
 
+const CustomApp = require('../dbModels/customApplication')
 const Application = require('../dbModels/applicationModel');
 const Business = require('../dbModels/businessModel')
 const express = require('express');
@@ -22,21 +23,26 @@ router.route('/applicationsSubmit').post((req, res) => {
 })
 //retreives the business info from the database
 router.route('/businesses/:businessName').get((req, res) => {
-  Business.find({username: req.params.businessName}, (err, data) => {
+  Business.find({customUrl: req.params.businessName}, (err, data) => {
     if(err) {
       console.log(err)
       res.sendStatus(404)
     } else {
       let businessData = data[0];
-      if(businessData){
-        businessData.password = undefined;
-        businessData.__v = undefined;
-        businessData.username = undefined;
-        //get and send all business data back to front end, especially application questions. 
-        res.status(200).send(businessData)
-      } else {
-        res.status(404).send('no businesses by that name')
-      }
+      CustomApp.findOne({businessId: businessData._id})
+               .populate('businessId')
+               .exec((err, app) => {
+                  if(err){
+                    console.log(err)
+                    res.status(500)
+                  } else {
+                    app.businessId[0].password = undefined;
+                    app.businessId[0].__v = undefined;
+                    app.businessId[0].username = undefined;
+                    app.businessId[0]._id = undefined;
+                    res.status(200).send(app)
+                  }
+               })
     }
   })
 });

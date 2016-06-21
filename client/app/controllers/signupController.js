@@ -1,6 +1,7 @@
 angular.module('myApp.signupCont', [])
   .controller('SignupController', function($location, $scope, $rootScope, $http){
     $scope.username = '';
+    $scope.customUrl = '';
     $scope.password = '';
     $scope.name = '';
     $scope.address = '';

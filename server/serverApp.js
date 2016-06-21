@@ -13,7 +13,7 @@ const server = app.listen(port, () => {
   console.log('listening at http://%s:%s', host, port);
 });
 
-app.get('/', function(req, res){
+app.get('*', function(req, res){
   console.log('got in here')
-  res.redirect('/#/login' + req.url);
+  res.redirect('/#' + req.url);
 })

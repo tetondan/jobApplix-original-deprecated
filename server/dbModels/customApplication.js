@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 var customAppSchema = mongoose.Schema({
-  businessId: mongoose.Schema.Types.ObjectId,
+  businessId: [{type: mongoose.Schema.Types.ObjectId, ref: 'Business'}],
   firstName: {type: Boolean},
   lastName: {type: Boolean},
   phone: {type: Boolean},
@@ -35,7 +35,7 @@ var customAppSchema = mongoose.Schema({
   proffesionalCerts: {type: Boolean},
   typingSpeed: {type: Boolean},
   veteran: {type: Boolean},
-  datAvailableToBeginWork: {type: Boolean},
+  dateAvailableToBeginWork: {type: Boolean},
   otherComments: {type: Boolean},
   zip: {type: Boolean}
 })
