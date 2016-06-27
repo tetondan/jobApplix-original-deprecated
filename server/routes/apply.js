@@ -8,9 +8,8 @@ const router = express.Router();
 
 
 //submit an application to a business
-router.route('/applicationsSubmit').post((req, res) => {
-  var appInfo = req.body
-  console.log()
+router.route('/applicationSubmit').post((req, res) => {
+  var appInfo = req.body;
   var application = new Application(appInfo)
   application.save((err) => {
     if(err){
@@ -21,12 +20,25 @@ router.route('/applicationsSubmit').post((req, res) => {
     }
   })
 })
+//TODO add update group task.
+router.route('/applicationUpdateGroup').put( (req, res) => {
+  Application.findByIdAndUpdate(req.body.id, { $set: { applicationGroup: req.body.group }}, function(err, data){
+    if(err){
+      console.log(err);
+      res.status(501);
+    } else {
+      res.status(202).send('updated');
+    }
+  })
+});
 //retreives the business info from the database
 router.route('/businesses/:businessName').get((req, res) => {
   Business.find({customUrl: req.params.businessName}, (err, data) => {
     if(err) {
       console.log(err)
       res.sendStatus(404)
+    } else if(data.length === 0){
+      res.status(404)
     } else {
       let businessData = data[0];
       CustomApp.findOne({businessId: businessData._id})
@@ -39,7 +51,6 @@ router.route('/businesses/:businessName').get((req, res) => {
                     app.businessId[0].password = undefined;
                     app.businessId[0].__v = undefined;
                     app.businessId[0].username = undefined;
-                    app.businessId[0]._id = undefined;
                     res.status(200).send(app)
                   }
                })

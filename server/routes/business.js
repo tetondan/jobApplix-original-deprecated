@@ -52,7 +52,6 @@ router.route('/businesses/updateApplication').put(authController.auth, (req,res)
           }
         })
       } else {
-        console.log('already created', oldApp)
         for (var field in CustomApp.schema.paths) {
           if ((field !== '_id') && (field !== '__v')) {
             if (updatedCustomApp[field] !== undefined) {
@@ -60,6 +59,7 @@ router.route('/businesses/updateApplication').put(authController.auth, (req,res)
             }
           }
         }
+        console.log('old app updated', oldApp);
         oldApp.save((err,data) => {
           if(err){
             console.log(err);

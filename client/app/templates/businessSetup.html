@@ -9,38 +9,35 @@
     <p>If you'd like to skip this step and continue without setting up a custom application, we'll set you up with our normal application. (You can always set up a custom application later!)</p>
     <button ng-click='saveForm()'>SKIP</button>
     <p>Simply click on the checkbox next to the questions you would like to see on your custom application</p>
-    <p><input type="checkbox" ng-checked="application.firstName"><span>First Name</span></p>
-    <p><input type="checkbox" ng-checked="application.lastName"><span>Last Name</span></p>
-    <p><input type="checkbox" ng-checked="application.phone"><span>Phone Number</span></p>
-    <p><input type="checkbox" ng-checked="application.email"><span>E-mail Address</span></p>
-    <p><input type="checkbox" ng-checked="application.city"><span>City of Residence</span></p>
-    <p><input type="checkbox" ng-checked="application.availability"><span>Availability (days, hours)</span></p>
-    <p><input type="checkbox" ng-checked="application.fired"><span>Have you ever been fired from a job?</span></p>
-    <p><input type="checkbox" ng-checked="application.firedExplanation"><span>If so(fired), please explain</span></p>
-    <p><input type="checkbox" ng-checked="application.crimes"><span>Have you ever been convicted of a crime(except minor traffic violations)</span></p>
-    <p><input type="checkbox" ng-checked="application.crimesExplanation"><span>If so(crime), please explain.</span></p>
-    <p><input type="checkbox" ng-checked="application.drugTest"><span>Drug Test</span></p>
-    <p><input type="checkbox" ng-checked="application.workReferences"><span>Work references</span></p>
-    <p><input type="checkbox" ng-checked="application.personalReferences"><span>Personal Refernces</span></p>
-    <p><input type="checkbox" ng-checked="application.education"><span>Education</span></p>
-    <p><input type="checkbox" ng-checked="application.physicalLimitation"><span>Do you have any physical limitations that would interfere with working here?</span></p>
-    <p><input type="checkbox" ng-checked="application.authWorkInUS"><span>Are you authorized to work in the United States?</span></p>
-    <p><input type="checkbox" ng-checked="application.overFourteen"><span>Are you over 14?</span></p>
-    <p><input type="checkbox" ng-checked="application.overSixteen"><span>Are you over 16?</span></p>
-    <p><input type="checkbox" ng-checked="application.overEighteen"><span>Are you over 18?</span></p>
-    <p><input type="checkbox" ng-checked="application.overTwentyone"><span>Are you over 21?</span></p>
-    <p><input type="checkbox" ng-checked="application.overtime"><span>Overtime?</span></p>
-    <p><input type="checkbox" ng-checked="application.Permanent"><span>Permanent</span></p>
-    <p><input type="checkbox" ng-checked="application.otherLanguages"><span>Are You Fluent in any other languages?</span></p>
-    <p><input type="checkbox" ng-checked="application.whichLanguages"><span>If So(languages) please list</span></p>
-    <p><input type="checkbox" ng-checked="application.adequateTrans"><span>Do you have adequate transportation to and from work?</span></p>
-    <p><input type="checkbox" ng-checked="application.specializedSkills"><span>If you have any other specialized skills please list them</span></p>
-    <p><input type="checkbox" ng-checked="application.computerRepair"><span>Computer Repair</span></p>
-    <p><input type="checkbox" ng-checked="application.proffesionalCerts"><span>Profeesional Certifications</span></p>
-    <p><input type="checkbox" ng-checked="application.typingSpeed"><span>Typing Speed</span></p>
-    <p><input type="checkbox" ng-checked="application.veteran"><span>Are you a veteran?</span></p>
-    <p><input type="checkbox" ng-checked="application.dateAvailableToBeginWork"><span>When can you start?</span></p>
-    <p><input type="checkbox" ng-checked="application.otherComments"><span>Do you have any other comments you would like to add?</span></p>
-    <p><input type="checkbox" ng-checked="application.zip"><span>What is Your Zip code?</span></p>
+    <p><input type="checkbox" ng-model="application.basicInfo"><span>Basic Information; Name, Phone, Email, City/State, etc.</span></p>
+    <p><input type="checkbox" ng-model="application.position"><span>Position Applying for</span></p>
+    <p><input type="checkbox" ng-model="application.fullOrPartime"><span>Are you seeking Full or Partime work?</span></p>
+    <p><input type="checkbox" ng-model="application.availability"><span>Availability (days, hours)</span></p>
+    <p><input type="checkbox" ng-model="application.fired"><span>Have you ever been fired from a job? If so please explain</span></p>
+    <p><input type="checkbox" ng-model="application.crimes"><span>Have you ever been convicted of a crime(except minor traffic violations) I so please explain</span></p>
+    <p><input type="checkbox" ng-model="application.drugTest"><span>Drug Test</span></p>
+    <p><input type="checkbox" ng-model="application.backgroundCheck"><span>Background Check</span></p>
+    <p><input type="checkbox" ng-model="application.workReferences"><span>Work references</span></p>
+    <p><input type="checkbox" ng-model="application.personalReferences"><span>Personal Refernces</span></p>
+    <p><input type="checkbox" ng-model="application.education"><span>Education</span></p>
+    <p><input type="checkbox" ng-model="application.physicalLimitation"><span>Do you have any physical limitations that would interfere with working here?</span></p>
+    <p><input type="checkbox" ng-model="application.authWorkInUS"><span>Are you authorized to work in the United States?</span></p>
+    <p><input type="checkbox" ng-model="application.validDriversLicense"><span>Do you have a valid drivers license</span></p>
+    <p><input type="checkbox" ng-model="application.overFourteen"><span>Are you over 14?</span></p>
+    <p><input type="checkbox" ng-model="application.overSixteen"><span>Are you over 16?</span></p>
+    <p><input type="checkbox" ng-model="application.overEighteen"><span>Are you over 18?</span></p>
+    <p><input type="checkbox" ng-model="application.overTwentyone"><span>Are you over 21?</span></p>
+    <p><input type="checkbox" ng-model="application.overtime"><span>Overtime?</span></p>
+    <p><input type="checkbox" ng-model="application.permanent"><span>Permanent</span></p>
+    <p><input type="checkbox" ng-model="application.otherLanguages"><span>Are You Fluent in any other languages?</span></p>
+    <p><input type="checkbox" ng-model="application.adequateTrans"><span>Do you have adequate transportation to and from work?</span></p>
+    <p><input type="checkbox" ng-model="application.specializedSkills"><span>If you have any other specialized skills please list them</span></p>
+    <p><input type="checkbox" ng-model="application.computerRepair"><span>Computer Repair</span></p>
+    <p><input type="checkbox" ng-model="application.proffesionalCerts"><span>Profeesional Certifications</span></p>
+    <p><input type="checkbox" ng-model="application.typingSpeed"><span>Typing Speed</span></p>
+    <p><input type="checkbox" ng-model="application.veteran"><span>Are you a veteran?</span></p>
+    <p><input type="checkbox" ng-model="application.dateAvailableToBeginWork"><span>When can you start?</span></p>
+    <p><input type="checkbox" ng-model="application.otherComments"><span>Do you have any other comments you would like to add?</span></p>
+    <p><input type="checkbox" ng-model="application.zip"><span>What is Your Zip code?</span></p>
     <button ng-click='saveForm(application)'>Preview Application</button>
   </div>

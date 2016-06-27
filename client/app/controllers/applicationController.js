@@ -1,103 +1,10 @@
 angular.module('myApp.applicationCont', [])
 .controller('ApplicationController', function($scope, $http, $location){
     //collect all info and store it in info object
-    $scope.application = {
-      firstName: '',
-      lastName: '',
-      phone: '',
-      email: '',
-      city: '',
-      zip: '',
-      availability: {
-        amMon: false,
-        pmMon: false,
-        amTues: false,
-        pmTues: false,
-        amWed: false,
-        pmWed: false,
-        amThurs: false,
-        pmThurs: false,
-        amFri: false,
-        pmFri: false,
-        amSat: false,
-        pmSat: false,
-        amSun: false,
-        pmSun: false,
-      },
-      fired: false,
-      firedExplanation: '',
-      crimes: false,
-      crimesExplanation: '',
-      drugTest: false,
-      workReferences: [{
-          employerName: '',
-          address: '',
-          title: '',
-          duties: '',
-          startDate: '',
-          endDate: '',
-          startingPay: '',
-          endingPay: '',
-          reasonForLeaving: '', 
-          supervisorName: '',
-          phoneNumer: '',
-          canContact: false
-        },
-        {
-          employerName: '',
-          address: '',
-          title: '',
-          duties: '',
-          startDate: '',
-          endDate: '',
-          startingPay: '',
-          endingPay: '',
-          reasonForLeaving: '', 
-          supervisorName: '',
-          phoneNumer: '',
-          canContact: false
-        },
-        {
-          employerName: '',
-          address: '',
-          title: '',
-          duties: '',
-          startDate: '',
-          endDate: '',
-          startingPay: '',
-          endingPay: '',
-          reasonForLeaving: '', 
-          supervisorName: '',
-          phoneNumer: '',
-          canContact: false
-      }],
-      personalReferences: [
-        {
-          name: '',
-          relationship: '',
-          phone: '',
-          email: '',
-          address: '',
-          yearsKnown: 0
-        },
-        {
-          name: '',
-          relationship: '',
-          phone: '',
-          email: '',
-          address: '',
-          yearsKnown: 0
-        },
-        {
-          name: '',
-          relationship: '',
-          phone: '',
-          email: '',
-          address: '',
-          yearsKnown: 0
-        }],
-      //add education objects to array
-      education: {
+    $scope.template;
+    $scope.businessData;
+    $scope.application = {};
+    $scope.application.education = {
         highschool: {
           schoolName: '',
           location: '',
@@ -119,42 +26,94 @@ angular.module('myApp.applicationCont', [])
           fieldOfStudy: '',
           degree: false
         }
-      },
-      physicalLimitation: false,
-      authWorkInUS: false,
-      validDriversLicense: false,
-      validDriversLicenseNumber: '',
-      overFourteen: false,
-      overSixteen: false,
-      overEighteen: false,
-      overTwentyone: false,
-      overtime: false,
-      permanent: false,
-      otherLanguages: false,
-      whichLanguages: '',
-      adequateTrans: false,
-      specializedSkills: false,
-      specializedSkillsList: '',
-      computerRepair: false,
-      //add ability to add profesional certifications
-      proffesionalCerts: [],
-      typingSpeed: '',
-      veteran: false,
-      dateAvailableToBeginWork: '',
-      otherComments: ''
-    };
-
+      };
+    $scope.application.workReferences = [{
+          employerName: '',
+          address: '',
+          title: '',
+          duties: '',
+          startDate: '',
+          endDate: '',
+          startingPay: '',
+          endingPay: '',
+          reasonForLeaving: '', 
+          supervisorName: '',
+          phoneNumer: '',
+          canContact: false
+        },
+        {
+          employerName: '',
+          address: '',
+          title: '',
+          duties: '',
+          startDate: '',
+          endDate: '',
+          startingPay: '',
+          endingPay: '',
+          reasonForLeaving: '', 
+          supervisorName: '',
+          phoneNumer: '',
+          canContact: false
+        },
+        {
+          employerName: '',
+          address: '',
+          title: '',
+          duties: '',
+          startDate: '',
+          endDate: '',
+          startingPay: '',
+          endingPay: '',
+          reasonForLeaving: '', 
+          supervisorName: '',
+          phoneNumer: '',
+          canContact: false
+      }]
+    $scope.application.personalReferences = [
+        {
+          name: '',
+          relationship: '',
+          phone: '',
+          email: '',
+          address: '',
+          yearsKnown: 0
+        },
+        {
+          name: '',
+          relationship: '',
+          phone: '',
+          email: '',
+          address: '',
+          yearsKnown: 0
+        },
+        {
+          name: '',
+          relationship: '',
+          phone: '',
+          email: '',
+          address: '',
+          yearsKnown: 0
+        }]
     $scope.getAppTemplate = function(){
       var businessName = $location.path().split('/')[2];
-      console.log(businessName);
+      $http({
+        method: 'GET',
+        url: '/api/businesses/' + businessName
+      }).then( function(data){
+        $scope.template = data.data;
+        $scope.businessData = data.data.businessId[0];
+        $scope.application.businessId = data.data.businessId[0]._id;
+      })
     }
     //submit application to server. 
-    $scope.submit = function(appInfo){
-      console.log(appInfo)
+    $scope.submit = function(){
+      var application = $scope.application;
+      $scope.application.applicationGroup = 1;
+      console.log($scope.application)
       $http({
         method: 'POST',
-        url: '/applications/' + appInfo.businessName,
-        data: appInfo
+        url: '/api/applicationSubmit' ,
+        data: application
       }).then( function (data) {
         console.log(data, "dataaaaaaaaaaaaaaaaaaaa");
         $location.path('/success')

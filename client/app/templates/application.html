@@ -4,26 +4,163 @@
     <strong style='font-size: 20;'>"When can you start?"</strong>
   </div>
   <div>
-    <!-- TODO: complete application page only showing questions from custom form. -->
-    <div class='form-fields' ng-init='getAppTemplate()'>
-      <p>First Name:</p>
-      <input ng-model='info.firstName'/>
-      <p>Last Name:</p>
-      <input ng-model='info.lastName'/>
-      <p>Phone Number(include area code, (xxx)xxx-xxxx):</p>
-      <input ng-model='info.phone'/>
-      <p>Email(optional):</p>
-      <input ng-model='info.email'/>
-      <p>Zip code:</p>
-      <input ng-model='info.zip'/>
-      <p>Business Code:</p>
-      <input ng-model='info.businessName' />
-      <button ng-click='submit(info)'>Submit</button>
+    <!-- business Data -->
+    <p>{{businessData.name}}</p>
+    <p>http://www.jobapplix.com/apply/{{businessData.customUrl}}</p>
+    <p>{{businessData.email}}</p>
+    <p>{{businessData.name}}</p>
+    <p>{{businessData.phone}}</p>
+    <p>{{businessData.website}}</p>
+  </div>
+  <div ng-init="getAppTemplate()">
+    <div ng-if="template.basicInfo" style=" border: 1px solid blue ">
+      <p>Last Name: <input ng-model="application.lastName" /> First Name: <input ng-model="application.firstName" /> Middle Name: <input ng-model="application.middleName" /></p>
+      <p>Phone Number: <input ng-model="application.phone" /></p>
+      <p>Email Address: <input ng-model="application.email" /></p>
+      <p>City: <input ng-model="application.city" /> Zip: <input ng-model="application.zip" /></p>
     </div>
-    <div class='form-results'>
-      <p><strong style="font-size: 18">Name: </strong><text>{{info.firstName}} {{info.lastName}}</text></p>
-      <p><strong style="font-size: 18">Phone: </strong><text>{{info.phone}}</text></p>
-      <p><strong style="font-size: 18">Email: </strong><text>{{info.email}}</text></p>
-      <p><strong style="font-size: 18">Zip Code: </strong><text>{{info.zip}}</text></p>
+    <div ng-if="template.availability" style=" border: 1px solid red ">
+      <!-- availability -->
+       <p>Monday: <input type="checkbox" ng-model="application.availability.amMon" /> AM <input type="checkbox" ng-model="application.availability.pmMon" /> PM </p>
+       <p>Tuesday: <input type="checkbox" ng-model="application.availability.amTues" /> AM <input type="checkbox" ng-model="application.availability.pmTues" /> PM </p>
+       <p>Wednesday: <input type="checkbox" ng-model="application.availability.amWed" /> AM <input type="checkbox" ng-model="application.availability.pmWed" /> PM </p>
+       <p>Thursday: <input type="checkbox" ng-model="application.availability.amThurs" /> AM <input type="checkbox" ng-model="application.availability.pmThurs" /> PM </p>
+       <p>Friday: <input type="checkbox" ng-model="application.availability.amFri" /> AM <input type="checkbox" ng-model="application.availability.pmFri" /> PM </p>
+       <p>Saturday: <input type="checkbox" ng-model="application.availability.amSat" /> AM <input type="checkbox" ng-model="application.availability.pmSat" /> PM </p>
+       <p>Sunday: <input type="checkbox" ng-model="application.availability.amSun" /> AM <input type="checkbox" ng-model="application.availability.pmSun" /> PM </p>
     </div>
+    <div ng-if="template.position" style=" border: 1px solid red ">
+      <p>What position are you applying for? <input type="text" ng-model="application.position" /></p>
+    </div>
+    <div ng-if="template.fullOrPartime" style=" border: 1px solid red ">
+      <p>Are you applying for Full or Partime work? <input type="text" ng-model="application.fullOrPartime" /></p>
+    </div>
+    <div ng-if="template.backgroundCheck" style=" border: 1px solid red ">
+      <p>Are you willing to agree to a pre-employment background check? <input type="checkbox" ng-model="application.backgroundCheck" /></p>
+    </div>
+    <div ng-if="template.fired" style=" border: 1px solid blue ">
+    <!-- fired -->
+      <p> Have you ever been fired or asked to resign from a position?<input type='checkbox' ng-model='application.fired' /></p>
+      <p ng-if='application.fired'> Please explain:
+      <input type='text' ng-model='application.firedExplanation' /></p>
+    </div>
+    <div ng-if="template.crimes" style=" border: 1px solid red">
+    <!-- crimes -->
+      <p> Have you ever been conviced of a crime(do not count traffic violations)?<input type='checkbox' ng-model='application.crimes' /></p>
+      <p ng-if='application.crimes'> Please explain:
+      <input type='text' ng-model='application.crimesExplanation' /></p>
+    </div>
+    <div ng-if="template.drugTest" style=" border: 1px solid red">
+    <!-- drug test -->
+      <p>Are you willing to submit a pre-employment drug screen? <input type='checkbox' ng-model='application.drugTest' />
+    </div>
+    <div ng-if="template.workReferences" style=" border: 1px solid red">
+      <!-- work references -->
+      <p>Please provide your last three work references:</p>
+      <div ng-repeat='ref in application.workReferences track by $index' style='border: 1px solid yellow'>
+        <p>Job #{{$index + 1}}</p>
+        <p>Employer Name/Place of Employment: <input type='text' ng-model='ref.employerName'></p>
+        <p>Employer address: <input type='text' ng-model='ref.address'></p>
+        <p>Your Supervisors Name: <input type='text' ng-model='ref.supervisorName'></p>
+        <p>Employer Phone Number: <input type='tel' ng-model='ref.phoneNumber'> {{ref.phoneNumber}}</p>
+        <p>Your Title: <input type='text' ng-model='ref.title'> Job Duties: <input type='text' ng-model='ref.duties'></p>
+        <p>Start Date: <input type='date' ng-model='ref.startDate'> End Date: <input type='date' ng-model='ref.endDate'></p>
+        <p>Starting Pay: <input type='text' ng-model='ref.startingPay'> Ending Pay: <input type='text' ng-model='ref.endingPay'></p>
+        <p>Your Reason For Leaving: <input type='text' ng-model='ref.reasonForLeaving'></p>
+        <p>May we contact this employer? <input type='checkbox' ng-model='ref.canContact'>YES</p>
+      </div>
+    </div>
+    <div ng-if="template.personalReferences" style=" border: 1px solid blue">
+    <!-- personal references -->
+      <p>Please List three personal references who are not relatives:</p>
+      <div ng-repeat='pRefs in application.personalReferences track by $index' style='border: 1px solid green'>
+        <p>Name: <input type='text' ng-model='pRefs.name'> Relationship: <input type='text' ng-model='pRefs.relationship'></p>
+        <p>Phone number: <input type='text' ng-model='pRefs.phone'> Email: <input type='text' ng-model='pRefs.email'> Address: <input type='text' ng-model='pRefs.address'></p>
+        <p>Years Known: <input type='text' ng-model='pRefs.yearsKnown'></p>
+    </div>
+    <div ng-if="template.education" style='border: 1px solid purple'>
+    <!-- education -->
+      <p>Please list all Education:</p>
+      <div ng-repeat="(schoolType, school) in application.education">
+        <p>{{schoolType}}</p>
+        <p>Name of School: <input type='text' ng-model='school.schoolName'></p>
+        <p>City and State: <input type='text' ng-model='school.location'></p>
+        <p>Field of Study: <input type='text' ng-model='school.fieldOfStudy'> Year Completed: <input type='text' ng-model='school.yearsCOmpleted'> Degree Earned: <input type='text' ng-model='school.degree'></p>
+      </div>
+    </div>
+    <div ng-if="template.physicalLimitation">
+    <!-- physical limitations -->
+      <p>Do you have any limitations that would not allow you to perform the duties of this position? <input type='checkbox' ng-model='application.physicalLimitation'> YES</p>
+    </div>
+    <div ng-if="template.authWorkInUS">
+    <!-- auth to work in US -->
+      <p>Are you Authorized to work in the United States of America, and can you furnish proof? <input type='checkbox' ng-model='application.authWorkInUS'> YES</p>
+    </div>
+    <div ng-if="template.validDriversLicense">
+    <!-- drivers license -->
+      <p>If needed for the job, do you currently have a valid drivers license? <input type='text' ng-model='application.validDriversLicense'> What is the number and state? <input type='text' ng-model='application.validDriversLicenseNumber'></p>
+    </div>
+    <div ng-if="template.overFourteen">
+    <!-- over fourteen -->
+      <p>Are you over 14 years old? <input type='checkbox' ng-model='application.overFourteen' /> YES</p>
+    </div>
+    <div ng-if="template.overSixteen">
+    <!-- over sixteen -->
+      <p>Are you over 16 years old? <input type='checkbox' ng-model='application.overSixteen' /> YES</p>
+    </div>
+    <div ng-if="template.overEighteen">
+    <!-- over eighteen -->
+      <p>Are you over 18 years old? <input type='checkbox' ng-model='application.overEighteen' /> YES</p>
+    </div>
+    <div ng-if="template.overTwentyone">
+    <!-- over twenty one -->
+      <p>Are you over 21 years old? <input type='checkbox' ng-model='application.overTwentyone' /> YES</p>
+    </div>
+    <div ng-if="template.overtime">
+    <!-- overtime -->
+      <p>Are you able to work over time? <input type='checkbox' ng-model='application.overtime' /> YES</p>
+    </div>
+    <div ng-if="template.permanent">
+    <!-- permanent -->
+      <p>Are you seeking a permanent position? <input type='checkbox' ng-model='application.permanent' /> YES</p>
+    </div>
+    <div ng-if="template.otherLanguages">
+    <!-- other langauages -->
+      <p>Do you fluently speak a language other than English? <input type='checkbox' ng-model='application.otherLanguages'> YES</p>
+      <p ng-if='application.otherLanguages'>Please Specify which Language: <input type='text' ng-model='application.whichLanguages' />
+    </div>
+    <div ng-if="template.adequateTrans">
+    <!-- adequate trans -->
+      <p>Do you have adequate transportation to and from work? <input type='checkbox' ng-model='application.adequateTrans'> YES</p>
+    </div>
+    <div ng-if="template.specializedSkills">
+    <!-- specialized skills -->
+      <p>Do you have any specialized skills or training? <input type='checkbox' ng-model='application.specializedSkills'> YES</p>
+      <p ng-if='application.specializedSkills'> Please list them here: <input type='text' ng-model='application.specializedSkillsList'></p>
+    </div>
+    <div ng-if="template.computerRepair">
+    <!-- computer repair -->
+      <p>Are you certified or authorized to maintian and repair Computers? <input type='checkbox' ng-model='application.computerRepair'> YES</p>
+    </div>
+    <div ng-if="template.proffesionalCerts">
+    <!-- profesional certs -->
+      <p>If you have any proffesional certifications please list them here: <input type='text' ng-model='application.proffesionalCerts'></p>
+    </div>
+    <div ng-if="template.typingSpeed">
+    <!-- typing speed -->
+      <p>Please list your typing speed: <input type='text' ng-model='application.typingSpeed'> WPM</p>
+    </div>
+    <div ng-if="template.veteran">
+    <!-- veteran -->
+      <p>Are you a US veteran? <input type='checkbox' ng-model='application.veteran'> YES</p>
+    </div>
+    <div ng-if="template.dateAvailableToBeinWork">
+    <!-- date available to begin -->
+      <p>What is the date you will be available to begin work? <input type='text' ng-model='application.dateAvailableToBeginWork'>
+    </div>
+    <div ng-if="template.otherComments">
+    <!-- other comments -->
+      <p>Please list any other comments you would like to add: <input type='text' ng-model='application.otherComments'></p>
+    </div>
+    <div><input type="button" ng-click="submit()" value="SUBMIT" /> 
   </div>
