@@ -13,7 +13,6 @@ const server = app.listen(port, () => {
   console.log('listening at http://%s:%s', host, port);
 });
 
-app.get('*', function(req, res){
-  console.log('got in here')
+app.get('/apply/:business', function(req, res){
   res.redirect('/#' + req.url);
 })

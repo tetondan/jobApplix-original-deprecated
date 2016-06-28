@@ -1,9 +1,9 @@
 angular.module('myApp.splashCont', [])
-  .controller('Splash', function($location, $scope, $rootScope, $http){
+  .controller('Splash', function($state, $scope, $rootScope, $http){
     $scope.signup = function(){
-      $location.path('/signup');
+      $state.go('signup');
     }
     $scope.login = function(){
-      $location.path('/login');
+      $state.go('login');
     }
   })

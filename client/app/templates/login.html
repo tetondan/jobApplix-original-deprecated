@@ -1,18 +1,14 @@
-  <div style=' margin-top: 20; margin-bottom: 20;'>
-    <strong style='color: rgb(27,203,249); font-size: 40;'>JobApplix </strong>
-    <strong style='font-size: 20;'>"When can you start?"</strong>
-  </div>
   <div>
-  <h3>Please Enter Username and Password to Login</h3>
-  <p>Not yet a memeber? <a href="/#/signup">CLICK HERE</a> to sign up!</p>
-  <div ng-if="error" style='background-color: red;'>
-    <p>Invalid Username or Password, please try again</p>
-  </div>  
+    <h3>Please Enter Username and Password to Login</h3>
+    <p>Not yet a memeber? <a href="/#/signup">CLICK HERE</a> to sign up!</p>
+    <div ng-if="error" style='background-color: red;'>
+      <p>Invalid Username or Password, please try again</p>
+    </div>  
     <div class='form-fields'>
       <p>Username:</p>
       <input ng-model='business.username'/>
       <p>Password:</p>
       <input type="password" ng-model='business.password'/>
-      <button ng-click='logIn(business)'>Submit</button>
+      <button ng-click='logIn()'>Submit</button>
     </div>
   </div>

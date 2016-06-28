@@ -1,23 +1,20 @@
 angular.module('myApp.signupCont', [])
-  .controller('SignupController', function($location, $scope, $rootScope, $http){
-    $scope.username = '';
-    $scope.customUrl = '';
-    $scope.password = '';
-    $scope.name = '';
-    $scope.address = '';
-    $scope.phone = '';
-    $scope.website = 'http://';
-    $scope.email = ''
-    $scope.businessSignUp = function(business) {
-      console.log(business)
-      $http({
-        method: 'POST',
-        url: '/api/businesses/signUp',
-        data: business
-      }).then( function (data) {
-        console.log(data, "dataaaaaaaaaaaaaaaaaaaa");
-        $location.path('/success')
-        //redirect user to page thanking them for submitting an application and supplying a link to return to main page.
-      });
-    }
+  .controller('SignupController', function($state, $scope, $rootScope, BusinessDataServices){
+    $scope.business = {};
+    $scope.business.username = '';
+    $scope.business.customUrl = '';
+    $scope.business.password = '';
+    $scope.business.name = '';
+    $scope.business.address = '';
+    $scope.business.phone = '';
+    $scope.business.website = 'http://';
+    $scope.business.email = ''
+    $scope.businessSignUp = function(){
+      console.log($scope.business);
+      BusinessDataServices.businessSignup($scope.business)
+        .then( function (data) {
+          $state.go('businessSetup')
+          //redirect user to page setting up a custom application template.
+        });
+    };
   })

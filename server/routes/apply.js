@@ -47,6 +47,8 @@ router.route('/businesses/:businessName').get((req, res) => {
                   if(err){
                     console.log(err)
                     res.status(500)
+                  } else if(app === null){
+                    res.status(404);
                   } else {
                     app.businessId[0].password = undefined;
                     app.businessId[0].__v = undefined;

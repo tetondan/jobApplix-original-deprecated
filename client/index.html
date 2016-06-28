@@ -1,15 +1,32 @@
-<html ng-app="myApp">
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
   <head>
-      <title>JobApplix</title>
-  </head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>JobApplix</title>
 
-  <body ng-view>    
-  </body>
+    <!-- Bootstrap -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/app/styles/app.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div ui-view ng-cloak></div>  
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Angular -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <!-- Angular Route -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular-route.js"></script>
-<!--     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular-aria.js"></script> -->
     <script src="app/app.js"></script>
     <script src="app/controllers/applicationController.js"></script>
     <script src="app/controllers/splash.js"></script>
@@ -17,8 +34,8 @@
     <script src="app/controllers/loginController.js"></script>
     <script src="app/controllers/businessDashBoard.js"></script>
     <script src="app/controllers/businessSetup.js"></script>
-    <!-- Bootstrap CSS -->
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
-
+    <script src="app/services/applicationDataService.js"></script>
+    <script src="app/services/businessDataService.js"></script>
+  </body>
 </html>
 

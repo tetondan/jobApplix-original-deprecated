@@ -1,9 +1,10 @@
 angular.module('myApp.applicationCont', [])
-.controller('ApplicationController', function($scope, $http, $location){
+.controller('ApplicationController', function($state, $scope, $http, $location, customTemplate, AppDataServices){
     //collect all info and store it in info object
-    $scope.template;
-    $scope.businessData;
+    $scope.template = customTemplate.data;
+    $scope.businessData = customTemplate.data.businessId[0];
     $scope.application = {};
+    $scope.application.businessId = customTemplate.data.businessId[0]._id;
     $scope.application.education = {
         highschool: {
           schoolName: '',
@@ -94,29 +95,12 @@ angular.module('myApp.applicationCont', [])
           address: '',
           yearsKnown: 0
         }]
-    $scope.getAppTemplate = function(){
-      var businessName = $location.path().split('/')[2];
-      $http({
-        method: 'GET',
-        url: '/api/businesses/' + businessName
-      }).then( function(data){
-        $scope.template = data.data;
-        $scope.businessData = data.data.businessId[0];
-        $scope.application.businessId = data.data.businessId[0]._id;
-      })
-    }
     //submit application to server. 
     $scope.submit = function(){
       var application = $scope.application;
-      $scope.application.applicationGroup = 1;
-      console.log($scope.application)
-      $http({
-        method: 'POST',
-        url: '/api/applicationSubmit' ,
-        data: application
-      }).then( function (data) {
-        console.log(data, "dataaaaaaaaaaaaaaaaaaaa");
-        $location.path('/success')
+      AppDataServices.submitApplication(application)
+      .then( function (data) {
+        $state.go('success')
         //redirect user to page thanking them for submitting an application and supplying a link to return to main page.
       });
     };

@@ -20,7 +20,6 @@ router.route('/businesses/logout').get((req,res) => {
 
 //this route will be served as soon as a business logs on it will retrieve all applications. 
 router.route('/businesses/dashboard').get(authController.auth, (req,res) => {
-  console.log(req.session.businessId)
   Application.find({businessId: req.session.businessId}, (err,data) => {
     if(err){
       console.log(err);
@@ -59,7 +58,6 @@ router.route('/businesses/updateApplication').put(authController.auth, (req,res)
             }
           }
         }
-        console.log('old app updated', oldApp);
         oldApp.save((err,data) => {
           if(err){
             console.log(err);

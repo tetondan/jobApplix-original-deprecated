@@ -1,14 +1,7 @@
-<!-- <div ng-init='getApps(businessData.name)'> -->
-  <div style=' margin-top: 20; margin-bottom: 20;'>
-    <strong style='color: rgb(27,203,249); font-size: 40;'>JobApplix </strong>
-    <strong style='font-size: 20;'>"When can you start?"</strong>
-    <button ng-click='logout()'>LOGOUT</button>
-  </div>
-  <div ng-repeat='app in applications'>
-    <h3>Nmae: {{app.firstName}} {{app.lastName}}</h3>
-    <p>Phone: {{app.phone}}</p>
-    <p>Email: {{app.email}}</p>
-    <p>Zip Code: {{app.zip}}</p>
-    <p>--------------------------</p>
+  <!-- TODO add logout button -->
+  <button ng-click='logout()'>LogOut</button>
+  <div ng-init='getApps()'>
+    <p ng-if='applications.message'>{{applications.message}}</p>
+    <p ng-if='!applications.message'>{{applications}}</p>
   </div>
 <!-- </div> -->
