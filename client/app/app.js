@@ -10,7 +10,7 @@
           templateUrl: 'app/templates/splash.html',
           controller: 'Splash'
         })
-        .state('application', {
+        .state('apply', {
           url: '/apply/:businessName',
           templateUrl: 'app/templates/application.html',
           controller: 'ApplicationController',
@@ -35,17 +35,26 @@
           templateUrl: 'app/templates/login.html',
           controller: 'LoginController'
         })
-        .state('businessDashboard', {
-          url: '/businessDashboard',
+        .state('dashboard', {
+          url: '/dashboard',
+          abstract: true,
           templateUrl: 'app/templates/businessFrontpage.html',
-          controller: 'BusinessDashboard'
+          controller: 'BusinessDashboard',
+          resolve: {
+            applications:
+              function(BusinessDataServices){
+                return BusinessDataServices.getApps();
+              }
+          }
         })
-        .state('businessSetup', {
-          url: '/businessSetup',
-          templateUrl: 'app/templates/businessSetup.html',
-          controller: 'BusinessSetup'
+        //these will all be incorporated into the business dashbaord:
+        //TODO applications
+        .state('dashboard.setup', {
+          url: '/setup',
+          templateUrl: 'app/templates/businessSetup.html'
         })
-        .state('applicationPreview', {
+
+        .state('dashboard.preview', {
           url: '/applicationPreview',
           templateUrl: 'app/templates/applicationPreview.html',
           controller: 'BusinessSetup'

@@ -13,7 +13,7 @@ angular.module('myApp.signupCont', [])
       console.log($scope.business);
       BusinessDataServices.businessSignup($scope.business)
         .then( function (data) {
-          $state.go('businessSetup')
+          $state.go('dashboard.setup')
           //redirect user to page setting up a custom application template.
         });
     };

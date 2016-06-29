@@ -1,56 +1,116 @@
-
-  <div>
-    <!-- business Data -->
-    <p>{{businessData.name}}</p>
-    <p>http://www.jobapplix.com/apply/{{businessData.customUrl}}</p>
-    <p>{{businessData.email}}</p>
-    <p>{{businessData.name}}</p>
-    <p>{{businessData.phone}}</p>
-    <p>{{businessData.website}}</p>
+<div class='row application'>
+<div class='col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2'>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h1>{{businessData.name}}</h1><span>http://www.jobapplix.com/apply/{{businessData.customUrl}}</span>
+      <p>{{businessData.email}}</p>
+      <p>{{businessData.phone}}</p>
+      <p>{{businessData.website}}</p>
+    </div>
   </div>
-  <div ng-init="getAppTemplate()">
-    <div ng-if="template.basicInfo" style=" border: 1px solid blue ">
-      <p>Last Name: <input ng-model="application.lastName" /> First Name: <input ng-model="application.firstName" /> Middle Name: <input ng-model="application.middleName" /></p>
-      <p>Phone Number: <input ng-model="application.phone" /></p>
-      <p>Email Address: <input ng-model="application.email" /></p>
-      <p>City: <input ng-model="application.city" /> Zip: <input ng-model="application.zip" /></p>
+  <div>
+    <div class='panel panel-primary' ng-if="template.basicInfo">
+      <div class='panel-heading'>
+        <div class='panel-title'><h4>General Information<h4></div>
+      </div>  
+      <div class='panel-body'>
+          <p>First Name: <input ng-model="application.firstName" /> Middle Name: <input ng-model="application.middleName" /> Last Name: <input ng-model="application.lastName" /></p>
+          <p>Phone Number: <input ng-model="application.phone" /></p>
+          <p>Email Address: <input ng-model="application.email" /></p>
+          <p>City: <input ng-model="application.city" /> <p>
+          <p>Zip: <input ng-model="application.zip" /></p>
+      </div>
     </div>
-    <div ng-if="template.availability" style=" border: 1px solid red ">
+    <div class='panel panel-primary' ng-if="template.availability">
       <!-- availability -->
-       <p>Monday: <input type="checkbox" ng-model="application.availability.amMon" /> AM <input type="checkbox" ng-model="application.availability.pmMon" /> PM </p>
-       <p>Tuesday: <input type="checkbox" ng-model="application.availability.amTues" /> AM <input type="checkbox" ng-model="application.availability.pmTues" /> PM </p>
-       <p>Wednesday: <input type="checkbox" ng-model="application.availability.amWed" /> AM <input type="checkbox" ng-model="application.availability.pmWed" /> PM </p>
-       <p>Thursday: <input type="checkbox" ng-model="application.availability.amThurs" /> AM <input type="checkbox" ng-model="application.availability.pmThurs" /> PM </p>
-       <p>Friday: <input type="checkbox" ng-model="application.availability.amFri" /> AM <input type="checkbox" ng-model="application.availability.pmFri" /> PM </p>
-       <p>Saturday: <input type="checkbox" ng-model="application.availability.amSat" /> AM <input type="checkbox" ng-model="application.availability.pmSat" /> PM </p>
-       <p>Sunday: <input type="checkbox" ng-model="application.availability.amSun" /> AM <input type="checkbox" ng-model="application.availability.pmSun" /> PM </p>
+      <div class='panel-heading'>
+        <div class='panel-title'><h4>Position and Availability<h4></div>
+      </div>
+        <ul class='list-group'>
+          <li class='list-group-item'>
+            <div ng-if="template.position">
+              <p>What position are you applying for? <input type="text" ng-model="application.position" /></p>
+            </div>
+          </li>
+          <li class='list-group-item'>
+            <div ng-if="template.fullOrPartime">
+              <p>Are you applying for Full or Partime work? <input type="text" ng-model="application.fullOrPartime" /></p>
+            </div>
+          </li>
+          <li class='list-group-item'>
+            <div ng-if="template.backgroundCheck">
+              <p>Are you willing to submit a pre-employment background check? <input type="checkbox" ng-model="application.backgroundCheck" /> Yes</p>
+            </div>
+          </li>
+          <li class='list-group-item'>
+            <div ng-if="template.drugTest">
+            <!-- drug test -->
+              <p>Are you willing to submit a pre-employment drug screen? <input type='checkbox' ng-model='application.drugTest' /> Yes</p>
+            </div>
+          </li>
+        </ul>
+        <table class='table table-striped'>
+          <thead>
+          <tr>
+            <th><p>Available:</p></th>
+            <th><p>Monday</p></th>
+            <th><p>Tuesday</p></th>
+            <th><p>Wednesday</p></th>
+            <th><p>Thursday</p></th>
+            <th><p>Friday</p></th>
+            <th><p>Saturday</p></th>
+            <th><p>Sunday</p></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>AM (open-5pm)</td>
+            <td><input type="checkbox" ng-model="application.availability.amMon" /></td>
+            <td><input type="checkbox" ng-model="application.availability.amTues" /></td>
+            <td><input type="checkbox" ng-model="application.availability.amWed" /></td>
+            <td><input type="checkbox" ng-model="application.availability.amThurs" /></td>
+            <td><input type="checkbox" ng-model="application.availability.amFri" /></td>
+            <td><input type="checkbox" ng-model="application.availability.amSat" /></td>
+            <td><input type="checkbox" ng-model="application.availability.amSun" /></td>
+          </tr>
+          <tr>
+            <td>PM (5pm-close)</td>
+            <td><input type="checkbox" ng-model="application.availability.pmTues" /></td>
+            <td><input type="checkbox" ng-model="application.availability.pmWed" /></td>
+            <td><input type="checkbox" ng-model="application.availability.pmThurs" /></td>
+            <td><input type="checkbox" ng-model="application.availability.pmFri" /></td>
+            <td><input type="checkbox" ng-model="application.availability.pmSat" /></td>
+            <td><input type="checkbox" ng-model="application.availability.pmSun" /></td>
+            <td><input type="checkbox" ng-model="application.availability.pmMon" /></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div ng-if="template.position" style=" border: 1px solid red ">
-      <p>What position are you applying for? <input type="text" ng-model="application.position" /></p>
+    <div class='panel panel-primary'>
+      <div class='panel-heading'>
+        <div class='panel-title'><h4>Previous History</h4><small>(Checking yes to any of these questions does NOT automatically exclude you from the position)</small></div>
+      </div>
+      <ul class='list-group'>
+        <li class='list-group-item'>
+          <div ng-if="template.fired">
+          <!-- fired -->
+            <p> Have you ever been fired or asked to resign from a position?   <input type='checkbox' ng-model='application.fired' /> Yes</p>
+            <p ng-if='application.fired'> Please explain:
+            <input type='text' ng-model='application.firedExplanation' /></p>
+          </div>
+        </li>
+        <li class='list-group-item'>
+          <div ng-if="template.crimes">
+          <!-- crimes -->
+            <p> Have you ever been conviced of a crime(do not count traffic violations)?  <input type='checkbox' ng-model='application.crimes' /> Yes</p>
+            <p ng-if='application.crimes'> Please explain:
+            <input type='text' ng-model='application.crimesExplanation' /></p>
+          </div>
+        </li>
+      </ul>
     </div>
-    <div ng-if="template.fullOrPartime" style=" border: 1px solid red ">
-      <p>Are you applying for Full or Partime work? <input type="text" ng-model="application.fullOrPartime" /></p>
-    </div>
-    <div ng-if="template.backgroundCheck" style=" border: 1px solid red ">
-      <p>Are you willing to agree to a pre-employment background check? <input type="checkbox" ng-model="application.backgroundCheck" /></p>
-    </div>
-    <div ng-if="template.fired" style=" border: 1px solid blue ">
-    <!-- fired -->
-      <p> Have you ever been fired or asked to resign from a position?<input type='checkbox' ng-model='application.fired' /></p>
-      <p ng-if='application.fired'> Please explain:
-      <input type='text' ng-model='application.firedExplanation' /></p>
-    </div>
-    <div ng-if="template.crimes" style=" border: 1px solid red">
-    <!-- crimes -->
-      <p> Have you ever been conviced of a crime(do not count traffic violations)?<input type='checkbox' ng-model='application.crimes' /></p>
-      <p ng-if='application.crimes'> Please explain:
-      <input type='text' ng-model='application.crimesExplanation' /></p>
-    </div>
-    <div ng-if="template.drugTest" style=" border: 1px solid red">
-    <!-- drug test -->
-      <p>Are you willing to submit a pre-employment drug screen? <input type='checkbox' ng-model='application.drugTest' />
-    </div>
-    <div ng-if="template.workReferences" style=" border: 1px solid red">
+    <div ng-if="template.workReferences">
       <!-- work references -->
       <p>Please provide your last three work references:</p>
       <div ng-repeat='ref in application.workReferences track by $index' style='border: 1px solid yellow'>
@@ -123,7 +183,7 @@
     <div ng-if="template.otherLanguages">
     <!-- other langauages -->
       <p>Do you fluently speak a language other than English? <input type='checkbox' ng-model='application.otherLanguages'> YES</p>
-      <p ng-if='application.otherLanguages'>Please Specify which Language: <input type='text' ng-model='application.whichLanguages' />
+      <p ng-if='application.otherLanguages'>Please Specify which Language: <input type='text' ng-model='application.whichLanguages' /></p>
     </div>
     <div ng-if="template.adequateTrans">
     <!-- adequate trans -->
@@ -152,7 +212,7 @@
     </div>
     <div ng-if="template.dateAvailableToBeinWork">
     <!-- date available to begin -->
-      <p>What is the date you will be available to begin work? <input type='text' ng-model='application.dateAvailableToBeginWork'>
+      <p>What is the date you will be available to begin work? <input type='text' ng-model='application.dateAvailableToBeginWork'></p>
     </div>
     <div ng-if="template.otherComments">
     <!-- other comments -->
@@ -160,3 +220,5 @@
     </div>
   </div>
     <div><input type="button" ng-click="submit()" value="SUBMIT" /> 
+</div>
+</div>

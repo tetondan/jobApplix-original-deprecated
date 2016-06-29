@@ -39,6 +39,7 @@ const signup = (req, res) => {
               console.log(err)
               res.status(400)
             } else {
+              req.session.businessId = data._id
               res.status(201).send(data);
             }
           })

@@ -1,5 +1,20 @@
-.splashContainer {
-  background-image: url('http://www.sbfi.com/images/microsite_products/backgrounds/officeBackground-2.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
+#navbar { 
+  padding-top: 70px; 
 }
+
+.setup {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: 3vh;
+  margin-bottom: 10vh;
+}
+
+.panel-body {
+  font-size: 1.8rem;
+}
+
+.panel-text {
+  padding-left: 2vw;
+}
+
+

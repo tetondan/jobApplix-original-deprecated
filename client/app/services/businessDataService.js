@@ -35,8 +35,53 @@ angular.module('myApp.businessDataServices', [])
       return $http({
         method: 'GET',
         url: '/api/businesses/dashboard',
-      }).then(function(data){
-        return data
+      }).then(function(apps){
+        
+        var appGroups = {
+          new: [],
+          hired: [],
+          inProgress: [],
+          highPotential: [],
+          pile: [],
+          notHired: [],
+          empty: true
+        };
+
+        if(apps.status !== 204){
+          apps.data.forEach(function(app){
+            appGroups.empty = false;
+            switch(app.applicationGroup){
+              case 1: 
+                appGroups.new.push(app)
+                break;
+              case 2: 
+                appGroups.hired.push(app)
+                break;
+              case 3: 
+                appGroups.inProgress.push(app)
+                break;
+              case 4: 
+                appGroups.highPotential.push(app)
+                break;
+              case 5: 
+                appGroups.pile.push(app)
+                break;
+              case 6: 
+                appGroups.notHired.push(app)
+                break;
+            }
+          })
+        }
+        return appGroups
+      })
+    }
+    
+    var getCurrentForm = function(){
+      return $http({
+        method: 'GET',
+        url: '/api/businesses/template'
+      }).then((appTemplate) => {
+        return appTemplate;
       })
     }
 
@@ -54,7 +99,8 @@ angular.module('myApp.businessDataServices', [])
       'businessLogin': businessLogin,
       'businessLogout': businessLogout,
       'getApps': getApps,
-      'saveForm': saveForm
+      'saveForm': saveForm,
+      'getCurrentForm': getCurrentForm
     };
 
   });

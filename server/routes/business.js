@@ -25,49 +25,61 @@ router.route('/businesses/dashboard').get(authController.auth, (req,res) => {
       console.log(err);
       res.status(404)
     } else if ( data.length === 0){
-      res.status(200).send({message: 'No applications'})
+      res.status(204).send(data)
     } else {
       res.status(200).send(data);
     }
   })
 });
 
-
+router.route('/businesses/template').get(authController.auth, (req, res) => {
+  CustomApp.find({businessId: req.session.businessId})
+    .then((template) => {
+      res.status(201).send(template);
+    })
+})
 //this route will allow the business to create or update thier custom application specifications. 
 router.route('/businesses/updateApplication').put(authController.auth, (req,res) => {
   var updatedCustomApp = req.body;
   updatedCustomApp.businessId = req.session.businessId;
-  CustomApp.where({ businessId: updatedCustomApp.businessId })
-    .then((oldApp) => {
-      oldApp = oldApp[0]
-      if(oldApp === undefined){
-        var custom = new CustomApp(updatedCustomApp)
-        custom.save((err, data) => {
-          if(err){
-            console.log(err)
-            res.status(500)
-          } else {
-            res.send(200)
-          }
+  CustomApp.remove({ businessId: updatedCustomApp.businessId })
+    .then(() => {
+      var newCustomApp = new CustomApp(updatedCustomApp);
+      newCustomApp.save()
+        .then((data) => {
+          res.status(201).send(data);
         })
-      } else {
-        for (var field in CustomApp.schema.paths) {
-          if ((field !== '_id') && (field !== '__v')) {
-            if (updatedCustomApp[field] !== undefined) {
-              oldApp[field] = updatedCustomApp[field];
-            }
-          }
-        }
-        oldApp.save((err,data) => {
-          if(err){
-            console.log(err);
-            res.status(500)
-          } else {
-            res.status(200).send('updated');
-          }
-        })  
-      }
     })
+    // .then((oldApp) => {
+    //   oldApp = oldApp[0]
+    //   if(oldApp === undefined){
+    //     var custom = new CustomApp(updatedCustomApp)
+    //     custom.save((err, data) => {
+    //       if(err){
+    //         console.log(err)
+    //         res.status(500)
+    //       } else {
+    //         res.send(200)
+    //       }
+    //     })
+    //   } else {
+    //     for (var field in CustomApp.schema.paths) {
+    //       if ((field !== '_id') && (field !== '__v')) {
+    //         if (updatedCustomApp[field] !== undefined) {
+    //           oldApp[field] = updatedCustomApp[field];
+    //         }
+    //       }
+    //     }
+    //     oldApp.save((err,data) => {
+    //       if(err){
+    //         console.log(err);
+    //         res.status(500)
+    //       } else {
+    //         res.status(200).send('updated');
+    //       }
+    //     })  
+    //   }
+    // })
 })
 
 //this route is used for testing purposes to see if a session cookie has been created and is still active
