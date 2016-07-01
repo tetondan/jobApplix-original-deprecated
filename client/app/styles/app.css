@@ -1,3 +1,9 @@
+body {
+  margin-bottom: 10vh;
+  background-image: url('http://lorempixel.com/g/640/480/abstract/');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 #navbar { 
   padding-top: 70px; 
 }
@@ -17,4 +23,27 @@
   padding-left: 2vw;
 }
 
+.formName {
+  width: 30%;
+}
+
+.suf {
+  width: 10%;
+}
+
+.application-employer-check {
+  margin-top: 4px;
+  margin-bottom: 5px;
+}
+
+.splash-container {
+  background-color: rgba(0,0,0,0.5);
+  color: rgb(255,255,255);
+  border-radius: 1rem;
+  margin-top: 25vh;
+}
+
+.splash-container h1 {
+  font-size: 6rem;
+}
 

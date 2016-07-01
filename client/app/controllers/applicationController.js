@@ -7,25 +7,28 @@ angular.module('myApp.applicationCont', [])
     $scope.application.businessId = customTemplate.data.businessId[0]._id;
     $scope.application.education = {
         highschool: {
+          type: 'High School',
           schoolName: '',
           location: '',
           yearsCompleted: '',
           fieldOfStudy: '',
-          degree: false
+          degree: ''
         },
         college: {
+          type: 'College or University',
           schoolName: '',
           location: '',
           yearsCompleted: '',
           fieldOfStudy: '',
-          degree: false
+          degree: ''
         },
         tradeSchool: {
+          type: 'Trade or Vocational School',
           schoolName: '',
           location: '',
           yearsCompleted: '',
           fieldOfStudy: '',
-          degree: false
+          degree: ''
         }
       };
     $scope.application.workReferences = [{
@@ -98,6 +101,9 @@ angular.module('myApp.applicationCont', [])
     //submit application to server. 
     $scope.submit = function(){
       var application = $scope.application;
+      application.education.highschool.type = undefined;
+      application.education.college.type = undefined;
+      application.education.tradeSchool.type = undefined;
       AppDataServices.submitApplication(application)
       .then( function (data) {
         $state.go('success')
