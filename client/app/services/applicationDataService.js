@@ -10,8 +10,22 @@ angular.module('myapp.appDataServices', [])
         return data;
       })
     }
+    var updateApplicationGroup = function(id, newGroup){
+      var appNewGroupData = {
+        id: id,
+        group: newGroup
+      };  
+      return $http({
+        method: 'PUT',
+        url: 'api/applicationUpdateGroup',
+        data: appNewGroupData
+      }).then(function(data){
+        return data
+      })  
+    }
     return {
-      'submitApplication': submitApplication
+      'submitApplication': submitApplication,
+      'updateApplicationGroup': updateApplicationGroup
     };
 
   });

@@ -1,0 +1,17 @@
+<div>
+  <ul class="nav nav-tabs col-md-11 col-md-offset-1">
+    <li role="presentation" ng-click="choose($event,'new')" class="active"><a>New</a></li>
+    <li role="presentation" ng-click="choose($event,'hired')"><a>Hired</a></li>
+    <li role="presentation" ng-click="choose($event,'inProgress')"><a>In Progress</a></li>
+    <li role="presentation" ng-click="choose($event,'highPotential')"><a>High Potential</a></li>
+    <li role="presentation" ng-click="choose($event,'pile')"><a>Pile</a></li>
+    <li role="presentation" ng-click="choose($event,'notHired')"><a>Not Hired</a></li>
+  </ul>
+</div>
+<ja-applications ng-if='chosen.new' group='apps.new'></ja-applications>
+<ja-applications ng-if='chosen.hired' group='apps.hired'></ja-applications>
+<ja-applications ng-if='chosen.inProgress' group='apps.inProgress'></ja-applications>
+<ja-applications ng-if='chosen.highPotential' group='apps.highPotential'></ja-applications>
+<ja-applications ng-if='chosen.pile' group='apps.pile'></ja-applications>
+<ja-applications ng-if='chosen.notHired' group='apps.notHired'></ja-applications>
+

@@ -1,5 +1,7 @@
 (function(){
-   var app = angular.module('myApp',['myApp.applicationCont','myApp.splashCont','myApp.signupCont','myApp.loginCont', 'myApp.businessDashBoard', 'myApp.businessSetup','myapp.appDataServices','myApp.businessDataServices','ui.router']); 
+   var app = angular.module('myApp',['myApp.applicationCont','myApp.splashCont','myApp.signupCont','myApp.loginCont', 'myApp.businessDashBoard', 
+                                     'myApp.businessSetup','myapp.appDataServices','myApp.businessDataServices', 'myApp.directives',
+                                     'myApp.tabs','ui.router']); 
     //TODO reconfigure to use UI router to allow for nested routes
     app.config(['$logProvider','$stateProvider', '$urlRouterProvider', function ( $logProvider, $stateProvider, $urlRouterProvider) {
       $logProvider.debugEnabled(true);
@@ -12,7 +14,7 @@
         })
         .state('apply', {
           url: '/apply/:businessName',
-          templateUrl: 'app/templates/application.html',
+          templateUrl: 'app/templates/application/application.html',
           controller: 'ApplicationController',
           resolve: {
             customTemplate: 
@@ -38,7 +40,7 @@
         .state('dashboard', {
           url: '/dashboard',
           abstract: true,
-          templateUrl: 'app/templates/businessFrontpage.html',
+          templateUrl: 'app/templates/dashboard/header.html',
           controller: 'BusinessDashboard',
           resolve: {
             applications:
@@ -51,13 +53,24 @@
         //TODO applications
         .state('dashboard.setup', {
           url: '/setup',
-          templateUrl: 'app/templates/businessSetup.html'
+          templateUrl: 'app/templates/dashboard/setup.html'
         })
-
+        
         .state('dashboard.preview', {
           url: '/applicationPreview',
-          templateUrl: 'app/templates/applicationPreview.html',
-          controller: 'BusinessSetup'
+          templateUrl: 'app/templates/appPreview.html'
+        })
+
+        .state('dashboard.tabs', {
+          url: '/tabs',
+          templateUrl: 'app/templates/dashboard/tabs.html',
+          controller: 'TabsController',
+          resolve: {
+            customTemplate: 
+              function(BusinessDataServices){
+                return BusinessDataServices.getCurrentForm();
+              }
+          }
         })
       }])
 }())

@@ -4,7 +4,6 @@ angular.module('myApp.businessDashBoard', [])
     $scope.apps = applications;
 
     $scope.application;
-
     //TODO call a get on the current custom application and apply it to the checkboxes
     $scope.getCurrentForm = function(){
       BusinessDataServices.getCurrentForm()

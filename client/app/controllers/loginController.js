@@ -8,7 +8,7 @@ angular.module('myApp.loginCont', [])
       .then( function (data) {
         if(data.status === 200){
           $rootScope.businessData = data.data;
-          $state.go('dashboard')
+          $state.go('dashboard.tabs')
         }
       })
     }

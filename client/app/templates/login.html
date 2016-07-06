@@ -1,14 +1,25 @@
-  <div>
-    <h3>Please Enter Username and Password to Login</h3>
-    <p>Not yet a memeber? <a href="/#/signup">CLICK HERE</a> to sign up!</p>
-    <div ng-if="error" style='background-color: red;'>
-      <p>Invalid Username or Password, please try again</p>
-    </div>  
-    <div class='form-fields'>
-      <p>Username:</p>
-      <input ng-model='business.username'/>
-      <p>Password:</p>
-      <input type="password" ng-model='business.password'/>
-      <button ng-click='logIn()'>Submit</button>
-    </div>
+<div id="navbar">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="home">Job Applix</a>
+      </div>
+    </div><!-- /.container-fluid -->
+  </nav>
+</div>
+<div class="splash-container col-md-6 col-md-offset-3">
+  <h1>Job Applix</h1>
+  <h4>Please Enter Username and Password to Login</h4>
+  <p>Not yet a memeber? <a href="/#/signup">CLICK HERE</a> to sign up!</p>
+  <div ng-if="error" style='background-color: red;'>
+    <p>Invalid Username or Password, please try again</p>
+  </div>  
+  <div class='form-fields'>
+    <label>Username:</label>
+    <input tyep="text" class="form-control" ng-model='business.username'/>
+    <label>Password:</label>
+    <input type="password" class="form-control" ng-model='business.password'/>
+    <button class='btn btn-primary' ng-click='logIn()'>Submit</button>
   </div>
+</div>

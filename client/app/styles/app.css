@@ -1,9 +1,9 @@
-body {
+/*body {
   margin-bottom: 10vh;
   background-image: url('http://lorempixel.com/g/640/480/abstract/');
   background-repeat: no-repeat;
   background-size: cover;
-}
+}*/
 #navbar { 
   padding-top: 70px; 
 }
@@ -47,3 +47,24 @@ body {
   font-size: 6rem;
 }
 
+.splash-container div {
+  margin-bottom: 5vh;
+}
+
+.apps {
+  margin-top: 5vh;
+}
+
+.application-button-group {
+  float: right;
+}
+
+.empty-group {
+  color: red;
+}
+
+.app-click {
+  font-size: 1rem;
+  float: right;
+  cursor: pointer;
+}
