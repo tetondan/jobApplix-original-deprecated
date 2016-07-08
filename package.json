@@ -23,6 +23,10 @@
     "express": "^4.13.4",
     "express-server": "^0.5.8",
     "express-session": "^1.14.0",
-    "mongoose": "^4.4.14"
+    "mongoose": "^4.4.14",
+    "bower": "0.6.x"
+  },
+  "scripts": {
+      "postinstall": "./node_modules/bower/bin/bower install"
   }
 }
