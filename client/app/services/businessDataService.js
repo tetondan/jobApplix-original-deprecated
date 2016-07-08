@@ -80,7 +80,7 @@ angular.module('myApp.businessDataServices', [])
       return $http({
         method: 'GET',
         url: '/api/businesses/template'
-      }).then((appTemplate) => {
+      }).then( function (appTemplate){
         return appTemplate;
       })
     }
