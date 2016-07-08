@@ -1,7 +1,7 @@
 (function(){
    var app = angular.module('myApp',['myApp.applicationCont','myApp.splashCont','myApp.signupCont','myApp.loginCont', 'myApp.businessDashBoard', 
                                      'myApp.businessSetup','myapp.appDataServices','myApp.businessDataServices', 'myApp.directives',
-                                     'myApp.tabs','ui.router']); 
+                                     'myApp.tabs','myApp.filters','ui.router']); 
     //TODO reconfigure to use UI router to allow for nested routes
     app.config(['$logProvider','$stateProvider', '$urlRouterProvider', function ( $logProvider, $stateProvider, $urlRouterProvider) {
       $logProvider.debugEnabled(true);
@@ -18,8 +18,15 @@
           controller: 'ApplicationController',
           resolve: {
             customTemplate: 
-              function($stateParams, $http){
-                return $http.get('/api/businesses/'+ $stateParams.businessName);
+              function($stateParams, $http, $state){
+                return $http({
+                  method: 'GET',
+                  url: '/api/businesses/'+ $stateParams.businessName,
+                }).then(function(data){
+                  return data;
+                }).catch(function(){
+                  $state.go('404');
+                })
               }
           }
         })
@@ -71,6 +78,11 @@
                 return BusinessDataServices.getCurrentForm();
               }
           }
+        })
+
+        .state('404', {
+          url: '/404',
+          templateUrl: 'app/templates/404.html'
         })
       }])
 }())

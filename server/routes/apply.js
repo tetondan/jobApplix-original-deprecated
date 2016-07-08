@@ -38,7 +38,7 @@ router.route('/businesses/:businessName').get((req, res) => {
       console.log(err)
       res.sendStatus(404)
     } else if(data.length === 0){
-      res.status(404)
+      res.sendStatus(404);
     } else {
       let businessData = data[0];
       CustomApp.findOne({businessId: businessData._id})

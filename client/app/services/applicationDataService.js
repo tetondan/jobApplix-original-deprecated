@@ -1,5 +1,5 @@
 angular.module('myapp.appDataServices', [])
-  .factory('AppDataServices', function ($http) {
+  .factory('AppDataServices', function ($http, $state) {
     var submitApplication = function(application){
       application.applicationGroup = 1;
        return $http({
@@ -10,6 +10,7 @@ angular.module('myapp.appDataServices', [])
         return data;
       })
     }
+
     var updateApplicationGroup = function(id, newGroup){
       var appNewGroupData = {
         id: id,
@@ -23,9 +24,21 @@ angular.module('myapp.appDataServices', [])
         return data
       })  
     }
+
+    var getCustomTemplate = function(name){
+      return $http({
+        method: 'GET',
+        url: '/api/businesses/'+ name,
+      }).then(function(data){
+        return data;
+      }).catch(function(){
+        $state.go('404');
+      })
+    }
     return {
       'submitApplication': submitApplication,
-      'updateApplicationGroup': updateApplicationGroup
+      'updateApplicationGroup': updateApplicationGroup,
+      'getCustomTemplate': getCustomTemplate
     };
 
   });

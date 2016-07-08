@@ -50,36 +50,6 @@ router.route('/businesses/updateApplication').put(authController.auth, (req,res)
           res.status(201).send(data);
         })
     })
-    // .then((oldApp) => {
-    //   oldApp = oldApp[0]
-    //   if(oldApp === undefined){
-    //     var custom = new CustomApp(updatedCustomApp)
-    //     custom.save((err, data) => {
-    //       if(err){
-    //         console.log(err)
-    //         res.status(500)
-    //       } else {
-    //         res.send(200)
-    //       }
-    //     })
-    //   } else {
-    //     for (var field in CustomApp.schema.paths) {
-    //       if ((field !== '_id') && (field !== '__v')) {
-    //         if (updatedCustomApp[field] !== undefined) {
-    //           oldApp[field] = updatedCustomApp[field];
-    //         }
-    //       }
-    //     }
-    //     oldApp.save((err,data) => {
-    //       if(err){
-    //         console.log(err);
-    //         res.status(500)
-    //       } else {
-    //         res.status(200).send('updated');
-    //       }
-    //     })  
-    //   }
-    // })
 })
 
 //this route is used for testing purposes to see if a session cookie has been created and is still active

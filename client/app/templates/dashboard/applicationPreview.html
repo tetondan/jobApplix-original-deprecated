@@ -1,8 +1,8 @@
-<div class="col-md-11 col-md-offset-1 apps">
+<div class="apps">
   <div ng-if="group.length === 0">
     <p class='empty-group'>There are no applications in this group</p>
   </div>
-  <div ng-repeat="application in group track by $index">
+  <div ng-repeat="application in group| applicationFilter:$parent.filterObject">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <div class="panel-title">
@@ -17,15 +17,15 @@
           </h5>
         </div>
       </div>
-      <div class="panel-body" ng-click="application.expanded = !application.expanded">
+      <div class="panel-body">
         <div>
           <div class='col-md-12'>
-            <p class='app-click'>click anywhere to expand</p>
+            <p class='app-click' ng-click="application.expanded = !application.expanded">click here to expand</p>
           </div>
           <div class='col-md-6'>
             <p><strong>Name:</strong> {{application.firstName}} {{application.middleName}} {{application.lastName}}</p>
             <p><strong>Phone Number:</strong> {{application.phone}}</p>
-            <p><strong>Email:</strong> {{application.email}}</p>
+            <p><strong>Email: </strong><a href={{"mailto:" + application.email}}>{{application.email}}</a></p>
           </div>
           <div class='col-md-6'>
             <p><strong>City:</strong> {{application.city}}</p>
@@ -33,179 +33,219 @@
             <p><strong>Position Applying For:</strong> {{application.position}}</p>
           </div>  
           <div class='col-md-12' ng-if='application.expanded'>
-            <div ng-if='customTemplate.fullOrPartime'>
-            <p><strong>Applicant prefers to work:</strong> {{application.fullOrPartime}}</p>
+          <div class='panel panel-primary'>
+            <div class='panel-heading'>
+              <div class='panel-title'><h4>Employment Information</h4></div>
             </div>
-            <div ng-if='customTemplate.availability'>
-              <div class='col-md-12'>
-                <table class='table table-reponsive table-striped'>
-                  <thead>
-                  <tr>
-                    <th><p>Available:</p></th>
-                    <th><p>AM (open-5pm)</p></th>
-                    <th><p>PM (5pm-close)</p></th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>Monday:</td>
-                    <td><input type="checkbox" ng-model="application.availability.amMon" /></td>
-                    <td><input type="checkbox" ng-model="application.availability.pmMon" /></td>
-                  </tr>
-                  <tr>
-                    <td>Tuesday:</td>
-                    <td><input type="checkbox" ng-model="application.availability.amTues" /></td>
-                    <td><input type="checkbox" ng-model="application.availability.pmTues" /></td>
-                  </tr>
-                  <tr>
-                    <td>Wednesday:</td>
-                    <td><input type="checkbox" ng-model="application.availability.amWed" /></td>
-                    <td><input type="checkbox" ng-model="application.availability.pmWed" /></td>
-                  </tr>
-                  <tr>
-                    <td>Thursday:</td>
-                    <td><input type="checkbox" ng-model="application.availability.amThurs" /></td>
-                    <td><input type="checkbox" ng-model="application.availability.pmThurs" /></td>
-                  </tr>
-                  <tr>
-                    <td>Friday</td>
-                    <td><input type="checkbox" ng-model="application.availability.amFri" /></td>
-                    <td><input type="checkbox" ng-model="application.availability.pmFri" /></td>
-                  </tr>
-                  <tr>
-                    <td>Saturday:</td>
-                    <td><input type="checkbox" ng-model="application.availability.amSat" /></td>
-                    <td><input type="checkbox" ng-model="application.availability.pmSat" /></td>
-                  </tr>
-                  <tr>
-                    <td>Sunday:</td>
-                    <td><input type="checkbox" ng-model="application.availability.amSun" /></td>
-                    <td><input type="checkbox" ng-model="application.availability.pmSun" /></td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div ng-if='customTemplate.fired'>
-              <p><strong>Employee has previously been fired or asked to resign:</strong> {{application.fired || 'No'}}</p>
-              <p ng-if='application.fired'><strong>Explanation:</strong> {{application.firedExplanation || 'No explanation given'}}</p>
-            </div>
-            <div ng-if='customTemplate.crimes'>
-              <p><strong>Employee has previously been convicted of a crime:</strong> {{application.crimes || 'No'}}</p>
-              <p ng-if='application.fired'><strong>Explanation:</strong> {{application.crimesExplanation || 'No explanation given'}}</p>
-            </div>
-            <div ng-if='customTemplate.backgroundCheck'>
-            <p>Willing to submit a background check? {{application.backgroundCheck || 'No'}}</p>
-            </div>
-            <div ng-if='customTemplate.drugTest'>
-            <p>Willing to submit a pre-employment drug test: {{application.drugTest || 'No'}}
-            </div>
-            <div ng-if='customTemplate.workReferences'>
-              <div ng-repeat="workRef in application.workReferences track by $index">
-                <p><strong>Work Reference #{{$index + 1}}</strong></p>
-                <div class='col-md-6'>
-                  <p>Employer Name: {{workRef.employerName}}</p>
-                  <p>Employer Address: {{workRef.address}}</p>
-                  <p>Supervisor Name: {{workRef.supervisorName}}</p>
-                  <p>Phone Number: {{workRef.phoneNumber}}</p>
-                  <p>Employee Title: {{workRef.title}}</p>
-                  <p>Starting Date: {{workRef.startDate}}</p>
+            <div class='panel-body'>
+              <div class='col-md-6'>
+                <div ng-if='customTemplate.fired'>
+                  <p><strong>Employee has previously been fired or asked to resign:</strong> {{application.fired ? 'Yes' : 'No'}}</p>
+                  <p ng-if='application.fired'><strong>Explanation:</strong> {{application.firedExplanation || 'No explanation given'}}</p>
                 </div>
-                <div class='col-md-6'>
-                  <p>Ending Date: {{workRef.endDate}}</p>
-                  <p>Employee Duties: {{workRef.duties}}</p>
-                  <p>Starting Pay: {{workRef.startingPay}}</p>
-                  <p>Ending Pay: {{workRef.endingPay}}</p>
-                  <p>Reson for Leaving: {{workRef.reasonForLeaving}}</p>
-                  <p>Can contact this employer?: {{ workRef.canContact ? 'Yes' : 'No'}}</p>
+                <div ng-if='customTemplate.crimes'>
+                  <p><strong>Employee has previously been convicted of a crime:</strong> {{application.crimes ? 'Yes' : 'No'}}</p>
+                  <p ng-if='application.fired'><strong>Explanation:</strong> {{application.crimesExplanation || 'No explanation given'}}</p>
+                </div>
+                <div ng-if='customTemplate.validDriversLicense'>
+                  <p><strong>If required for the position, do you currently have a valid drivers license?:</strong> {{application.validDriversLicense ? 'Yes' : 'No'}}</p>
+                  <p ng-if='application.validDriversLicense'><strong>What is the number and state?</strong> {{application.validDriversLicenseNumber}}</p>
+                </div>
+                <div ng-if='customTemplate.overtime'>
+                  <p><strong>Are you able to work overtime if necessary?</strong> {{application.overtime ? 'Yes' : 'No'}}</p>
+                </div>
+                <div ng-if='customTemplate.permanent'>
+                  <p><strong>Are you applying for a permanent position?</strong> {{application.permanent ? 'Yes' : 'No'}}</p>
+                </div>
+                <div ng-if='customTemplate.physicalLimitation'>
+                  <p><strong>Do you have any physical limitations that would prevent you from performing the duties of this position?</strong> {{application.physicalLimitation ? 'Yes' : 'No'}}</p>
+                </div>
+              </div>
+              <div class='col-md-6'>
+                <div ng-if='customTemplate.fullOrPartime'>
+                  <p><strong>Applicant prefers to work:</strong> {{application.fullOrPartime}}</p>
+                </div>
+                <div ng-if='customTemplate.backgroundCheck'>
+                  <p><strong>Willing to submit a background check?</strong> {{application.backgroundCheck ? 'Yes' : 'No'}}</p>
+                </div>
+                <div ng-if='customTemplate.drugTest'>
+                  <p><strong>Willing to submit a pre-employment drug test:</strong> {{application.drugTest ? 'Yes' : 'No'}}</p>
+                </div>
+                <div ng-if='customTemplate.overFourteen'>
+                  <p><strong>Are you 14 years old or older?</strong> {{application.overFourteen ? 'Yes' : 'No'}}</p>
+                </div>
+                <div ng-if='customTemplate.overSixteen'>
+                  <p><strong>Are you 16 years old or older?</strong> {{application.overSixteen ? 'Yes' : 'No'}}</p>
+                </div>
+                <div ng-if='customTemplate.overEighteen'>
+                  <p><strong>Are you 18 years old or older?</strong> {{application.overEighteen ? 'Yes' : 'No'}}</p>
+                </div>
+                <div ng-if='customTemplate.overTwentyone'>
+                  <p><strong>Are you 21 years old or older?</strong> {{application.overTwentyone ? 'Yes' : 'No'}}</p>
+                <div ng-if='customTemplate.authWorkInUs'>
+                  <p><strong>Are you auhtorized to work in the US?</strong>{{application.authWorkInUS ? 'Yes' : 'No'}}</p>
+                </div>
+              <div ng-if='customTemplate.dateAvailableToBeginWork'>
+                <p><strong>What is the date you are available to begin work?</strong> {{application.dateAvailableToBeginWork | date}}</p>
+              </div>
+                </div>
+                <div ng-if='customTemplate.otherLanguages'>
+                  <p><strong>Do you fluently speak a language other than English?</strong> {{application.otherLanguages ? 'Yes' : 'No'}}</p>
+                  <p ng-if="application.otherLanguages"><strong>Which Languages?</strong> {{application.whichLanguages}}</p>
+                </div>
+                <div ng-if='customTemplate.adequateTrans'>
+                  <p><strong>Do you have adequate transportation to and from work?</strong> {{application.adequateTrans ? 'Yes' : 'No'}}</p>
                 </div>
               </div>
             </div>
-            <div ng-if='customTemplate.personalReferences'>
-              <div ng-repeat="persRef in application.personalReferences track by $index">
-                <p><strong>Personal Reference #{{$index + 1}}</strong></p>
-                <div class='col-md-6'>
-                  <p>Name: {{persRef.name}}</p>
-                  <p>Phone Number: {{persRef.phone}}</p>
-                  <p>Email: {{persRef.email}}</p>
-                </div>
-                <div class='col-md-6'>
-                  <p>Address: {{persRef.address}}</p>
-                  <p>Relationship: {{persRef.relationship}}</p>
-                  <p>Years known: {{persRef.yearsKnown}}</p>
-                </div>
+          </div>
+            <div ng-if='customTemplate.availability' class='panel panel-primary'>
+              <div class='panel-heading'>
+                <div class='panel-title'>Availability</div>
               </div>
-            </div>
-            <div ng-if='customTemplate.education'>
-              <p><strong>Education:</strong></p>
-              <div ng-repeat='(school, value) in application.education'>
+              <div class='panel-body'>
                 <div class='col-md-12'>
-                  <p><strong>{{school === 'tradeSchool' ? "Trade School" : school === 'college' ? 'College' : 'High School'}}</strong></p>
-                </div>  
-                <div class='col-md-6'>
-                  <p>School Name: {{value.schoolName}}</p>
-                  <p>Location: {{value.location}}</p>
-                  <p>Years Completed: {{value.yearCompleted}}</p>  
+                  <table class='table table-reponsive table-striped'>
+                    <thead>
+                    <tr>
+                      <th><p>Available:</p></th>
+                      <th><p>AM (open-5pm)</p></th>
+                      <th><p>PM (5pm-close)</p></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>Monday:</td>
+                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.amMon"></span></td>
+                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.pmMon"></span></td>
+                    </tr>
+                    <tr>
+                      <td>Tuesday:</td>
+                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.amTues"></span></td>
+                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.pmTues"></span></td>
+                    </tr>
+                    <tr>
+                      <td>Wednesday:</td>
+                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.amWed"></span></td>
+                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.pmWed"></span></td>
+                    </tr>
+                    <tr>
+                      <td>Thursday:</td>
+                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.amThurs"></span></td>
+                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.pmThurs"></span></td>
+                    </tr>
+                    <tr>
+                      <td>Friday</td>
+                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.amFri"></span></td>
+                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.pmFri"></span></td>
+                    </tr>
+                    <tr>
+                      <td>Saturday:</td>
+                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.amSat"></span></td>
+                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.pmSat"></span></td>
+                    </tr>
+                    <tr>
+                      <td>Sunday:</td>
+                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.amSun"></span></td>
+                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.pmSun"></span></td>
+                    </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <div class='col-md-6'>
-                  <p>Field of study: {{value.fieldOfStudy}}</p>
-                  <p>Degree Earned: {{value.degree}}</p>
-                </div>  
               </div>
             </div>
-            <div ng-if='customTemplate.physicalLimitation'>
-            {{application.}}
+            <div class='panel panel-primary' ng-if='customTemplate.workReferences'>
+              <div class='panel-heading'>
+                <div class='panel-title'><h4>Work References</h4></div>
+              </div>
+              <div class='panel-body'>
+                <div ng-repeat="workRef in application.workReferences track by $index">
+                  <p><strong>#{{$index + 1}}</strong></p>
+                  <div class='col-md-6'>
+                    <p>Employer Name: {{workRef.employerName}}</p>
+                    <p>Employer Address: {{workRef.address}}</p>
+                    <p>Phone Number: {{workRef.phoneNumber}}</p>
+                    <p>Employee Title: {{workRef.title}}</p>
+                    <p>Starting Date: {{workRef.startDate | date}}</p>
+                    <p>Ending Date: {{workRef.endDate | date}}</p>
+                  </div>
+                  <div class='col-md-6'>
+                    <p>Supervisor Name: {{workRef.supervisorName}}</p>
+                    <p>Employee Duties: {{workRef.duties}}</p>
+                    <p>Starting Pay: {{workRef.startingPay}}</p>
+                    <p>Ending Pay: {{workRef.endingPay}}</p>
+                    <p>Reson for Leaving: {{workRef.reasonForLeaving}}</p>
+                    <p>Can contact this employer?: {{ workRef.canContact ? 'Yes' : 'No'}}</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div ng-if='customTemplate.authWorkInUs'>
-            {{application.}}
+            <div class='panel panel-primary' ng-if='customTemplate.personalReferences'>
+              <div class='panel-heading'>
+                <div class='panel-title'><h4>Personal References</h4></div>
+              </div>
+              <div class='panel-body'>
+                <div ng-repeat="persRef in application.personalReferences track by $index">
+                  <p><strong>#{{$index + 1}}</strong></p>
+                  <div class='col-md-6'>
+                    <p>Name: {{persRef.name}}</p>
+                    <p>Phone Number: {{persRef.phone}}</p>
+                    <p>Email: {{persRef.email}}</p>
+                  </div>
+                  <div class='col-md-6'>
+                    <p>Address: {{persRef.address}}</p>
+                    <p>Relationship: {{persRef.relationship}}</p>
+                    <p>Years known: {{persRef.yearsKnown}}</p>
+                  </div>
+                </div>
+              </div>  
             </div>
-            <div ng-if='customTemplate.validDriversLicense'>
-            {{application.}}
+            <div ng-if='customTemplate.education' class='panel panel-primary'>
+              <div class='panel-heading'>
+                <div class='panel-title'><h4>Education</h4></div>
+              </div>
+              <div class='panel-body'>
+                <div ng-repeat='(school, value) in application.education'>
+                  <div class='col-md-12'>
+                    <p><strong>{{school === 'tradeSchool' ? "Trade School" : school === 'college' ? 'College' : 'High School'}}</strong></p>
+                  </div>  
+                  <div class='col-md-6'>
+                    <p>School Name: {{value.schoolName}}</p>
+                    <p>Location: {{value.location}}</p>
+                    <p>Years Completed: {{value.yearCompleted}}</p>  
+                  </div>
+                  <div class='col-md-6'>
+                    <p>Field of study: {{value.fieldOfStudy}}</p>
+                    <p>Degree Earned: {{value.degree}}</p>
+                  </div>  
+                </div>
+              </div>
             </div>
-            <div ng-if='customTemplate.overFourteen'>
-            {{application.}}
-            </div>
-            <div ng-if='customTemplate.overSixteen'>
-            {{application.}}
-            </div>
-            <div ng-if='customTemplate.overEighteen'>
-            {{application.}}
-            </div>
-            <div ng-if='customTemplate.overTwentyone'>
-            {{application.}}
-            </div>
-            <div ng-if='customTemplate.overtime'>
-            {{application.}}
-            </div>
-            <div ng-if='customTemplate.permanent'>
-            {{application.}}
-            </div>
-            <div ng-if='customTemplate.otherLanguages'>
-            {{application.}}
-            </div>
-            <div ng-if='customTemplate.adequateTrans'>
-            {{application.}}
-            </div>
-            <div ng-if='customTemplate.specializedSkills'>
-            {{application.}}
-            </div>
-            <div ng-if='customTemplate.computerRepair'>
-            {{application.}}
-            </div>
-            <div ng-if='customTemplate.proffesionalCerts'>
-            {{application.}}
-            </div>
-            <div ng-if='customTemplate.typingSpeed'>
-            {{application.}}
-            </div>
-            <div ng-if='customTemplate.veteran'>
-            {{application.}}
-            </div>
-            <div ng-if='customTemplate.dateAvailableToBeginWork'>
-            {{application.}}
-            </div>
-            <div ng-if='customTemplate.otherComments'>
-            {{application.}}
+            <div class='panel panel-primary'>
+              <div class='panel-heading'>
+                <div class='panel-title'><h4>Other Information</h4></div>
+              </div>
+              <div class='panel-body'>
+                <div ng-if='customTemplate.specializedSkills'>
+                  <p><strong>Do you have any other specialized skills or qualifications?</strong> {{application.specializedSkills ? 'Yes' : 'No'}}</p>
+                  <p ng-if="application.specializedSkills"><strong>Please list them:</strong> {{application.specializedSkillsList}}</p>
+                </div>
+                <div ng-if='customTemplate.computerRepair'>
+                  <p><strong>Are you authorized or ceritified to operate or repair any computer hardware or software?</strong> {{application.computerRepair ? 'Yes' : 'No'}}</p>
+                </div>
+                <div ng-if='customTemplate.proffesionalCerts'>
+                  <p><strong>If you have any proffessional ceritications please list them here:</strong> {{application.proffesionalCerts}}</p>
+                </div>
+                <div ng-if='customTemplate.typingSpeed'>
+                  <p><strong>What is your average typing speed?</strong> {{application.typingSpeed}} WPM</p>
+                </div>
+                <div ng-if='customTemplate.veteran'>
+                  <p><strong>Are you a verteran of the United States Armed Services?</strong> {{application.veteran ? 'Yes' : 'No'}}</p>
+                </div>
+                <div ng-if='customTemplate.otherComments'>
+                  <p><strong>Do you have any other comments you would like to add?</strong> {{application.otherComments ? application.otherComments : 'None'}}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -213,53 +253,3 @@
     </div>
   </div>
 </div>
-
-
-<!-- 
-  personalReferences: [],
-  education: {
-    highschool: {
-      schoolName: String,
-      location: String,
-      yearsCompleted: String,
-      fieldOfStudy: String,
-      degree: String
-    },
-    college: {
-      schoolName: String,
-      location: String,
-      yearsCompleted: String,
-      fieldOfStudy: String,
-      degree: String
-    },
-    tradeSchool: {
-      schoolName: String,
-      location: String,
-      yearsCompleted: String,
-      fieldOfStudy: String,
-      degree: String
-    }
-  },
-  physicalLimitation: Boolean,
-  authWorkInUS: Boolean,
-  validDriversLicense: Boolean,
-  validDriversLicenseNumber: String,
-  overFourteen: Boolean,
-  overSixteen: Boolean,
-  overEighteen: Boolean,
-  overTwentyone: Boolean,
-  overtime: Boolean,
-  permanent: Boolean,
-  otherLanguages: Boolean,
-  whichLanguages: String,
-  adequateTrans: Boolean,
-  specializedSkills: Boolean,
-  specializedSkillsList: String,
-  computerRepair: Boolean,
-  proffesionalCerts: String,
-  typingSpeed: String, 
-  veteran: Boolean,
-  dateAvailableToBeginWork: String,
-  otherComments: String,
-  state: String,
- -->

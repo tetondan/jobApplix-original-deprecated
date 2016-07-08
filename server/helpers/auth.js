@@ -12,7 +12,11 @@ const signin = (req, res) => {
         .then((isPass) => {
           if(isPass === true){
             req.session.businessId = results._id
-            res.status(200).send('loggedIn')
+            results.password = undefined
+            results._id = undefined
+            results.__v = undefined
+            results.username = undefined
+            res.status(200).send(results)
           } else {
             res.status(404).send("Incorrect Username or Password 2")
           }

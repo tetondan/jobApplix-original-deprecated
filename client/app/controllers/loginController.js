@@ -11,5 +11,8 @@ angular.module('myApp.loginCont', [])
           $state.go('dashboard.tabs')
         }
       })
+      .catch( function() {
+        $scope.error = true
+      })
     }
   })
