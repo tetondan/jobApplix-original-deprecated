@@ -15,7 +15,7 @@ module.exports = (app, express) => {
     saveUninitialized: true,
     cookie: {},
     store: new MongoStore({
-    url: process.env.CUSTOMCONNSTR_MONGOLAB_URI_JOBAPPLIX || 'mongodb://localhost/jobApplix';
+    url: process.env.CUSTOMCONNSTR_MONGOLAB_URI_JOBAPPLIX || 'mongodb://localhost/jobApplix'
     //other advanced options
   })
   }));
