@@ -1,0 +1,59 @@
+<div class="application-body">
+<div class="panel panel-primary" ng-if="template.workReferences" >
+  <div class="panel-heading">
+    <div class="panel-title"><h4>Work History</h4></div>
+  </div>
+  <div class="panel-body">
+    <label>Please provide your last three years of work references:</label>
+    <hr>
+    <form name="form.appForm">
+    <div ng-if="application.workReferences.length === 0">
+      <label> This is my first job.</label><input type="checkbox" ng-model="firstJobCheckbox" required/>
+    </div>
+    <div ng-if="!firstJobCheckbox" ng-repeat="ref in application.workReferences track by $index">
+      <label>Job #{{$index + 1}}</label>
+      <div class="form-group">
+        <div class="col-md-12">
+          <label>Employer Name/Place of Employment:<span class="glyphicon glyphicon-asterisk"></span></label>
+          <input type="text" class="form-control" ng-model="ref.employerName" placeholder="Employer Name" required></p>
+        </div>
+        <div class="col-md-6">
+          <label>Employer address:</label>
+          <input type="text" class="form-control" ng-model="ref.address" placeholder="Employer Address">
+          <label>Your Supervisors Name:<span class="glyphicon glyphicon-asterisk"></span></label>
+          <input type="text" class="form-control" ng-model="ref.supervisorName" placeholder="Supervisors Name" required />
+          <label>Your Title:<span class="glyphicon glyphicon-asterisk"></span></label>
+          <input type="text" class="form-control" ng-model="ref.title" placeholder="Job Title" required />
+          <label>Start Date:</label>
+          <input type="date" class="form-control" ng-model="ref.startDate"/>
+          <label>End Date:</label>
+          <input type="date" class="form-control" ng-model="ref.endDate"/>
+        </div>
+        <div class="col-md-6">
+          <label>Employer Phone Number:<span class="glyphicon glyphicon-asterisk"></span></label>
+          <input type="number" class="form-control" ng-model="ref.phoneNumber" placeholder="XXX-XXX-XXXX" required />
+          <label>May we contact this employer?</label>
+          <div class="checkbox application-employer-check">
+            <label>
+              <input type="checkbox" ng-model="ref.canContact"><label>Yes</label>
+            </label>  
+          </div>  
+          <label>Job Duties:<span class="glyphicon glyphicon-asterisk"></span></label>
+          <input type="text" class="form-control" ng-model="ref.duties" placeholder="Your Job Duties" required />
+          <label>Starting Pay:</label>
+          <input type="text" class="form-control" ng-model="ref.startingPay" placeholder="Starting Pay">
+          <label>Ending Pay:</label>
+          <input type="text" class="form-control" ng-model="ref.endingPay" placeholder="Ending Pay">
+        </div> 
+        <div class="col-md-12"> 
+          <label>Your Reason For Leaving:</label>
+          <input type="text" class="form-control" ng-model="ref.reasonForLeaving" placeholder="Reason for Leaving">
+          <br>
+        </div>
+      </div>  
+    </div>
+    <button class="btn btn-primary" ng-if="!firstJobCheckbox" ng-click="addWorkReference()"><span class="glyphicon glyphicon-plus"></span> Add Work Reference</button>
+  </div>
+  </form>
+</div>
+</div>

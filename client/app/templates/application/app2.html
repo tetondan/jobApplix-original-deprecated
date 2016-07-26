@@ -1,0 +1,99 @@
+<div class="application-body">
+<div class='panel panel-primary'
+  <!-- availability -->
+  <div class='panel-heading'>
+    <div class='panel-title'><h4>Position and Availability</h4></div>
+  </div>
+  <div class="panel-body">
+    <form name='form.appForm'>
+    <div class="form-group" ng-if="template.position">
+      <label>What position are you applying for?<span class="glyphicon glyphicon-asterisk"></span></label>
+      <input type="text" class="form-control" ng-model="application.position" placeholder="Position" required/>
+    </div>
+    <div class="form-group" ng-if="template.fullOrPartime">
+      <label>Are you applying for Full or Partime work?</label><span>  {{application.fullOrPartime}}</span>
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Choose One:
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><a ng-click="application.fullOrPartime = 'Full Time'">Full Time</a></li>
+          <li><a ng-click="application.fullOrPartime = 'Part Time'">Part Time</a></li>
+          <li><a ng-click="application.fullOrPartime = 'No Preference'">No Preference</a></li>
+        </ul>
+      </div>
+    </div>
+    <div ng-if="template.backgroundCheck">
+      <div class="form-group">
+        <label>Are you willing to submit a pre-employment background check?</label>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="application.backgroundCheck" /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type='checkbox' /><label>No</label>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" ng-if="template.drugTest">
+      <label>Are you willing to submit a pre-employment drug screen?</label>
+        <div class="checkbox">
+          <label>
+            <input type='checkbox' ng-model='application.drugTest' /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type='checkbox' /><label>No</label>
+          </label>  
+        </div>
+    </div>
+    <table class='table table-reponsive table-striped' ng-if="template.availability">
+      <thead>
+      <tr>
+        <th><p>Available:</p></th>
+        <th><p>AM (open-5pm)</p></th>
+        <th><p>PM (5pm-close)</p></th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- TODO add an all button -->
+      <tr>
+        <td>Monday:</td>
+        <td><input type="checkbox" ng-model="application.availability.amMon" /></td>
+        <td><input type="checkbox" ng-model="application.availability.pmMon" /></td>
+      </tr>
+      <tr>
+        <td>Tuesday:</td>
+        <td><input type="checkbox" ng-model="application.availability.amTues" /></td>
+        <td><input type="checkbox" ng-model="application.availability.pmTues" /></td>
+      </tr>
+      <tr>
+        <td>Wednesday:</td>
+        <td><input type="checkbox" ng-model="application.availability.amWed" /></td>
+        <td><input type="checkbox" ng-model="application.availability.pmWed" /></td>
+      </tr>
+      <tr>
+        <td>Thursday:</td>
+        <td><input type="checkbox" ng-model="application.availability.amThurs" /></td>
+        <td><input type="checkbox" ng-model="application.availability.pmThurs" /></td>
+      </tr>
+      <tr>
+        <td>Friday</td>
+        <td><input type="checkbox" ng-model="application.availability.amFri" /></td>
+        <td><input type="checkbox" ng-model="application.availability.pmFri" /></td>
+      </tr>
+      <tr>
+        <td>Saturday:</td>
+        <td><input type="checkbox" ng-model="application.availability.amSat" /></td>
+        <td><input type="checkbox" ng-model="application.availability.pmSat" /></td>
+      </tr>
+      <tr>
+        <td>Sunday:</td>
+        <td><input type="checkbox" ng-model="application.availability.amSun" /></td>
+        <td><input type="checkbox" ng-model="application.availability.pmSun" /></td>
+      </tr>
+      </tbody>
+    </table>
+    </form>
+    <span class="glyphicon glyphicon-asterisk">Required</span>
+  </div>
+</div>
+<span class="glyphicon glyphicon-exclamation-sign"> Note: not answering a question will automatically default the answer to 'No'</span>
+</div>

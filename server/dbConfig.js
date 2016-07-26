@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 //MongoDb address variable, an adress is supplied it will use that adress otherwise it will use the adress provided here. 
-const mongoURI = 'mongodb://jobapplix:lab@ds017195.mlab.com:17195/jobapplix';
+const mongoURI = 'mongodb://localhost/jobApplix' || 'mongodb://jobapplix:lab@ds017195.mlab.com:17195/jobapplix';
 //connect MongoDb to Db residing at address variable
 mongoose.connect(mongoURI);
 // Run in seperate terminal window using 'mongod'

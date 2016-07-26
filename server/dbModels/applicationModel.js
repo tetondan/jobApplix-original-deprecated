@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const applicationSchema = mongoose.Schema({
   applicationGroup: Number,
+  appliedDate: {type: Date, default: Date.now },
   firstName: String,
   lastName: String,
   middleName: String,

@@ -1,0 +1,45 @@
+<div class="application-body">
+<div class="panel panel-primary" ng-if="template.personalReferences">
+  <div class="panel-heading">
+    <div class="panel-title"><h4>Personal References</h4></div>
+  </div>
+  <div class="panel-body"> 
+    <form name="form.appForm"> 
+    <label>Please list up to three personal references whom you are not related to:</label>
+    <div ng-repeat="pRefs in application.personalReferences track by $index">
+      <hr>
+      <label>Reference #{{$index + 1}}</label>
+      <div class="form-group">
+        <div class="col-md-6">
+          <label>Name:<span class="glyphicon glyphicon-asterisk"></span></label>
+          <input type="text" class="form-control" ng-model="pRefs.name" placeholder="Reference"s Name" required>
+          <label>Phone number:<span class="glyphicon glyphicon-asterisk"></span></label>
+          <input type="number" class="form-control" ng-model="pRefs.phone" placeholder="XXX-XXX-XXXX" required>
+        </div>
+        <div class="col-md-6">
+          <label>Relationship:<span class="glyphicon glyphicon-asterisk"></span></label>
+          <input type="text" class="form-control" ng-model="pRefs.relationship" placeholder="Relationship: work/school/etc" required>
+          <label>Email:</label>
+          <input type="email" class="form-control" ng-model="pRefs.email" placeholder="email@address.com">
+        </div>
+        <div class="col-md-9">
+          <label>Address:</label>
+          <input type="text" class="form-control" ng-model="pRefs.address" placeholder="Physical address"></p>
+        </div>
+        <div class="col-md-3">
+          <label>Years Known:<span class="glyphicon glyphicon-asterisk"></span></label>
+          <input type="number" class="form-control" ng-model="pRefs.yearsKnown" required></p>
+        </div>
+        <div class="col-md-12">
+          <br>
+        </div>
+      </div>  
+    </div>
+    <button class="btn btn-primary" ng-click="addPersonalReference()"> 
+      <span class="glyphicon glyphicon-plus"></span> Add Personal Reference
+    </button>
+    <span class="glyphicon glyphicon-asterisk">Required</span>
+    </form>
+  </div>
+</div>
+</div>

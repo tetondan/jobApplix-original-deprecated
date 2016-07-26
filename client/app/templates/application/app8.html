@@ -1,0 +1,64 @@
+<div class="application-body">
+<div class="panel panel-primary" ng-if="template.education">
+  <div class="panel-heading">
+    <div class="panel-title"><h4>Specialized Skills and Certifications</h4></div>
+  </div>  
+  <div class="panel-body">  
+    <form name="form.appForm"></form> 
+    <div class="form-group" ng-if="template.specializedSkills">
+      <label>Do you have any specialized skills or training?</label>
+        <div class="checkbox">
+          <label> 
+            <input type="checkbox" ng-model="application.specializedSkills"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="checkbox" /><label>No</label>
+          </label>
+        </div>
+      <div ng-if="application.specializedSkills">
+      <label>Please list them here:</label>
+      <input type="text" class="form-control" ng-model="application.specializedSkillsList" placeholder="List Specialized Skills Here"/>
+    </div>
+    <div class="form-group" ng-if="template.computerRepair">
+    <!-- computer repair -->
+      <label>Are you certified or authorized to maintian and repair Computers?</label>
+      <div class="checkbox">
+        <label> 
+          <input type="checkbox" ng-model="application.computerRepair"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+          <input type="checkbox" /><label>No</label>
+        </label>
+      </div>    
+    </div>
+    <div class="form-group" ng-if="template.proffesionalCerts">
+    <!-- profesional certs -->
+      <label>If you have any professional certifications please list them here:</label>
+      <input type="text" class="form-control" ng-model="application.proffesionalCerts" placeholder="List certifications here">
+    </div>
+    <div class="form-group" ng-if="template.typingSpeed">
+    <!-- typing speed -->
+      <label>Please list your typing speed:</label>
+      <input type="number" class="form-control" ng-model="application.typingSpeed" placeholder="WPM">
+    </div>
+    <div class="form-group" ng-if="template.veteran">
+    <!-- veteran -->
+      <label>Are you a US veteran?</label>
+      <div class="checkbox">
+        <label> 
+          <input type="checkbox" ng-model="application.veteran"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+          <input type="checkbox" /><label>No</label>
+        </label>
+      </div>    
+    </div>
+    <div class="form-group" ng-if="template.dateAvailableToBeinWork">
+    <!-- date available to begin -->
+      <label>What is the date you will be available to begin work?</label>
+      <input type="date" class="form-control" ng-model="application.dateAvailableToBeginWork">
+    </div>
+    <div class="form-group" ng-if="template.otherComments">
+    <!-- other comments -->
+      <label>Please list any other comments you would like to add:</label>
+      <textarea class="form-control" rows="3" ng-model="application.otherComments"></textarea>
+    </div>
+  </div>
+</div>
+</div>
+<span class="glyphicon glyphicon-exclamation-sign"> Note: not answering a question will automatically default the answer to "No"</span>
+</div>

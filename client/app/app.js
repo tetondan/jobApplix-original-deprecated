@@ -2,7 +2,7 @@
    var app = angular.module('myApp',['myApp.applicationCont','myApp.splashCont','myApp.signupCont','myApp.loginCont', 'myApp.businessDashBoard', 
                                      'myApp.businessSetup','myapp.appDataServices','myApp.businessDataServices', 'myApp.directives',
                                      'myApp.tabs','myApp.filters','ui.router']); 
-    //TODO reconfigure to use UI router to allow for nested routes
+
     app.config(['$logProvider','$stateProvider', '$urlRouterProvider', function ( $logProvider, $stateProvider, $urlRouterProvider) {
       $logProvider.debugEnabled(true);
       $urlRouterProvider.otherwise('/');
@@ -30,15 +30,6 @@
               }
           }
         })
-        .state('success', {
-          url: '/success',
-          templateUrl: 'app/templates/success.html'
-        })
-        .state('signup', {
-          url: '/signup',
-          templateUrl: 'app/templates/signup.html',
-          controller: 'SignupController'
-        })
         .state('login', {
           url: '/login',
           templateUrl: 'app/templates/login.html',
@@ -56,8 +47,6 @@
               }
           }
         })
-        //these will all be incorporated into the business dashbaord:
-        //TODO applications
         .state('dashboard.setup', {
           url: '/setup',
           templateUrl: 'app/templates/dashboard/setup.html'
@@ -86,4 +75,3 @@
         })
       }])
 }())
-//rgb(27,203,249) cool blue color I like 

@@ -1,0 +1,129 @@
+<div class="application-body">
+<div class="panel panel-primary" ng-if="template.education">
+  <div class="panel-heading">
+    <div class="panel-title"><h4>Employment Information</h4></div>
+  </div>  
+  <div class="panel-body">   
+      <form name="form.appForm"></form>    
+      <div class="form-group" ng-if="template.physicalLimitation">
+      <!-- physical limitations -->
+        <label>Do you have any limitations that would not allow you to perform the duties of this position?</label>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="application.physicalLimitation"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="checkbox" /><label>No</label>
+          </label>
+        </div>    
+      </div>
+      <div class="form-group" ng-if="template.authWorkInUS">
+      <!-- auth to work in US -->
+        <label>Are you Authorized to work in the United States of America, and can you furnish proof?</label>
+        <div class="checkbox">
+          <label>            
+            <input type="checkbox" ng-model="application.authWorkInUS"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="checkbox" /><label>No</label>
+          </label>
+        </div>
+      </div>
+      <div class="form-group" ng-if="template.validDriversLicense">
+      <!-- drivers license -->
+        <label>If needed for the job, do you currently have a valid drivers license?</label>
+        <div class="checkbox">
+          <label>   
+            <input type="checkbox" ng-model="application.driversLicense"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="checkbox" /><label>No</label>
+          </label>
+        </div>
+        <div ng-if="application.driversLicense"> 
+          <label>What is the number and state?</label>
+          <input type="text" class="form-control" ng-model="application.validDriversLicenseNumber" placeholder="License Number, ST">
+        </div>
+      </div>
+      <div class="form-group" ng-if="template.overFourteen">
+      <!-- over fourteen -->
+        <label>Are you over 14 years old?</label>
+        <div class="checkbox">
+          <label> 
+            <input type="checkbox" ng-model="application.overFourteen" /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="checkbox" /><label>No</label>
+          </label>
+        </div>    
+      </div>
+      <div class="form-group" ng-if="template.overSixteen">
+      <!-- over sixteen -->
+        <label>Are you over 16 years old?</label>
+        <div class="checkbox">
+          <label> 
+            <input type="checkbox" ng-model="application.overSixteen" /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="checkbox" /><label>No</label>
+          </label>
+        </div>   
+      </div>
+      <div class="form-group" ng-if="template.overEighteen">
+      <!-- over eighteen -->
+        <label>Are you over 18 years old?</label>
+        <div class="checkbox">
+          <label> 
+            <input type="checkbox" ng-model="application.overEighteen" /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="checkbox" /><label>No</label>
+          </label> 
+        </div>  
+      </div>
+      <div class="form-group" ng-if="template.overTwentyone">
+      <!-- over twenty one -->
+        <label>Are you over 21 years old?</label>
+        <div class="checkbox">
+          <label> 
+            <input type="checkbox" ng-model="application.overTwentyone" /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="checkbox" /><label>No</label>
+          </label>
+        </div>
+      </div>
+      <div class="form-group" ng-if="template.overtime">
+      <!-- overtime -->
+        <label>Are you able to work over time?</label>
+        <div class="checkbox">
+          <label> 
+            <input type="checkbox" ng-model="application.overtime" /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="checkbox" /><label>No</label>
+          </label>
+        </div>    
+      </div>
+      <div class="form-group" ng-if="template.permanent">
+      <!-- permanent -->
+        <label>Are you seeking a permanent position?</label>
+        <div class="checkbox">
+          <label> 
+            <input type="checkbox" ng-model="application.permanent" /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="checkbox" /><label>No</label>
+          </label>
+        </div>    
+      </div>
+      <div class="form-group" ng-if="template.otherLanguages">
+      <!-- other langauages -->
+        <label>Do you fluently speak a language other than English?</label>
+        <div class="checkbox">
+          <label> 
+            <input type="checkbox" ng-model="application.otherLanguages"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="checkbox" /><label>No</label>
+          </label>
+        </div>
+        <div ng-if="application.otherLanguages">
+        <label>Please Specify which Language(s):</label>
+        <input type="text" class="form-control" ng-model="application.whichLanguages" placeholder="List Languages here"/>
+      </div>
+      <div class="form-group" ng-if="template.adequateTrans">
+      <!-- adequate trans -->
+        <label>Do you have adequate transportation to and from work?</label>
+        <div class="checkbox">
+          <label> 
+            <input type="checkbox" ng-model="application.adequateTrans"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="checkbox" /><label>No</label>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<span class="glyphicon glyphicon-exclamation-sign"> Note: not answering a question will automatically default the answer to "No"</span>
+</div>

@@ -6,7 +6,7 @@
 }*/
 body {
   overflow-x: hidden;
-  background-color: #f7f9fa;
+  background-color: #e5e5e5;
 }
 #navbar { 
   padding-top: 70px; 
@@ -73,6 +73,32 @@ body {
   cursor: pointer;
 }
 
+.navbar-progressbar {
+  width: 85%;
+  margin-top: 15px;
+}
+
+span.glyphicon-asterisk {
+  font-size: 1rem;
+  color: red;
+}
+
+.application-body {
+  margin-top: 75px;
+}
+
+.navbar-brand.navtext, .navbar-text.navtext, .navbar-text.navtext a {
+  color: white;
+}
+
+.powered {
+  max-height: 50px;
+  padding-top: 10px;
+}
+
+.panel.panel-primary {
+  border-color: #e5e5e5;
+}
 /*SIDEBAR STYLING*/
 #wrapper {
     padding-left: 0;

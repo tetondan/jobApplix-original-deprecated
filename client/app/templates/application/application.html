@@ -1,475 +1,62 @@
-<div class='row application'>
-<div class='col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2'>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <h1>{{businessData.name}}</h1><span>http://www.jobapplix.com/apply/{{businessData.customUrl}}</span>
-      <p>{{businessData.email}}</p>
-      <p>{{businessData.phone}}</p>
-      <p>{{businessData.website}}</p>
+  <div class="navbar navbar-inverse navbar-fixed-top" ng-if="appDirective > 0">
+    <div class="container">
+      <span class="navbar-brand navtext" >{{businessData.name}}</span>
+       <p class="navbar-text navtext hidden-xs hidden-sm">Web: <a href="{{businessData.website}}">{{businessData.website}}</a></p>
+       <p class="navbar-text navtext visible-sm visible-md visible-lg">Phone: {{businessData.phone}}</p>
+       <p class="navbar-text navtext hidden-xs hidden-sm hidden-md">Email: {{businessData.email}}</p>
+       <img class="pull-right powered" src="/poweredBy.png" />
     </div>
   </div>
-  <div>
-    <div class='panel panel-primary' ng-if="template.basicInfo">
-      <div class='panel-heading'>
-        <div class='panel-title'><h4>General Information<h4></div>
-      </div>  
-      <div class='panel-body'>
-        <div class="form-group col-md-6">
-          <label>First Name</label>
-          <input type="text" class="form-control"  ng-model="application.firstName" placeholder="First Name">
-          <label>Middle Name</label>
-          <input type="text" class="form-control" ng-model="application.middleName" placeholder="Middle Name">
-          <label>Last Name</label>
-          <input type="text" class="form-control" ng-model="application.lastName" placeholder="Last Name">
-          <label>Suffix</label>
-          <input type="text" class="form-control suf" placeholder="Suffix">
-        </div>
-        <div class="form-group col-md-6">
-          <label>Phone Number</label>
-          <input type="text" class="form-control"  ng-model="application.phone" placeholder="(XXX)XXX-XXXX">
-          <label>Email Address</label>
-          <input type="email" class="form-control" ng-model="application.email" placeholder="email@address.com">
-          <label>City of Residence</label>
-          <input type="text" class="form-control" ng-model="application.city" placeholder="City">
-          <label>Zip Code</label>
-          <input type="text" class="form-control" ng-model="application.zip" placeholder="Zip">
-        </div>
-      </div>
-    </div>
-    <div class='panel panel-primary' ng-if="template.availability">
-      <!-- availability -->
-      <div class='panel-heading'>
-        <div class='panel-title'><h4>Position and Availability<h4></div>
-      </div>
-      <div class="panel-body">
-        <div class="form-group" ng-if="template.position">
-          <label>What position are you applying for?</label>
-          <input type="text" class="form-control" ng-model="application.position" placeholder="Position"/>
-        </div>
-        <div class="form-group" ng-if="template.fullOrPartime">
-          <label>Are you applying for Full or Partime work?</label>
-          <input type="text" class="form-control" ng-model="application.fullOrPartime" />
-        </div>
-        <div ng-if="template.backgroundCheck">
-          <div class="form-group">
-            <label>Are you willing to submit a pre-employment background check?</label>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" ng-model="application.backgroundCheck" /><label>Yes</label>
-              </label>
-            </div>
+  <div class='row application' style="margin-bottom: 75px">
+  <div class='col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2'>
+    <div>
+    <app-directive0 ng-if="appDirective === 0"></app-directive0>
+    <app-directive1 ng-if="appDirective === 1"></app-directive1>
+    <app-directive2 ng-if="appDirective === 2"></app-directive2>
+    <app-directive3 ng-if="appDirective === 3"></app-directive3>
+    <app-directive4 ng-if="appDirective === 4"></app-directive4>
+    <app-directive5 ng-if="appDirective === 5"></app-directive5>
+    <app-directive6 ng-if="appDirective === 6"></app-directive6>
+    <app-directive7 ng-if="appDirective === 7"></app-directive7>
+    <app-directive8 ng-if="appDirective === 8"></app-directive8>
+    <app-directive9 ng-if="appDirective === 9"></app-directive9>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+      <div class="container">
+        <button class="navbar-btn btn-primary btn navbar-right" ng-if="appDirective < 10" ng-click="advanceApplication()" ng-disabled="!form.appForm.$valid || appDirective >= 9"><span class="glyphicon glyphicon-step-forward"></span>  Next Step</button>
+        <button class="navbar-btn btn-primary btn navbar-right" ng-if="appDirective === 10" ng-disabled="true">
+        <span class="glyphicon glyphicon-ok"></span>  Complete</button>
+        <div class="progress navbar-progressbar">
+          <div class="progress-bar progress-bar-success" style="width: 2%" ng-if="appDirective === 1">
+            1% Complete
+          </div>
+          <div class="progress-bar progress-bar-success" style="width: 12%" ng-if="appDirective === 2">
+            12% Complete
+          </div>
+          <div class="progress-bar progress-bar-success" style="width: 23%" ng-if="appDirective === 3">
+            23% Complete
+          </div>
+          <div class="progress-bar progress-bar-success" style="width: 34%" ng-if="appDirective === 4">
+            34% Complete
+          </div>
+          <div class="progress-bar progress-bar-success" style="width: 45%" ng-if="appDirective === 5">
+            45% Complete
+          </div>
+          <div class="progress-bar progress-bar-success" style="width: 56%" ng-if="appDirective === 6">
+            56% Complete
+          </div>
+          <div class="progress-bar progress-bar-success" style="width: 67%" ng-if="appDirective === 7">
+            67% Complete
+          </div>
+          <div class="progress-bar progress-bar-success" style="width: 78%" ng-if="appDirective === 8">
+            78% Complete
+          </div>
+          <div class="progress-bar progress-bar-success" style="width: 89%" ng-if="appDirective === 9">
+            89% Complete
+          </div>
+          <div class="progress-bar progress-bar-success" style="width: 100%" ng-if="appDirective >= 9">
+            Complete!
           </div>
         </div>
-        <div class="form-group" ng-if="template.drugTest">
-          <label>Are you willing to submit a pre-employment drug screen?</label>
-            <div class="checkbox">
-              <label>
-                <input type='checkbox' ng-model='application.drugTest' /><label>Yes</label>
-                <input type='checkbox' /><label>No</label>
-              </label>  
-            </div>
-        </div>
-        <table class='table table-reponsive table-striped'>
-          <thead>
-          <tr>
-            <th><p>Available:</p></th>
-            <th><p>AM (open-5pm)</p></th>
-            <th><p>PM (5pm-close)</p></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>Monday:</td>
-            <td><input type="checkbox" ng-model="application.availability.amMon" /></td>
-            <td><input type="checkbox" ng-model="application.availability.pmMon" /></td>
-          </tr>
-          <tr>
-            <td>Tuesday:</td>
-            <td><input type="checkbox" ng-model="application.availability.amTues" /></td>
-            <td><input type="checkbox" ng-model="application.availability.pmTues" /></td>
-          </tr>
-          <tr>
-            <td>Wednesday:</td>
-            <td><input type="checkbox" ng-model="application.availability.amWed" /></td>
-            <td><input type="checkbox" ng-model="application.availability.pmWed" /></td>
-          </tr>
-          <tr>
-            <td>Thursday:</td>
-            <td><input type="checkbox" ng-model="application.availability.amThurs" /></td>
-            <td><input type="checkbox" ng-model="application.availability.pmThurs" /></td>
-          </tr>
-          <tr>
-            <td>Friday</td>
-            <td><input type="checkbox" ng-model="application.availability.amFri" /></td>
-            <td><input type="checkbox" ng-model="application.availability.pmFri" /></td>
-          </tr>
-          <tr>
-            <td>Saturday:</td>
-            <td><input type="checkbox" ng-model="application.availability.amSat" /></td>
-            <td><input type="checkbox" ng-model="application.availability.pmSat" /></td>
-          </tr>
-          <tr>
-            <td>Sunday:</td>
-            <td><input type="checkbox" ng-model="application.availability.amSun" /></td>
-            <td><input type="checkbox" ng-model="application.availability.pmSun" /></td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class='panel panel-primary'>
-      <div class='panel-heading'>
-        <div class='panel-title'><h4>Previous History</h4><small>(Checking yes to any of these questions does NOT automatically exclude you from the position)</small></div>
-      </div>
-      <div class="panel-body">
-        <div class="form-group" ng-if="template.fired">
-          <label>Have you ever been fired or asked to resign from a position?</label>
-          <div class="checkbox">
-            <label>
-              <input type='checkbox' ng-model='application.fired' /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-              <input type='checkbox' /><label>No</label>
-            </label>  
-          </div>
-          <div ng-if='application.fired'>
-            <label>Please explain:</label>
-            <input type='text' class="form-control" ng-model='application.firedExplanation' />
-          </div>
-        </div>
-        <div class="form-group" ng-if="template.crimes">
-          <label>Have you ever been conviced of a crime(do not count traffic violations)?</label>
-          <div class='checkbox'>
-            <label>
-              <input type='checkbox' ng-model='application.crimes' /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-              <input type='checkbox' /><label>No</label>
-            </label>
-          </div>
-          <div ng-if='application.crimes'>
-            <label>Please explain:</label>
-            <input type='text' class="form-control" ng-model='application.crimesExplanation' />
-          </div>  
-        </div>
-      </div>
-    </div>
-
-    <div class="panel panel-primary" ng-if="template.workReferences">
-      <div class="panel-heading">
-        <div class="panel-title"><h4>Work History</h4></div>
-      </div>
-      <div class="panel-body">
-        <label>Please provide your last three work references:</label>
-        <hr>
-        <div ng-repeat='ref in application.workReferences track by $index'>
-          <label>Job #{{$index + 1}}</label>
-          <div class="form-group">
-            <div class='col-md-12'>
-              <label>Employer Name/Place of Employment:</label>
-              <input type='text' class="form-control" ng-model='ref.employerName' placeholder="Employer Name"></p>
-            </div>
-            <div class='col-md-6'>
-              <label>Employer address:</label>
-              <input type='text' class="form-control" ng-model='ref.address' placeholder="Employer Address">
-              <label>Your Supervisors Name:</label>
-              <input type='text' class="form-control" ng-model='ref.supervisorName' placeholder="Supervisors Name">
-              <label>Your Title:</label>
-              <input type='text' class="form-control" ng-model='ref.title' placeholder="Job Title">
-              <label>Start Date:</label>
-              <input type='date' class="form-control" ng-model='ref.startDate'>
-              <label>End Date:</label>
-              <input type='date' class="form-control" ng-model='ref.endDate'>
-            </div>
-            <div class='col-md-6'>
-              <label>Employer Phone Number:</label>
-              <input type='tel' class="form-control" ng-model='ref.phoneNumber' placeholder="Employer Phone Number">
-              <label>May we contact this employer?</label>
-              <div class="checkbox application-employer-check">
-                <label>
-                  <input type='checkbox' ng-model='ref.canContact'><label>Yes</label>
-                </label>  
-              </div>  
-              <label>Job Duties:</label>
-              <input type='text' class="form-control" ng-model='ref.duties' placeholder="Your Job Duties">
-              <label>Starting Pay:</label>
-              <input type='text' class="form-control" ng-model='ref.startingPay' placeholder="Starting Pay">
-              <label>Ending Pay:</label>
-              <input type='text' class="form-control" ng-model='ref.endingPay' placeholder="Ending Pay">
-            </div> 
-            <div class='col-md-12'> 
-              <label>Your Reason For Leaving:</label>
-              <input type='text' class="form-control" ng-model='ref.reasonForLeaving' placeholder="Reason for Leaving">
-              <br>
-            </div>
-          </div>  
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-primary" ng-if="template.personalReferences">
-      <div class="panel-heading">
-        <div class="panel-title"><h4>Personal References</h4></div>
-      </div>
-      <div class='panel-body'>  
-        <label>Please list three personal references whom you are not related to:</label>
-        <div ng-repeat='pRefs in application.personalReferences track by $index'>
-          <hr>
-          <label>Reference #{{$index + 1}}</label>
-          <div class='form-group'>
-            <div class='col-md-6'>
-              <label>Name:</label>
-              <input type='text' class='form-control' ng-model='pRefs.name' placeholder="Reference's Name">
-              <label>Phone number:</label>
-              <input type='text' class='form-control' ng-model='pRefs.phone' placeholder="Phone Number">
-            </div>
-            <div class='col-md-6'>
-              <label>Relationship:</label>
-              <input type='text' class='form-control' ng-model='pRefs.relationship' placeholder="Relationship: work/school/etc"></p>
-              <label>Email:</label>
-              <input type='text' class='form-control' ng-model='pRefs.email' placeholder="email@address.com">
-            </div>
-            <div class='col-md-9'>
-              <label>Address:</label>
-              <input type='text' class='form-control' ng-model='pRefs.address' placeholder="Physical address"></p>
-            </div>
-            <div class='col-md-3'>
-              <label>Years Known:</label>
-              <input type='text' class='form-control' ng-model='pRefs.yearsKnown'></p>
-            </div>
-            <div class='col-md-12'>
-              <br>
-            </div>
-          </div>  
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-primary" ng-if="template.education">
-      <div class="panel-heading">
-        <div class="panel-title"><h4>Education History</h4></div>
-      </div>  
-      <div class='panel-body'>
-        <label>Please list all Education history:</label>
-        <div ng-repeat="(schoolType, school) in application.education">
-          <hr>
-          <label>{{school.type}}</label>
-          <div class='form-group'>
-            <div class='col-md-6'>
-              <label>Name of School:</label>
-              <input type='text' class='form-control' ng-model='school.schoolName' placeholder="Name of School">
-            </div>
-            <div class='col-md-6'>
-              <label>City and State:</label>
-              <input type='text' class='form-control' ng-model='school.location' placeholder="City, ST">
-            </div>
-            <div class='col-md-12'>
-              <label>Field of Study:</label>
-              <input type='text' class='form-control' ng-model='school.fieldOfStudy' placeholder="Field of Study/ Major"> 
-            </div>
-            <div class='col-md-6'>
-              <label>Years Completed:</label>
-              <input type='text' class='form-control' ng-model='school.yearsCompleted' placeholder="Years Completed">
-            </div>
-            <div class='col-md-6'>
-              <label>Degree Earned:</label>
-              <input type='text' class='form-control' ng-model='school.degree' placeholder="Degree Earned">
-            </div>
-            <div class='col-md-12'>
-              <br>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> 
-    <div class="panel panel-primary" ng-if="template.education">
-      <div class="panel-heading">
-        <div class="panel-title"><h4>Employment Information</h4></div>
-      </div>  
-      <div class='panel-body'>       
-          <div class='form-group' ng-if="template.physicalLimitation">
-          <!-- physical limitations -->
-            <label>Do you have any limitations that would not allow you to perform the duties of this position?</label>
-            <div class='checkbox'>
-              <label>
-                <input type='checkbox' ng-model='application.physicalLimitation'><label>Yes</label>
-              </label>
-            </div>    
-          </div>
-          <div class='form-group' ng-if="template.authWorkInUS">
-          <!-- auth to work in US -->
-            <label>Are you Authorized to work in the United States of America, and can you furnish proof?</label>
-            <div class='checkbox'>
-              <label>            
-                <input type='checkbox' ng-model='application.authWorkInUS'><label>Yes</label>
-              </label>
-            </div>
-          </div>
-          <div class='form-group' ng-if="template.validDriversLicense">
-          <!-- drivers license -->
-            <label>If needed for the job, do you currently have a valid drivers license?</label>
-            <div class='checkbox'>
-              <label>   
-                <input type='checkbox' ng-model='application.driversLicense'><label>Yes</label>
-              </label>
-            </div>
-            <div ng-if="application.driversLicense"> 
-              <label>What is the number and state?</label>
-              <input type='text' class='form-control' ng-model='application.validDriversLicenseNumber' placeholder="License Number, ST">
-            </div>
-          </div>
-          <div class='form-group' ng-if="template.overFourteen">
-          <!-- over fourteen -->
-            <label>Are you over 14 years old?</label>
-            <div class='checkbox'>
-              <label> 
-                <input type='checkbox' ng-model='application.overFourteen' /><label>Yes</label>
-              </label>
-            </div>    
-          </div>
-          <div class='form-group' ng-if="template.overSixteen">
-          <!-- over sixteen -->
-            <label>Are you over 16 years old?</label>
-            <div class='checkbox'>
-              <label> 
-               <input type='checkbox' ng-model='application.overSixteen' /><label>Yes</label>
-              </label>
-            </div>   
-          </div>
-          <div class='form-group' ng-if="template.overEighteen">
-          <!-- over eighteen -->
-            <label>Are you over 18 years old?</label>
-            <div class='checkbox'>
-              <label> 
-                <input type='checkbox' ng-model='application.overEighteen' /><label>Yes</label>
-              </label> 
-            </div>  
-          </div>
-          <div class='form-group' ng-if="template.overTwentyone">
-          <!-- over twenty one -->
-            <label>Are you over 21 years old?</label>
-            <div class='checkbox'>
-              <label> 
-                <input type='checkbox' ng-model='application.overTwentyone' /><label>Yes</label>
-              </label>
-            </div>
-          </div>
-          <div class='form-group' ng-if="template.overtime">
-          <!-- overtime -->
-            <label>Are you able to work over time?</label>
-            <div class='checkbox'>
-              <label> 
-                <input type='checkbox' ng-model='application.overtime' /><label>Yes</label>
-              </label>
-            </div>    
-          </div>
-          <div class='form-group' ng-if="template.permanent">
-          <!-- permanent -->
-            <label>Are you seeking a permanent position?</label>
-            <div class='checkbox'>
-              <label> 
-                <input type='checkbox' ng-model='application.permanent' /><label>Yes</label>
-              </label>
-            </div>    
-          </div>
-          <div class='form-group' ng-if="template.otherLanguages">
-          <!-- other langauages -->
-            <label>Do you fluently speak a language other than English?</label>
-            <div class='checkbox'>
-              <label> 
-                <input type='checkbox' ng-model='application.otherLanguages'><label>Yes</label>
-              </label>
-            </div>
-            <div ng-if='application.otherLanguages'>
-            <label>Please Specify which Language:</label>
-            <input type='text' class="form-control" ng-model='application.whichLanguages' placeholder="List Languages here"/>
-          </div>
-          <div class='form-group' ng-if="template.adequateTrans">
-          <!-- adequate trans -->
-            <label>Do you have adequate transportation to and from work?</label>
-            <div class='checkbox'>
-              <label> 
-                <input type='checkbox' ng-model='application.adequateTrans'><label>Yes</label>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-primary" ng-if="template.education">
-      <div class="panel-heading">
-        <div class="panel-title"><h4>Specialized Skills and Certifications</h4></div>
-      </div>  
-      <div class='panel-body'>   
-        <div class='form-group' ng-if="template.specializedSkills">
-          <label>Do you have any specialized skills or training?</label>
-            <div class='checkbox'>
-              <label> 
-                <input type='checkbox' ng-model='application.specializedSkills'><label>Yes</label>
-              </label>
-            </div>
-          <div ng-if='application.specializedSkills'>
-          <label>Please list them here:</label>
-          <input type='text' class="form-control" ng-model='application.specializedSkillsList' placeholder="List Specialized Skills Here"/>
-        </div>
-        <div class='form-group' ng-if="template.computerRepair">
-        <!-- computer repair -->
-          <label>Are you certified or authorized to maintian and repair Computers?</label>
-          <div class='checkbox'>
-            <label> 
-              <input type='checkbox' ng-model='application.computerRepair'><label>Yes</label>
-            </label>
-          </div>    
-        </div>
-        <div class='form-group' ng-if="template.proffesionalCerts">
-        <!-- profesional certs -->
-          <label>If you have any professional certifications please list them here:</label>
-          <input type='text' class="form-control" ng-model='application.proffesionalCerts' placeholder="List certifications here">
-        </div>
-        <div class='form-group' ng-if="template.typingSpeed">
-        <!-- typing speed -->
-          <label>Please list your typing speed:</label>
-          <input type='text' class="form-control" ng-model='application.typingSpeed' placeholder="WPM">
-        </div>
-        <div class='form-group' ng-if="template.veteran">
-        <!-- veteran -->
-          <label>Are you a US veteran?</label>
-          <div class='checkbox'>
-            <label> 
-              <input type='checkbox' ng-model='application.veteran'><label>Yes</label>
-            </label>
-          </div>    
-        </div>
-        <div class='form-group' ng-if="template.dateAvailableToBeinWork">
-        <!-- date available to begin -->
-          <label>What is the date you will be available to begin work?</label>
-          <input type='date' class="form-control" ng-model='application.dateAvailableToBeginWork'>
-        </div>
-        <div class='form-group' ng-if="template.otherComments">
-        <!-- other comments -->
-          <label>Please list any other comments you would like to add:</label>
-          <textarea class="form-control" rows="3" ng-model='application.otherComments'></textarea>
-        </div>
-      </div>
+      </div> 
     </div>
   </div>
-  <div class='panel panel-primary application-submit'>
-    <div class="panel-heading">
-      <div class="panel-title"><h4>Acknowledgement and Signature</h4></div>
-    </div>  
-    <div class='panel-body'>
-      <label> Acknowledgement of accuracy of information </label>
-      <blockquote>
-        <p>By signing, you hereby acknowledge the information you have provided to be accurate and truthful to the best of your knowledge. You agree to the Jobapplix.com terms of use, and as part of the procedure for processing your employment application, your personal and employment references may be checked. If you have misrepresented or omitted any facts on this application, and are subsequently hired, you employment may be terminated.</p>
-      </blockquote>
-      <div class='form-group'>
-        <div class='col-md-8'>
-          <label>Please print your full name:</label>
-          <input type="text" class='form-control' placeholder="signature" />
-        </div>
-        <div class='col-md-4'>
-          <label>Today's Date:</label>
-          <input type="date" class='form-control' />
-        </div>
-        <div class='col-md-12'>
-          <label></label>
-          <input type="button" class='btn btn-primary btn-lg btn-block' ng-click="submit()" value="SUBMIT APPLICATION" /> 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

@@ -26,8 +26,12 @@
             <p><strong>Name:</strong> {{application.firstName}} {{application.middleName}} {{application.lastName}}</p>
             <p><strong>Phone Number:</strong> {{application.phone}}</p>
             <p><strong>Email: </strong><a href={{"mailto:" + application.email}}>{{application.email}}</a></p>
+            <div ng-if='customTemplate.fullOrPartime'>
+              <p><strong>Applicant prefers to work:</strong> {{application.fullOrPartime}}</p>
+            </div>
           </div>
           <div class='col-md-6'>
+            <p><strong>Date Applied: </strong> {{application.appliedDate | date}}</p>
             <p><strong>City:</strong> {{application.city}}</p>
             <p><strong>Zip:</strong> {{application.zip}}</p>
             <p><strong>Position Applying For:</strong> {{application.position}}</p>
@@ -62,9 +66,6 @@
                 </div>
               </div>
               <div class='col-md-6'>
-                <div ng-if='customTemplate.fullOrPartime'>
-                  <p><strong>Applicant prefers to work:</strong> {{application.fullOrPartime}}</p>
-                </div>
                 <div ng-if='customTemplate.backgroundCheck'>
                   <p><strong>Willing to submit a background check?</strong> {{application.backgroundCheck ? 'Yes' : 'No'}}</p>
                 </div>

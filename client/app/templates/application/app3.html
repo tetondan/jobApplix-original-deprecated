@@ -1,0 +1,37 @@
+<div class="application-body">
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    <div class='panel-title'><h4>Previous History</h4><small>(Checking yes to any of these questions does NOT automatically exclude you from the position)</small></div>
+  </div>
+  <div class="panel-body">
+    <form name="form.appForm"></form>
+    <div class="form-group" ng-if="template.fired">
+      <label>Have you ever been fired or asked to resign from a position?</label>
+      <div class="checkbox">
+        <label>
+          <input type='checkbox' ng-model='application.fired' /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+          <input type='checkbox' /><label>No</label>
+        </label>  
+      </div>
+      <div ng-if='application.fired'>
+        <label>Please explain:</label>
+        <input type='text' class="form-control" ng-model='application.firedExplanation' />
+      </div>
+    </div>
+    <div class="form-group" ng-if="template.crimes">
+      <label>Have you ever been conviced of a crime(do not count traffic violations)?</label>
+      <div class='checkbox'>
+        <label>
+          <input type='checkbox' ng-model='application.crimes' /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+          <input type='checkbox' /><label>No</label>
+        </label>
+      </div>
+      <div ng-if='application.crimes'>
+        <label>Please explain:</label>
+        <input type='text' class="form-control" ng-model='application.crimesExplanation' />
+      </div>  
+    </div>
+  </div>
+</div>
+<span class="glyphicon glyphicon-exclamation-sign"> Note: not answering a question will automatically default the answer to 'No'</span>
+</div>

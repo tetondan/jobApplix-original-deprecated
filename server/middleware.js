@@ -15,7 +15,7 @@ module.exports = (app, express) => {
     saveUninitialized: true,
     cookie: {},
     store: new MongoStore({
-    url:'mongodb://jobapplix:lab@ds017195.mlab.com:17195/jobapplix'
+    url: 'mongodb://localhost/jobApplix' || 'mongodb://jobapplix:lab@ds017195.mlab.com:17195/jobapplix'
     //other advanced options
   })
   }));

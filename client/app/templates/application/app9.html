@@ -1,0 +1,29 @@
+<div class="application-body">
+<div class='panel panel-primary application-submit'>
+  <div class="panel-heading">
+    <div class="panel-title"><h4>Acknowledgement and Signature</h4></div>
+  </div>  
+  <div class='panel-body'>
+        <form name="form.appForm">
+    <label> Acknowledgement of accuracy of information </label>
+    <blockquote>
+      <p>By signing, you hereby acknowledge the information you have provided to be accurate and truthful to the best of your knowledge. You agree to the Jobapplix.com terms of use, and as part of the procedure for processing your employment application, your personal and employment references may be checked. If you have misrepresented or omitted any facts on this application, and are subsequently hired, you employment may be terminated.</p>
+    </blockquote>
+    <div class='form-group'>
+      <div class='col-md-8'>
+        <label>Please print your full name:</label>
+        <input type="text" class='form-control' placeholder="signature" ng-model="signature" required />
+      </div>
+      <div class='col-md-4'>
+        <label>Today's Date:</label>
+        <input type="date" class='form-control'/>
+      </div>
+      <div class='col-md-12'>
+        <label></label>
+        <button class='btn btn-primary btn-lg btn-block' ng-click="submit()" ng-disabled="!form.appForm.$valid" >SUBMIT APPLICATION</button> 
+      </div>
+    </div>
+  </form>
+  </div>
+</div>
+</div>

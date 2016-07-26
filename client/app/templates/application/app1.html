@@ -1,0 +1,33 @@
+<div class="application-body">
+<div class='panel panel-primary' ng-if="template.basicInfo">
+  <div class='panel-heading'>
+    <div class='panel-title'><h4>General Information</h4></div>
+  </div>  
+  <div class='panel-body'>
+    <form name='form.appForm'>
+    <div class="form-group col-md-6">
+      <label>First Name<span class="glyphicon glyphicon-asterisk"></span></label>
+      <input type="text" class="form-control" ng-model="application.firstName" placeholder="First Name" required />
+      <label>Middle Name</label>
+      <input type="text" class="form-control" ng-model="application.middleName" placeholder="Middle Name" />
+      <label>Last Name<span class="glyphicon glyphicon-asterisk"></span></label>
+      <input type="text" class="form-control" ng-model="application.lastName" placeholder="Last Name" required />
+      <label>Suffix</label>
+      <input type="text" class="form-control suf" placeholder="Suffix" />
+    </div>
+    <div class="form-group col-md-6">
+      <label>Phone Number<span class="glyphicon glyphicon-asterisk"></span></label>
+      <input type="number" class="form-control"  ng-model="application.phone" placeholder="XXX-XXX-XXXX" required>
+      <span ng-ig="application.phone">{{console.log(application.phone)}}</span>
+      <label>Email Address</label>
+      <input type="email" class="form-control" ng-model="application.email" placeholder="email@address.com">
+      <label>City of Residence</label>
+      <input type="text" class="form-control" ng-model="application.city" placeholder="City">
+      <label>Zip Code</label>
+      <input type="number" class="form-control" ng-model="application.zip" placeholder="Zip">
+    </div>
+    </form>
+    <span class="glyphicon glyphicon-asterisk">Required</span>
+  </div>
+</div>
+</div>

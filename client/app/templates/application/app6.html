@@ -1,0 +1,40 @@
+<div class="application-body">
+<div class="panel panel-primary" ng-if="template.education">
+  <div class="panel-heading">
+    <div class="panel-title"><h4>Education History</h4></div>
+  </div>  
+  <div class="panel-body">
+    <form name="form.appForm"></form>
+    <label>Please list all Education history:</label>
+    <div ng-repeat="(schoolType, school) in application.education">
+      <hr>
+      <label>{{school.type}}</label>
+      <div class="form-group">
+        <div class="col-md-6">
+          <label>Name of School:</label>
+          <input type="text" class="form-control" ng-model="school.schoolName" placeholder="Name of School">
+        </div>
+        <div class="col-md-6">
+          <label>City and State:</label>
+          <input type="text" class="form-control" ng-model="school.location" placeholder="City, ST">
+        </div>
+        <div class="col-md-12">
+          <label>Field of Study:</label>
+          <input type="text" class="form-control" ng-model="school.fieldOfStudy" placeholder="Field of Study/ Major"> 
+        </div>
+        <div class="col-md-6">
+          <label>Years Completed:</label>
+          <input type="number" class="form-control" ng-model="school.yearsCompleted" placeholder="Years Completed">
+        </div>
+        <div class="col-md-6">
+          <label>Degree Earned:</label>
+          <input type="text" class="form-control" ng-model="school.degree" placeholder="Degree Earned">
+        </div>
+        <div class="col-md-12">
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+</div> 
