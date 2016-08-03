@@ -47,6 +47,11 @@
               }
           }
         })
+        .state('signup', {
+          url: '/signup',
+          templateUrl: 'app/templates/signup.html',
+          controller: 'SignupController'
+        })
         .state('dashboard.setup', {
           url: '/setup',
           templateUrl: 'app/templates/dashboard/setup.html'

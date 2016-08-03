@@ -1,3 +1,4 @@
+<!--<div class="splash-bg">-->
 <div id="navbar">
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -11,7 +12,7 @@
 <div class="splash-container col-md-6 col-md-offset-3">
   <h1>Job Applix</h1>
   <h4>Please Enter Username and Password to Login</h4>
-  <p>Not yet a memeber? <a href="/#/signup">CLICK HERE</a> to sign up!</p>
+  <p>Not yet a memeber? <a ui-sref="dashboard.signup">CLICK HERE</a> to sign up!</p>
   <div ng-if="error" style='background-color: red;'>
     <p>Invalid Username or Password, please try again</p>
   </div>  
@@ -23,3 +24,4 @@
     <button class='btn btn-primary' ng-click='logIn()'>Submit</button>
   </div>
 </div>
+<!--</div>-->

@@ -13,7 +13,9 @@ var businessSchema = mongoose.Schema({
   address: {type: String},
   phone: {type: String, required: true},
   website: {type: String},
-  email: {type: String, required: true}
+  email: {type: String, required: true},
+  about: {type: String},
+  subType: {type: Number}
 }, {collection: 'business'});
 
 

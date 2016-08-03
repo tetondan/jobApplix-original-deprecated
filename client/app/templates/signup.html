@@ -1,10 +1,10 @@
-<div id="navbar">
+<div class="splash-bg">
+  <div id="navbar">
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <a class="navbar-brand" ui-sref="home">Job Applix</a>
-      </div>
+        <a class="navbar-brand JA-brand" ui-sref="dashboard">JobApplix.com</a>
+      </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
 </div>
@@ -15,7 +15,7 @@
     </div>
     <div class='panel-body'>
       <div class='form-group col-md-6'>
-        <label>Username:</label>
+        <label>Username: (You will use this to log in, not your business name)</label>
         <input type='text' class="form-control" ng-model='business.username'/>
         <label>Password:</label>
         <input type="password" class='form-control' ng-model='business.password'/>
@@ -25,7 +25,7 @@
         <input type='email' class='form-control' ng-model='business.email'/>
       </div>
       <div class="col-md-6">
-        <label>Business Name:</label>
+        <label>Business Name: (Name of your business)</label>
         <input type='text' class='form-control' ng-model='business.name'/>
         <label> Confirm Password:</label>
         <input class='form-control' type="password"/>
@@ -41,9 +41,14 @@
           <input type="text" class="form-control" id="basic-url" ng-model='business.customUrl' aria-describedby="basic-addon3">
         </div>
       </div> 
+      <div class="col-md-12">
+        <label>Tell us about your business: (This will be displayed on your application start page)</label>
+        <textarea class="form-control" rows="3" ng-model="business.about"></textarea>
+      </div>
       <div class='col-md-12'> 
         <label></label>
         <button class="btn btn-primary btn-lg btn-block" ng-click='businessSignUp()'>Next: Create your custom application</button>
       </div>  
   </div>
+</div>
 </div>

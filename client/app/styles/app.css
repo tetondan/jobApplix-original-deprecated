@@ -1,13 +1,11 @@
-/*body {
-  margin-bottom: 10vh;
-  background-image: url('http://lorempixel.com/g/640/480/abstract/');
-  background-repeat: no-repeat;
-  background-size: cover;
-}*/
 body {
-  overflow-x: hidden;
-  background-color: #e5e5e5;
+  background: url('/JAbackground.jpeg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
+
 #navbar { 
   padding-top: 70px; 
 }
@@ -39,22 +37,43 @@ body {
   margin-top: 4px;
   margin-bottom: 5px;
 }
-
+.splash-bg {
+  position: fixed; 
+  top: 50px; 
+  left: 0; 
+  background-color: #E4E4E4;
+  width: 100%;
+  height: 100%;
+  /*padding-top: 75px;*/
+}
 .splash-container {
   background-color: rgba(0,0,0,0.5);
   color: rgb(255,255,255);
-  border-radius: 1rem;
-  margin-top: 25vh;
+  margin-top: 20vh;
 }
 
 .splash-container h1 {
-  font-size: 6rem;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 10rem;
+  text-shadow: 2px 2px #00449E;
 }
 
 .splash-container div {
-  margin-bottom: 5vh;
+  margin-bottom: 2vh;
+}
+/*.login-container {
+  background-color: rgba(0,0,0,0.5);
+  color: rgb(255,255,255);
+  margin-top: 5vh;
+}
+.login-container h1 {
+  font-family: 'Kaushan Script', cursive;
+  font-size: 10rem;
 }
 
+.login-container div {
+  margin-bottom: 2vh;
+}*/
 .apps {
   margin-top: 5vh;
 }
@@ -86,7 +105,10 @@ span.glyphicon-asterisk {
 .application-body {
   margin-top: 75px;
 }
-
+.navbar-brand.JA-brand {
+  font-family: 'Kaushan Script', cursive;
+  color: white;
+}
 .navbar-brand.navtext, .navbar-text.navtext, .navbar-text.navtext a {
   color: white;
 }
@@ -97,7 +119,7 @@ span.glyphicon-asterisk {
 }
 
 .panel.panel-primary {
-  border-color: #e5e5e5;
+  border-color: #E4E4E4;
 }
 /*SIDEBAR STYLING*/
 #wrapper {
@@ -222,4 +244,31 @@ span.glyphicon-asterisk {
         position: relative;
         margin-right: 0;
     }
+}
+/*blinky cursor typing*/
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+    font-size: 4rem;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+.tag-line {
+  font-size: 4rem;
 }

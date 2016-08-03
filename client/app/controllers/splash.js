@@ -6,4 +6,8 @@ angular.module('myApp.splashCont', [])
     $scope.login = function(){
       $state.go('login');
     }
+    $(".tag-line").typed({
+      strings: ["When can you start?"],
+      typeSpeed: 70
+    });
   })
