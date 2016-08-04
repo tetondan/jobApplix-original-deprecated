@@ -1,5 +1,4 @@
-<div class="splash-bg">
-  <div id="navbar">
+ <div id="navbar">
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -8,26 +7,28 @@
     </div><!-- /.container-fluid -->
   </nav>
 </div>
+<div class="splash-bg">
 <div class="col-md-10 col-md-offset-1">
   <div class='panel panel-primary'>
     <div class='panel-heading'>
       <div class='panel-title'><h4>Business Sign Up</h4></div>
     </div>
     <div class='panel-body'>
+      <form name="form.appForm">
       <div class='form-group col-md-6'>
-        <label>Username: (You will use this to log in, not your business name)</label>
-        <input type='text' class="form-control" ng-model='business.username'/>
-        <label>Password:</label>
-        <input type="password" class='form-control' ng-model='business.password'/>
+        <label>Username:(You will use this to log in)<span class="glyphicon glyphicon-asterisk"></span></label>
+        <input type='text' class="form-control" ng-model='business.username' required/>
+        <label>Password:<span class="glyphicon glyphicon-asterisk"></span></label>
+        <input type="password" class='form-control' ng-model='business.password' required/>
         <label>Phone Number:</label>
         <input type='tel' class='form-control' ng-model='business.phone' placeholder='(xxx)xxx-xxx'/>
-        <label>Email:</label>
-        <input type='email' class='form-control' ng-model='business.email'/>
+        <label>Email:<span class="glyphicon glyphicon-asterisk"></span></label>
+        <input type='email' class='form-control' ng-model='business.email' required/>
       </div>
       <div class="col-md-6">
-        <label>Business Name: (Name of your business)</label>
-        <input type='text' class='form-control' ng-model='business.name'/>
-        <label> Confirm Password:</label>
+        <label>Business Name:<span class="glyphicon glyphicon-asterisk"></span>(Name of your business)</label>
+        <input type='text' class='form-control' ng-model='business.name' required/>
+        <label> Confirm Password:<span class="glyphicon glyphicon-asterisk"></span></label>
         <input class='form-control' type="password"/>
         <label>Address:</label>
         <input class='form-control' type='text' ng-model='business.address'/>
@@ -35,19 +36,21 @@
         <input class='form-control' type='text' ng-model='business.website'/>
       </div>  
       <div class='col-md-12'>
-        <label for="custom-url">Your custom URL (this will be the address you give to applicants):</label>
+        <label for="custom-url">Your custom URL (this will be the address you give to applicants)<span class="glyphicon glyphicon-asterisk"></span>:</label>
         <div class="input-group">
           <span class="input-group-addon" id="basic-addon3">http://www.jobapplix.com/apply/</span>
-          <input type="text" class="form-control" id="basic-url" ng-model='business.customUrl' aria-describedby="basic-addon3">
+          <input type="text" class="form-control" id="basic-url" ng-model='business.customUrl' required>
         </div>
       </div> 
       <div class="col-md-12">
         <label>Tell us about your business: (This will be displayed on your application start page)</label>
         <textarea class="form-control" rows="3" ng-model="business.about"></textarea>
       </div>
+      </form>
       <div class='col-md-12'> 
         <label></label>
-        <button class="btn btn-primary btn-lg btn-block" ng-click='businessSignUp()'>Next: Create your custom application</button>
+        <button class="btn btn-primary btn-lg btn-block" ng-disabled="!form.appForm.$valid" ng-click='businessSignUp()'>Next: Create your custom application</button>
+        <span class="glyphicon glyphicon-asterisk">Required</span>
       </div>  
   </div>
 </div>

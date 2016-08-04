@@ -33,7 +33,10 @@ var customAppSchema = mongoose.Schema({
   typingSpeed: Boolean,
   veteran: Boolean,
   dateAvailableToBeginWork: Boolean,
-  otherComments: Boolean
+  otherComments: Boolean,
+  custom1: String,
+  custom2: String,
+  positionDescription: String
 })
 var Custom = mongoose.model('Custom', customAppSchema);
 

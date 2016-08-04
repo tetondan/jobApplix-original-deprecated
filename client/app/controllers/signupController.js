@@ -1,5 +1,6 @@
 angular.module('myApp.signupCont', [])
   .controller('SignupController', function($state, $scope, $rootScope, BusinessDataServices){
+    $scope.form = {};
     $scope.business = {};
     $scope.business.username = '';
     $scope.business.customUrl = '';

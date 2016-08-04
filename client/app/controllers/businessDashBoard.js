@@ -2,7 +2,7 @@ angular.module('myApp.businessDashBoard', [])
   .controller('BusinessDashboard', function($state, $scope, $rootScope, applications, BusinessDataServices){
     //all business info gathered once successfully logged in.
     $scope.apps = applications;
-
+    $scope.controls = {}
     $scope.application;
     //TODO call a get on the current custom application and apply it to the checkboxes
     $scope.getCurrentForm = function(){
