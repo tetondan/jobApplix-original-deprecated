@@ -11,7 +11,7 @@ var businessSchema = mongoose.Schema({
   //name will be the actual name of the business, how they would like it to appear on the website
   name: { type: String, required: true },
   address: {type: String},
-  phone: {type: String, required: true},
+  phone: {type: String},
   website: {type: String},
   email: {type: String, required: true},
   about: {type: String},

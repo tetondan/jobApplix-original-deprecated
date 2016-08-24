@@ -93,7 +93,7 @@ angular.module('myApp.applicationCont', [])
       application.education.tradeSchool.type = undefined;
       AppDataServices.submitApplication(application)
       .then( function (data) {
-        $state.go('success')
+        $scope.advanceApplication();
         //redirect user to page thanking them for submitting an application and supplying a link to return to main page.
       });
     };

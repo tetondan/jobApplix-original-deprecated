@@ -66,3 +66,8 @@ angular.module('myApp.directives', ['myapp.appDataServices'])
       templateUrl: 'app/templates/application/app9.html'
     }
   })
+  .directive('appDirective10', function(){
+    return {
+      templateUrl: 'app/templates/application/app10.html'
+    }
+  })

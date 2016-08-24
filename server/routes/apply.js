@@ -9,8 +9,8 @@ const router = express.Router();
 
 //submit an application to a business
 router.route('/applicationSubmit').post((req, res) => {
-  var appInfo = req.body;
-  var application = new Application(appInfo)
+  const appInfo = req.body;
+  let application = new Application(appInfo)
   application.save((err) => {
     if(err){
       console.log(err)
@@ -32,8 +32,8 @@ router.route('/applicationUpdateGroup').put( (req, res) => {
   })
 });
 //retreives the business info from the database
-router.route('/businesses/:businessName').get((req, res) => {
-  Business.find({customUrl: req.params.businessName}, (err, data) => {
+router.route('/businesses/:customUrl').get((req, res) => {
+  Business.find({customUrl: req.params.customUrl.toLowerCase()}, (err, data) => {
     if(err) {
       console.log(err)
       res.sendStatus(404)

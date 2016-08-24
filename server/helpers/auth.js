@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const signin = (req, res) => {
   var info = req.body;
   var sess = req.session;
-  Business.findOne({username: info.username}, (err, results) => {
+  Business.findOne({username: info.username.toLowerCase()}, (err, results) => {
     if(results === null){
       res.status(404).send("Incorrect Username or Password 1")
     } else {
@@ -30,13 +30,15 @@ const signin = (req, res) => {
 
 const signup = (req, res) => {
   var businessObj = req.body
-  Business.findOne({username: businessObj.username}, (err, results) => {
+  Business.findOne({username: businessObj.username.toLowerCase()}, (err, results) => {
     if(results !== null){
       res.status(401).send("Business name already taken")
     } else {
       setPass(businessObj.password)
         .then((passHash) => {
           businessObj.password = passHash;
+          businessObj.username = businessObj.username.toLowerCase();
+          businessObj.customUrl = businessObj.customUrl.toLowerCase()
           var business = new Business(businessObj);
           business.save((err, data) => {
             if(err){

@@ -20,6 +20,7 @@
     <app-directive7 ng-if="appDirective === 7"></app-directive7>
     <app-directive8 ng-if="appDirective === 8"></app-directive8>
     <app-directive9 ng-if="appDirective === 9"></app-directive9>
+    <app-directive10 ng-if="appDirective === 10"></app-directive10>
     <div class="navbar navbar-inverse navbar-fixed-bottom">
       <div class="container">
         <button class="navbar-btn btn-primary btn navbar-right" ng-if="appDirective < 10" ng-click="advanceApplication()" ng-disabled="!form.appForm.$valid || appDirective >= 9"><span class="glyphicon glyphicon-step-forward"></span>  Next Step</button>
@@ -53,7 +54,7 @@
           <div class="progress-bar progress-bar-success" style="width: 89%" ng-if="appDirective === 9">
             89% Complete
           </div>
-          <div class="progress-bar progress-bar-success" style="width: 100%" ng-if="appDirective >= 9">
+          <div class="progress-bar progress-bar-success" style="width: 100%" ng-if="appDirective > 9">
             Complete!
           </div>
         </div>

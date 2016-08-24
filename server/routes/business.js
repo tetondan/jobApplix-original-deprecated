@@ -58,4 +58,35 @@ router.route('/businesses/test').get(authController.auth, (req,res) => {
 });
 //TODO create logout route.
 
+router.route('/businesses/usernameChecker').put((req,res) => {
+  const user = req.body.username.toLowerCase();
+  console.log(user)
+  //username customUrl email
+  Business.findOne({username: user})
+    .then((data, err) => {
+      if(err){
+        console.log(err);
+      } else if (!data) {
+        res.status(400).send(false)
+      } else {
+        res.status(400).send(true)
+      }
+    })
+})
+router.route('/businesses/customUrlChecker').put((req,res) => {
+  console.log('here I am')
+  const url = req.body.customUrl.toLowerCase();
+  //username customUrl email
+  Business.findOne({customUrl: url})
+    .then((data, err) => {
+      if(err){
+        console.log(err);
+      } else if (!data) {
+        res.status(400).send(false)
+      } else {
+        res.status(404).send(true)
+      }
+    })
+})
+
 module.exports = router;
