@@ -8,24 +8,44 @@
     <div class="form-group" ng-if="template.specializedSkills">
       <label>Do you have any specialized skills or training?</label>
         <div class="checkbox">
-          <label> 
-            <input type="checkbox" ng-model="application.specializedSkills"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-            <input type="checkbox" /><label>No</label>
-          </label>
-        </div>
+        <label> 
+          <input type="checkbox" ng-model="application.specializedSkills"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+          <input type="checkbox" /><label>No</label>
+        </label>
+      </div>
       <div ng-if="application.specializedSkills">
-      <label>Please list them here:</label>
-      <input type="text" class="form-control" ng-model="application.specializedSkillsList" placeholder="List Specialized Skills Here"/>
+        <label>Please list them here:</label>
+        <input type="text" class="form-control" ng-model="application.specializedSkillsList" placeholder="List Specialized Skills Here"/>
+      </div>
     </div>
     <div class="form-group" ng-if="template.computerRepair">
     <!-- computer repair -->
-      <label>Are you certified or authorized to maintian and repair Computers?</label>
+      <label>Are you certified or authorized to maintian and/or repair any Computer systems?</label>
       <div class="checkbox">
         <label> 
           <input type="checkbox" ng-model="application.computerRepair"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
           <input type="checkbox" /><label>No</label>
         </label>
-      </div>    
+      </div>
+      <div ng-if="application.computerRepair">
+        <label>Please list them here:</label>
+        <input type="text" class="form-control" ng-model="application.computerRepairList" placeholder="List authorized computer systems here"/>
+      </div> 
+    </div>
+    <!-- software -->
+    <!-- computer repair -->
+    <div class="form-group" ng-if="template.softwareExperience">
+      <label>Are you certified, authorized, skilled, or experienced in the use of any software? (speadsheet, CAD, etc.)</label>
+      <div class="checkbox">
+        <label> 
+          <input type="checkbox" ng-model="application.softwareExperience"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+          <input type="checkbox" /><label>No</label>
+        </label>
+      </div>
+      <div ng-if="application.softwareExperience">
+        <label>Please provide more details here:</label>
+        <input type="text" class="form-control" ng-model="application.softwareExperienceList" placeholder="List software and experience here"/>
+      </div> 
     </div>
     <div class="form-group" ng-if="template.proffesionalCerts">
     <!-- profesional certs -->

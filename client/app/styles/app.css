@@ -56,19 +56,7 @@ body {
 .splash-container div {
   margin-bottom: 2vh;
 }
-/*.login-container {
-  background-color: rgba(0,0,0,0.5);
-  color: rgb(255,255,255);
-  margin-top: 5vh;
-}
-.login-container h1 {
-  font-family: 'Kaushan Script', cursive;
-  font-size: 10rem;
-}
 
-.login-container div {
-  margin-bottom: 2vh;
-}*/
 .apps {
   margin-top: 5vh;
 }

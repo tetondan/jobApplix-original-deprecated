@@ -94,13 +94,35 @@ angular.module('myApp.businessDataServices', [])
         return data;
       })
     }
+
+    var checkIfUsernameTaken = function(name){
+      if(name === undefined) return false;
+      return $http({
+        method: 'PUT',
+        url: '/api/businesses/usernameChecker',
+        data: {username: name}
+      }).then(function(data){
+        return data.data;
+      })
+    }
+    var checkIfCustomUrlTaken = function(customUrl){
+      return $http({
+        method: 'PUT',
+        url: '/api/businesses/customUrlChecker',
+        data: {customUrl: customUrl}
+      }).then(function(data){
+        return data.data;
+      })
+    }
     return {
       'businessSignup': businessSignup,
       'businessLogin': businessLogin,
       'businessLogout': businessLogout,
       'getApps': getApps,
       'saveForm': saveForm,
-      'getCurrentForm': getCurrentForm
+      'getCurrentForm': getCurrentForm,
+      'checkIfUsernameTaken': checkIfUsernameTaken,
+      'checkIfCustomUrlTaken': checkIfCustomUrlTaken
     };
 
   });

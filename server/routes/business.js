@@ -40,11 +40,11 @@ router.route('/businesses/template').get(authController.auth, (req, res) => {
 })
 //this route will allow the business to create or update thier custom application specifications. 
 router.route('/businesses/updateApplication').put(authController.auth, (req,res) => {
-  var updatedCustomApp = req.body;
+  const updatedCustomApp = req.body;
   updatedCustomApp.businessId = req.session.businessId;
   CustomApp.remove({ businessId: updatedCustomApp.businessId })
     .then(() => {
-      var newCustomApp = new CustomApp(updatedCustomApp);
+      const newCustomApp = new CustomApp(updatedCustomApp);
       newCustomApp.save()
         .then((data) => {
           res.status(201).send(data);
@@ -59,32 +59,30 @@ router.route('/businesses/test').get(authController.auth, (req,res) => {
 //TODO create logout route.
 
 router.route('/businesses/usernameChecker').put((req,res) => {
-  const user = req.body.username.toLowerCase();
-  console.log(user)
+  const user = req.body.username ? req.body.username.toLowerCase() : '';
   //username customUrl email
   Business.findOne({username: user})
     .then((data, err) => {
       if(err){
         console.log(err);
       } else if (!data) {
-        res.status(400).send(false)
+        res.status(200).send(false)
       } else {
-        res.status(400).send(true)
+        res.status(200).send(true)
       }
     })
 })
 router.route('/businesses/customUrlChecker').put((req,res) => {
-  console.log('here I am')
-  const url = req.body.customUrl.toLowerCase();
+  const url = req.body.customUrl ? req.body.customUrl.toLowerCase() : '';
   //username customUrl email
   Business.findOne({customUrl: url})
     .then((data, err) => {
       if(err){
         console.log(err);
       } else if (!data) {
-        res.status(400).send(false)
+        res.status(200).send(false)
       } else {
-        res.status(404).send(true)
+        res.status(200).send(true)
       }
     })
 })

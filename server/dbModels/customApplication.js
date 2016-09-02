@@ -29,6 +29,7 @@ var customAppSchema = mongoose.Schema({
   adequateTrans: Boolean,
   specializedSkills: Boolean,
   computerRepair: Boolean,
+  softwareExperience: Boolean,
   proffesionalCerts: Boolean,
   typingSpeed: Boolean,
   veteran: Boolean,

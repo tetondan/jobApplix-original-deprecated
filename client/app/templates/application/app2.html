@@ -44,6 +44,14 @@
           </label>  
         </div>
     </div>
+    <div class="form-group" ng-if="template.custom1">
+      <label>{{template.custom1}}<span class="glyphicon glyphicon-asterisk"></span></label>
+      <input type="text" class="form-control" ng-model="application.custom1" required/>
+    </div>
+    <div class="form-group" ng-if="template.custom2">
+      <label>{{template.custom2}}<span class="glyphicon glyphicon-asterisk"></span></label>
+      <input type="text" class="form-control" ng-model="application.custom2" required/>
+    </div>
     <table class='table table-reponsive table-striped' ng-if="template.availability">
       <thead>
       <tr>

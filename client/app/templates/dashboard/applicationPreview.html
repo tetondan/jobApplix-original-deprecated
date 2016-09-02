@@ -227,12 +227,23 @@
                 <div class='panel-title'><h4>Other Information</h4></div>
               </div>
               <div class='panel-body'>
+                <div ng-if='customTemplate.custom1'>
+                  <p><strong>{{customTemplate.custom1}}</strong> {{application.custom1}}</p>
+                </div>
+                <div ng-if='customTemplate.custom2'>
+                  <p><strong>{{customTemplate.custom2}}</strong> {{application.custom2}}</p>
+                </div>
                 <div ng-if='customTemplate.specializedSkills'>
                   <p><strong>Do you have any other specialized skills or qualifications?</strong> {{application.specializedSkills ? 'Yes' : 'No'}}</p>
                   <p ng-if="application.specializedSkills"><strong>Please list them:</strong> {{application.specializedSkillsList}}</p>
                 </div>
                 <div ng-if='customTemplate.computerRepair'>
-                  <p><strong>Are you authorized or ceritified to operate or repair any computer hardware or software?</strong> {{application.computerRepair ? 'Yes' : 'No'}}</p>
+                  <p><strong>Are you authorized or ceritified to operate or repair any computer hardware or systems?</strong> {{application.computerRepair ? 'Yes' : 'No'}}</p>
+                  <p ng-if="application.specializedSkills"><strong>Please list them:</strong> {{application.computerRepairList}}</p>
+                </div>
+                <div ng-if='customTemplate.softwareExperience'>
+                  <p><strong>Are you certified, authorized, skilled, or experienced in the use of any software?</strong> {{application.softwareExperience ? 'Yes' : 'No'}}</p>
+                  <p ng-if="application.softwareExperience"><strong>Please list them:</strong> {{application.softwareExperienceList}}</p>
                 </div>
                 <div ng-if='customTemplate.proffesionalCerts'>
                   <p><strong>If you have any proffessional ceritications please list them here:</strong> {{application.proffesionalCerts}}</p>
@@ -246,6 +257,7 @@
                 <div ng-if='customTemplate.otherComments'>
                   <p><strong>Do you have any other comments you would like to add?</strong> {{application.otherComments ? application.otherComments : 'None'}}</p>
                 </div>
+                <!-- TODO ADD COMMENTS SECTION !!!!!!! -->
               </div>
             </div>
           </div>

@@ -77,12 +77,17 @@ const applicationSchema = mongoose.Schema({
   specializedSkills: Boolean,
   specializedSkillsList: String,
   computerRepair: Boolean,
+  computerRepairList: String,
+  softwareExperience: Boolean,
+  softwareExperienceList: String,
   proffesionalCerts: String,
   typingSpeed: String, 
   veteran: Boolean,
   dateAvailableToBeginWork: String,
   otherComments: String,
   state: String,
+  custom1: String,
+  custom2: String,
   businessId: String
 }, {collection: 'application'});
 
