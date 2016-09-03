@@ -2,47 +2,66 @@
   <div ng-if="group.length === 0">
     <p class='empty-group'>There are no applications in this group</p>
   </div>
-  <div ng-repeat="application in group| applicationFilter:$parent.filterObject">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <div class="panel-title">
-          <h5>Move to :
-          <div class="btn-group" role="group" aria-label="...">
-            <button class='btn btn-success' ng-click='changeGroup(application, 2)' type="button">Hired</button>
-            <button class='btn btn-danger' ng-click='changeGroup(application, 6)' type="button">Not Hired</button>
-            <button class='btn btn-info' ng-click='changeGroup(application, 4)' type="button">High Potential</button>
-            <button class='btn btn-warning' ng-click='changeGroup(application, 5)' type="button">Pile</button>
-            <button class='btn btn-default' ng-click='changeGroup(application, 3)' type="button">In Progress</button>
+  <table class='table table-reponsive table-striped' >
+    <thead>
+      <tr>
+        <th><p>Name:</p></th>
+        <th><p>Date Applied:</p></th>
+        <th><p>Position:</p></th>
+        <th><p>Email:</p></th>
+        <th><p>Phone:</p></th>
+        <th><p>Move Group:</p></th>
+        <th><p>Expand:</p></th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="application in group | applicationFilter:$parent.filterObject">
+      <tr>
+        <td>{{application.firstName}} {{application.middleName}} {{application.lastName}}</td>
+        <td>{{application.appliedDate | date}}</td>
+        <td>{{application.position}}</td>
+        <td><a href={{"mailto:" + application.email}}>{{application.email}}</a></td>
+        <td>{{application.phone}}</td>
+        <td>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Move To:
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a ng-click="changeGroup(application, 2)">Hired</a></li>
+              <li><a ng-click="changeGroup(application, 6)">Not Hired</a></li>
+              <li><a ng-click="changeGroup(application, 4)">High Potential</a></li>
+              <li><a ng-click="changeGroup(application, 5)">Pile</a></li>
+              <li><a ng-click="changeGroup(application, 3)">In Progress</a></li>
+            </ul>
           </div>
-          </h5>
-        </div>
-      </div>
-      <div class="panel-body">
-        <div>
-          <div class='col-md-12'>
-            <p class='app-click' ng-click="application.expanded = !application.expanded">click here to expand</p>
-          </div>
-          <div class='col-md-6'>
-            <p><strong>Name:</strong> {{application.firstName}} {{application.middleName}} {{application.lastName}}</p>
-            <p><strong>Phone Number:</strong> {{application.phone}}</p>
-            <p><strong>Email: </strong><a href={{"mailto:" + application.email}}>{{application.email}}</a></p>
-            <div ng-if='customTemplate.fullOrPartime'>
-              <p><strong>Applicant prefers to work:</strong> {{application.fullOrPartime}}</p>
+        </td>
+        <td>
+          <span class="glyphicon glyphicon-plus" ng-if="!application.expanded" ng-click="application.expanded = !application.expanded" ></span>
+          <span class="glyphicon glyphicon-remove" ng-if="application.expanded" ng-click="application.expanded = !application.expanded" ></span>
+        </td>
+      </tr>
+      <tr>
+        <td ng-if="application.expanded" colspan="7">
+          <div class="panel panel-primary">
+            <div class="panel-body col-md-12">
+              <div class="col-md-6">
+                <p><strong>Name:</strong> {{application.firstName}} {{application.middleName}} {{application.lastName}}</p>
+                <p><strong>Phone Number:</strong> {{application.phone}}</p>
+                <p><strong>Email: </strong><a href={{"mailto:"+application.email}}>{{application.email}}</a></p>
+                <div ng-if='customTemplate.fullOrPartime'>
+                  <p><strong>Applicant prefers to work:</strong> {{application.fullOrPartime}}</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <p><strong>Date Applied: </strong> {{application.appliedDate | date}}</p>
+                <p><strong>City:</strong> {{application.city}}</p>
+                <p><strong>Zip:</strong> {{application.zip}}</p>
+                <p><strong>Position Applying For:</strong> {{application.position}}</p>
+              </div>
             </div>
-          </div>
-          <div class='col-md-6'>
-            <p><strong>Date Applied: </strong> {{application.appliedDate | date}}</p>
-            <p><strong>City:</strong> {{application.city}}</p>
-            <p><strong>Zip:</strong> {{application.zip}}</p>
-            <p><strong>Position Applying For:</strong> {{application.position}}</p>
-          </div>  
-          <div class='col-md-12' ng-if='application.expanded'>
-          <div class='panel panel-primary'>
-            <div class='panel-heading'>
-              <div class='panel-title'><h4>Employment Information</h4></div>
-            </div>
-            <div class='panel-body'>
-              <div class='col-md-6'>
+            <div class="panel-body col-md-12">
+              <div class="col-md-6">
                 <div ng-if='customTemplate.fired'>
                   <p><strong>Employee has previously been fired or asked to resign:</strong> {{application.fired ? 'Yes' : 'No'}}</p>
                   <p ng-if='application.fired'><strong>Explanation:</strong> {{application.firedExplanation || 'No explanation given'}}</p>
@@ -65,7 +84,7 @@
                   <p><strong>Do you have any physical limitations that would prevent you from performing the duties of this position?</strong> {{application.physicalLimitation ? 'Yes' : 'No'}}</p>
                 </div>
               </div>
-              <div class='col-md-6'>
+              <div class="col-md-6">
                 <div ng-if='customTemplate.backgroundCheck'>
                   <p><strong>Willing to submit a background check?</strong> {{application.backgroundCheck ? 'Yes' : 'No'}}</p>
                 </div>
@@ -86,9 +105,9 @@
                 <div ng-if='customTemplate.authWorkInUs'>
                   <p><strong>Are you auhtorized to work in the US?</strong>{{application.authWorkInUS ? 'Yes' : 'No'}}</p>
                 </div>
-              <div ng-if='customTemplate.dateAvailableToBeginWork'>
-                <p><strong>What is the date you are available to begin work?</strong> {{application.dateAvailableToBeginWork | date}}</p>
-              </div>
+                <div ng-if='customTemplate.dateAvailableToBeginWork'>
+                  <p><strong>What is the date you are available to begin work?</strong> {{application.dateAvailableToBeginWork | date}}</p>
+                </div>
                 </div>
                 <div ng-if='customTemplate.otherLanguages'>
                   <p><strong>Do you fluently speak a language other than English?</strong> {{application.otherLanguages ? 'Yes' : 'No'}}</p>
@@ -99,170 +118,159 @@
                 </div>
               </div>
             </div>
-          </div>
-            <div ng-if='customTemplate.availability' class='panel panel-primary'>
-              <div class='panel-heading'>
-                <div class='panel-title'>Availability</div>
+            <div ng-if='customTemplate.availability' class='panel-body col-md-12'>
+              <table class='table table-reponsive table-striped'>
+                  <thead>
+                  <tr>
+                    <th><p>Available:</p></th>
+                    <th ng-if="!customTemplate.customShiftTimes"><p>AM (open-5pm)</p></th>
+                    <th ng-if="!customTemplate.customShiftTimes"><p>PM (5pm-close)</p></th>
+                    <th ng-if="customTemplate.customShiftTimes"><p>{{customTemplate.shift1.first}} - {{customTemplate.shift1.second}}</p></th>
+                    <th ng-if="customTemplate.customShiftTimes"><p>{{customTemplate.shift2.first}} - {{customTemplate.shift2.second}}</p></th>
+                    <th ng-if="customTemplate.customShiftTimes && customTemplate.shift3selected"><p>{{customTemplate.shift3.first}} - {{customTemplate.shift3.second}}</p></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Monday:</td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.firstMon"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.secondMon"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.thirdMon"></span></td>
+                  </tr>
+                  <tr>
+                    <td>Tuesday:</td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.firstTues"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.secondTues"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.thirdTues"></span></td>
+                  </tr>
+                  <tr>
+                    <td>Wednesday:</td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.firstWed"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.secondWed"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.thirdWed"></span></td>
+                  </tr>
+                  <tr>
+                    <td>Thursday:</td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.firstThurs"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.secondThurs"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.secondThurs"></span></td>
+                  </tr>
+                  <tr>
+                    <td>Friday</td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.firstFri"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.secondFri"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.thirdFri"></span></td>
+                  </tr>
+                  <tr>
+                    <td>Saturday:</td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.firstSat"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.secondSat"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.thirdSat"></span></td>
+                  </tr>
+                  <tr>
+                    <td>Sunday:</td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.firstSun"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.secondSun"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.thirdSun"></span></td>
+                  </tr>
+                  </tbody>
+                </table>
+            </div>
+            <div class='panel-body col-md-12' ng-if='customTemplate.workReferences'>
+              <div ng-if="application.workReferences.length === 0">
+                <strong style="color: red">No Work References Given</strong>
               </div>
-              <div class='panel-body'>
+              <div ng-repeat="workRef in application.workReferences track by $index">
+                <p><strong>Work Reference #{{$index + 1}}</strong></p>
+                <div class='col-md-6'>
+                  <p>Employer Name: {{workRef.employerName}}</p>
+                  <p>Employer Address: {{workRef.address}}</p>
+                  <p>Phone Number: {{workRef.phoneNumber}}</p>
+                  <p>Employee Title: {{workRef.title}}</p>
+                  <p>Starting Date: {{workRef.startDate | date}}</p>
+                  <p>Ending Date: {{workRef.endDate | date}}</p>
+                </div>
+                <div class='col-md-6'>
+                  <p>Supervisor Name: {{workRef.supervisorName}}</p>
+                  <p>Employee Duties: {{workRef.duties}}</p>
+                  <p>Starting Pay: {{workRef.startingPay}}</p>
+                  <p>Ending Pay: {{workRef.endingPay}}</p>
+                  <p>Reson for Leaving: {{workRef.reasonForLeaving}}</p>
+                  <p>Can contact this employer?: {{ workRef.canContact ? 'Yes' : 'No'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class='panel-body col-md-12' ng-if='customTemplate.personalReferences'>
+              <div ng-if="application.personalReferences.length === 0">
+                <strong style="color: red">No Personal References Given</strong>
+              </div>
+              <div ng-repeat="persRef in application.personalReferences track by $index">
+                <p><strong>Personl Reference #{{$index + 1}}</strong></p>
+                <div class='col-md-6'>
+                  <p>Name: {{persRef.name}}</p>
+                  <p>Phone Number: {{persRef.phone}}</p>
+                  <p>Email: {{persRef.email}}</p>
+                </div>
+                <div class='col-md-6'>
+                  <p>Address: {{persRef.address}}</p>
+                  <p>Relationship: {{persRef.relationship}}</p>
+                  <p>Years known: {{persRef.yearsKnown}}</p>
+                </div>
+              </div>
+            </div>
+            <div ng-if='customTemplate.education' class='panel-body col-md-12'>
+              <div ng-repeat='(school, value) in application.education'>
                 <div class='col-md-12'>
-                  <table class='table table-reponsive table-striped'>
-                    <thead>
-                    <tr>
-                      <th><p>Available:</p></th>
-                      <th><p>AM (open-5pm)</p></th>
-                      <th><p>PM (5pm-close)</p></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td>Monday:</td>
-                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.amMon"></span></td>
-                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.pmMon"></span></td>
-                    </tr>
-                    <tr>
-                      <td>Tuesday:</td>
-                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.amTues"></span></td>
-                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.pmTues"></span></td>
-                    </tr>
-                    <tr>
-                      <td>Wednesday:</td>
-                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.amWed"></span></td>
-                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.pmWed"></span></td>
-                    </tr>
-                    <tr>
-                      <td>Thursday:</td>
-                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.amThurs"></span></td>
-                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.pmThurs"></span></td>
-                    </tr>
-                    <tr>
-                      <td>Friday</td>
-                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.amFri"></span></td>
-                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.pmFri"></span></td>
-                    </tr>
-                    <tr>
-                      <td>Saturday:</td>
-                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.amSat"></span></td>
-                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.pmSat"></span></td>
-                    </tr>
-                    <tr>
-                      <td>Sunday:</td>
-                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.amSun"></span></td>
-                      <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.pmSun"></span></td>
-                    </tr>
-                    </tbody>
-                  </table>
+                  <p><strong>{{school === 'tradeSchool' ? "Trade School" : school === 'college' ? 'College' : 'High School'}}</strong><strong ng-if="value.schoolName === ''" style="color: red;"> None Given</strong></p>
+                </div>  
+                <div class='col-md-6' ng-if="!(value.schoolName === '')">
+                  <p>School Name: {{value.schoolName}}</p>
+                  <p>Location: {{value.location}}</p>
+                  <p>Years Completed: {{value.yearCompleted}}</p>  
                 </div>
+                <div class='col-md-6' ng-if="!(value.schoolName === '')">
+                  <p>Field of study: {{value.fieldOfStudy}}</p>
+                  <p>Degree Earned: {{value.degree}}</p>
+                </div>  
               </div>
             </div>
-            <div class='panel panel-primary' ng-if='customTemplate.workReferences'>
-              <div class='panel-heading'>
-                <div class='panel-title'><h4>Work References</h4></div>
+            <div class='panel-body col-md-12'>
+              <div ng-if='customTemplate.custom1'>
+                <p><strong>{{customTemplate.custom1}}</strong> {{application.custom1}}</p>
               </div>
-              <div class='panel-body'>
-                <div ng-repeat="workRef in application.workReferences track by $index">
-                  <p><strong>#{{$index + 1}}</strong></p>
-                  <div class='col-md-6'>
-                    <p>Employer Name: {{workRef.employerName}}</p>
-                    <p>Employer Address: {{workRef.address}}</p>
-                    <p>Phone Number: {{workRef.phoneNumber}}</p>
-                    <p>Employee Title: {{workRef.title}}</p>
-                    <p>Starting Date: {{workRef.startDate | date}}</p>
-                    <p>Ending Date: {{workRef.endDate | date}}</p>
-                  </div>
-                  <div class='col-md-6'>
-                    <p>Supervisor Name: {{workRef.supervisorName}}</p>
-                    <p>Employee Duties: {{workRef.duties}}</p>
-                    <p>Starting Pay: {{workRef.startingPay}}</p>
-                    <p>Ending Pay: {{workRef.endingPay}}</p>
-                    <p>Reson for Leaving: {{workRef.reasonForLeaving}}</p>
-                    <p>Can contact this employer?: {{ workRef.canContact ? 'Yes' : 'No'}}</p>
-                  </div>
-                </div>
+              <div ng-if='customTemplate.custom2'>
+                <p><strong>{{customTemplate.custom2}}</strong> {{application.custom2}}</p>
               </div>
-            </div>
-            <div class='panel panel-primary' ng-if='customTemplate.personalReferences'>
-              <div class='panel-heading'>
-                <div class='panel-title'><h4>Personal References</h4></div>
+              <div ng-if='customTemplate.specializedSkills'>
+                <p><strong>Do you have any other specialized skills or qualifications?</strong> {{application.specializedSkills ? 'Yes' : 'No'}}</p>
+                <p ng-if="application.specializedSkills"><strong>Please list them:</strong> {{application.specializedSkillsList}}</p>
               </div>
-              <div class='panel-body'>
-                <div ng-repeat="persRef in application.personalReferences track by $index">
-                  <p><strong>#{{$index + 1}}</strong></p>
-                  <div class='col-md-6'>
-                    <p>Name: {{persRef.name}}</p>
-                    <p>Phone Number: {{persRef.phone}}</p>
-                    <p>Email: {{persRef.email}}</p>
-                  </div>
-                  <div class='col-md-6'>
-                    <p>Address: {{persRef.address}}</p>
-                    <p>Relationship: {{persRef.relationship}}</p>
-                    <p>Years known: {{persRef.yearsKnown}}</p>
-                  </div>
-                </div>
-              </div>  
-            </div>
-            <div ng-if='customTemplate.education' class='panel panel-primary'>
-              <div class='panel-heading'>
-                <div class='panel-title'><h4>Education</h4></div>
+              <div ng-if='customTemplate.computerRepair'>
+                <p><strong>Are you authorized or ceritified to operate or repair any computer hardware or systems?</strong> {{application.computerRepair ? 'Yes' : 'No'}}</p>
+                <p ng-if="application.specializedSkills"><strong>Please list them:</strong> {{application.computerRepairList}}</p>
               </div>
-              <div class='panel-body'>
-                <div ng-repeat='(school, value) in application.education'>
-                  <div class='col-md-12'>
-                    <p><strong>{{school === 'tradeSchool' ? "Trade School" : school === 'college' ? 'College' : 'High School'}}</strong></p>
-                  </div>  
-                  <div class='col-md-6'>
-                    <p>School Name: {{value.schoolName}}</p>
-                    <p>Location: {{value.location}}</p>
-                    <p>Years Completed: {{value.yearCompleted}}</p>  
-                  </div>
-                  <div class='col-md-6'>
-                    <p>Field of study: {{value.fieldOfStudy}}</p>
-                    <p>Degree Earned: {{value.degree}}</p>
-                  </div>  
-                </div>
+              <div ng-if='customTemplate.softwareExperience'>
+                <p><strong>Are you certified, authorized, skilled, or experienced in the use of any software?</strong> {{application.softwareExperience ? 'Yes' : 'No'}}</p>
+                <p ng-if="application.softwareExperience"><strong>Please list them:</strong> {{application.softwareExperienceList}}</p>
               </div>
-            </div>
-            <div class='panel panel-primary'>
-              <div class='panel-heading'>
-                <div class='panel-title'><h4>Other Information</h4></div>
+              <div ng-if='customTemplate.proffesionalCerts'>
+                <p><strong>If you have any proffessional ceritications please list them here:</strong> {{application.proffesionalCerts}}</p>
               </div>
-              <div class='panel-body'>
-                <div ng-if='customTemplate.custom1'>
-                  <p><strong>{{customTemplate.custom1}}</strong> {{application.custom1}}</p>
-                </div>
-                <div ng-if='customTemplate.custom2'>
-                  <p><strong>{{customTemplate.custom2}}</strong> {{application.custom2}}</p>
-                </div>
-                <div ng-if='customTemplate.specializedSkills'>
-                  <p><strong>Do you have any other specialized skills or qualifications?</strong> {{application.specializedSkills ? 'Yes' : 'No'}}</p>
-                  <p ng-if="application.specializedSkills"><strong>Please list them:</strong> {{application.specializedSkillsList}}</p>
-                </div>
-                <div ng-if='customTemplate.computerRepair'>
-                  <p><strong>Are you authorized or ceritified to operate or repair any computer hardware or systems?</strong> {{application.computerRepair ? 'Yes' : 'No'}}</p>
-                  <p ng-if="application.specializedSkills"><strong>Please list them:</strong> {{application.computerRepairList}}</p>
-                </div>
-                <div ng-if='customTemplate.softwareExperience'>
-                  <p><strong>Are you certified, authorized, skilled, or experienced in the use of any software?</strong> {{application.softwareExperience ? 'Yes' : 'No'}}</p>
-                  <p ng-if="application.softwareExperience"><strong>Please list them:</strong> {{application.softwareExperienceList}}</p>
-                </div>
-                <div ng-if='customTemplate.proffesionalCerts'>
-                  <p><strong>If you have any proffessional ceritications please list them here:</strong> {{application.proffesionalCerts}}</p>
-                </div>
-                <div ng-if='customTemplate.typingSpeed'>
-                  <p><strong>What is your average typing speed?</strong> {{application.typingSpeed}} WPM</p>
-                </div>
-                <div ng-if='customTemplate.veteran'>
-                  <p><strong>Are you a verteran of the United States Armed Services?</strong> {{application.veteran ? 'Yes' : 'No'}}</p>
-                </div>
-                <div ng-if='customTemplate.otherComments'>
-                  <p><strong>Do you have any other comments you would like to add?</strong> {{application.otherComments ? application.otherComments : 'None'}}</p>
-                </div>
-                <!-- TODO ADD COMMENTS SECTION !!!!!!! -->
+              <div ng-if='customTemplate.typingSpeed'>
+                <p><strong>What is your average typing speed?</strong> {{application.typingSpeed}} WPM</p>
+              </div>
+              <div ng-if='customTemplate.veteran'>
+                <p><strong>Are you a verteran of the United States Armed Services?</strong> {{application.veteran ? 'Yes' : 'No'}}</p>
+              </div>
+              <div ng-if='customTemplate.otherComments'>
+                <p><strong>Do you have any other comments you would like to add?</strong> {{application.otherComments ? application.otherComments : 'None'}}</p>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </td>
+      </tr>
+    </tbody>
+  </table> 
+
   </div>
 </div>

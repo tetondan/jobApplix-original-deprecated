@@ -16,6 +16,15 @@ angular.module('myApp.directives', ['myapp.appDataServices'])
       }
     }
   })
+  .directive('shiftTimepicker', function(){
+    return {
+      scope: {
+        startOrEnd: '=startOrEnd',
+        shift: '=shift'
+      },
+      templateUrl: 'app/templates/dashboard/shiftTimePicker.html'
+    }
+  })
   .directive('appDirective0', function(){
     return {
       templateUrl: 'app/templates/application/app0.html'

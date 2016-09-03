@@ -17,10 +17,15 @@
       <form name="form.appForm">
       <div class='form-group col-md-6'>
         <label>Username:(You will use this to log in)<span class="glyphicon glyphicon-asterisk"></span></label>
-        <p ng-if="isUsernameTaken" style="color: red">Sorry, that username is already taken</p>
-        <input ng-style="rejectedClassUsername" type='text' class="form-control" ng-blur="checkUserName()" ng-model='business.username' required/>
+        <input type='text' class="form-control" ng-blur="checkUserName()" ng-model='business.username' required/>
+        <div class="alert alert-danger" ng-if="isUsernameTaken">
+          <strong>Sorry, that username is already taken</strong>
+        </div>
         <label>Password:<span class="glyphicon glyphicon-asterisk"></span></label>
         <input type="password" class='form-control' ng-model='business.password' required/>
+        <div class="alert alert-danger" ng-if="noMatch">
+          <strong>Your passwords do not match</strong>
+        </div>
         <label>Phone Number:</label>
         <input type='tel' class='form-control' ng-model='business.phone' placeholder='(xxx)xxx-xxx'/>
         <label>Email:<span class="glyphicon glyphicon-asterisk"></span></label>
@@ -30,8 +35,10 @@
         <label>Business Name:<span class="glyphicon glyphicon-asterisk"></span>(Name of your business)</label>
         <input type='text' class='form-control' ng-model='business.name' required/>
         <label> Confirm Password:<span class="glyphicon glyphicon-asterisk"></span></label>
-        <p ng-if="noMatch" style="color: red">Sorry, the passwords do not match.</p>
-        <input class='form-control' ng-model="confirmPassword" ng-blur="passwordsMatch()" ng-style="rejectedPassword" type="password" required/>
+        <input class='form-control' ng-model="confirmPassword" ng-blur="passwordsMatch()" type="password" required/>
+        <div class="alert alert-danger" ng-if="noMatch">
+          <strong>Your passwords do not match</strong>
+        </div>
         <label>Address:</label>
         <input class='form-control' type='text' ng-model='business.address'/>
         <label>Website:</label>
@@ -39,10 +46,12 @@
       </div>  
       <div class='col-md-12'>
         <label for="custom-url">Your custom URL (this will be the address you give to applicants)<span class="glyphicon glyphicon-asterisk"></span>:</label>
-         <p ng-if="isCustomUrlTaken" style="color: red">Sorry, that custom url is already taken</p>
         <div class="input-group">
           <span class="input-group-addon" id="basic-addon3">http://www.jobapplix.com/apply/</span>
-          <input ng-style="rejectedClassUrl" type="text" class="form-control" id="basic-url" ng-blur="checkCustomUrl()" ng-model='business.customUrl' required>
+          <input type="text" class="form-control" id="basic-url" ng-blur="checkCustomUrl()" ng-model='business.customUrl' required>
+        </div>
+        <div class="alert alert-danger" ng-if="isCustomUrlTaken">
+          <strong>Sorry, that custom url is already taken</strong>
         </div>
       </div> 
       <div class="col-md-12">

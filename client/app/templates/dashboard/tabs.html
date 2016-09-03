@@ -10,24 +10,7 @@
                     </a>
                 </li>
                 <li>
-                    <a ng-click="filterExpand = !filterExpand">Availability Filter</a>
-                    <div ng-if="filterExpand" class='filter'>
-                      <p><label>Monday:</label>
-                      <span>Am: <input type='checkbox' ng-model="filterObject.availability.amMon" /> Pm:<input type="checkbox" ng-model="filterObject.availability.pmMon" /></span></p>
-                      <p><label>Tuesday: </label>
-                      <span>Am: <input type='checkbox' ng-model="filterObject.availability.amTues"/> Pm:<input type="checkbox" ng-model="filterObject.availability.pmTues" /></span></p>
-                      <p><label>Wednesday:</label>
-                      <span>Am: <input type='checkbox' ng-model="filterObject.availability.amWed"/> Pm:<input type="checkbox" ng-model="filterObject.availability.pmWed" /></span></p>
-                      <p><label>Thursday:</label>
-                      <span>Am: <input type='checkbox' ng-model="filterObject.availability.amThurs"/> Pm:<input type="checkbox" ng-model="filterObject.availability.pmThurs" /></span></p>
-                      <p><label>Friday:</label>
-                      <span>Am: <input type='checkbox' ng-model="filterObject.availability.amFri" /> Pm:<input type="checkbox" ng-model="filterObject.availability.pmFri" /></span></p>
-                      <p><label>Saturday:</label>
-                      <span>Am: <input type='checkbox' ng-model="filterObject.availability.amSat"/> Pm:<input type="checkbox" ng-model="filterObject.availability.pmSat" /></span></p>
-                      <p><label>Sunnday:</label>
-                      <span>Am: <input type='checkbox' ng-model="filterObject.availability.amSun"/> Pm:<input type="checkbox" ng-model="filterObject.availability.pmSun" /></span></p>
-                    </div>
-
+                    <a data-toggle="modal" data-target="#myModal">Availability Filter</a>
                 </li>
                 <li>
                     <a>Search</a>
@@ -40,13 +23,13 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div>
+                        <div >
                           <ul class="nav nav-tabs">
-                            <li role="presentation" ng-click="choose($event,'new')" class="active"><a>New</a></li>
-                            <li role="presentation" ng-click="choose($event,'hired')"><a>Hired</a></li>
-                            <li role="presentation" ng-click="choose($event,'inProgress')"><a>In Progress</a></li>
-                            <li role="presentation" ng-click="choose($event,'highPotential')"><a>High Potential</a></li>
-                            <li role="presentation" ng-click="choose($event,'pile')"><a>Pile</a></li>
+                            <li role="presentation" ng-click="choose($event,'new')" class="active" ><a>New({{apps.new.length}})</a></li>
+                            <li role="presentation" ng-click="choose($event,'hired')"><a>Hired ({{apps.hired.length}})</a></li>
+                            <li role="presentation" ng-click="choose($event,'inProgress')"><a>In Progress ({{apps.inProgress.length}})</a></li>
+                            <li role="presentation" ng-click="choose($event,'highPotential')"><a>High Potential ({{apps.highPotential.length}})</a></li>
+                            <li role="presentation" ng-click="choose($event,'pile')"><a>Pile ({{apps.pile.length}})</a></li>
                             <li role="presentation" ng-click="choose($event,'notHired')"><a>Not Hired</a></li>
                           </ul>
                         </div>  
@@ -64,5 +47,78 @@
 
     </div>
 
+<!-- filter modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Availability Filter</h4>
+        </div>
+        <div class="modal-body">
+            <table class='table table-reponsive table-striped'>
+                <thead>
+                    <tr>
+                        <th><p>Available:</p></th>
+                        <th ng-if="!customTemplate.customShiftTimes"><p>AM (open-5pm)</p></th>
+                        <th ng-if="!customTemplate.customShiftTimes"><p>PM (5pm-close)</p></th>
+                        <th ng-if="customTemplate.customShiftTimes"><p>{{customTemplate.shift1.first}} - {{customTemplate.shift1.second}}</p></th>
+                        <th ng-if="customTemplate.customShiftTimes"><p>{{customTemplate.shift1.first}} - {{customTemplate.shift2.second}}</p></th>
+                        <th ng-if="customTemplate.customShiftTimes && customTemplate.shift3selected"><p>{{customTemplate.shift3.first}} - {{customTemplate.shift3.second}}</p></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Monday:</td>
+                        <td><input type="checkbox" ng-model="filterObject.availability.firstMon" /></td>
+                        <td><input type="checkbox" ng-model="filterObject.availability.secondMon" /></td>
+                        <td ng-if="customTemplate.shift3selected"><input type="checkbox" ng-model="filterObject.availability.thirdMon" /></td>
+                    </tr>
+                    <tr>
+                        <td>Tuesday:</td>
+                        <td><input type="checkbox" ng-model="filterObject.availability.firstTues" /></td>
+                        <td><input type="checkbox" ng-model="filterObject.availability.secondTues" /></td>
+                        <td ng-if="customTemplate.shift3selected"><input type="checkbox" ng-model="filterObject.availability.thirdTues" /></td>
+                    </tr>
+                    <tr>
+                        <td>Wednesday:</td>
+                        <td><input type="checkbox" ng-model="filterObject.availability.firstWed" /></td>
+                        <td><input type="checkbox" ng-model="filterObject.availability.secondWed" /></td>
+                        <td ng-if="customTemplate.shift3selected"><input type="checkbox" ng-model="filterObject.availability.thirdWed" /></td>
+                    </tr>
+                    <tr>
+                        <td>Thursday:</td>
+                        <td><input type="checkbox" ng-model="filterObject.availability.firstThurs" /></td>
+                        <td><input type="checkbox" ng-model="filterObject.availability.secondThurs" /></td>
+                        <td ng-if="customTemplate.shift3selected"><input type="checkbox" ng-model="filterObject.availability.thirdThurs" /></td>
+                    </tr>
+                    <tr>
+                        <td>Friday:</td>
+                        <td><input type="checkbox" ng-model="filterObject.availability.firstFri" /></td>
+                        <td><input type="checkbox" ng-model="filterObject.availability.secondFri" /></td>
+                        <td ng-if="customTemplate.shift3selected"><input type="checkbox" ng-model="filterObject.availability.thirdFri" /></td>
+                    </tr>
+                    <tr>
+                        <td>Saturday:</td>
+                        <td><input type="checkbox" ng-model="filterObject.availability.firstSat" /></td>
+                        <td><input type="checkbox" ng-model="filterObject.availability.secondSat" /></td>
+                        <td ng-if="customTemplate.shift3selected"><input type="checkbox" ng-model="filterObject.availability.thirdSat" /></td>
+                    </tr>
+                    <tr>
+                        <td>Sunday:</td>
+                        <td><input type="checkbox" ng-model="filterObject.availability.firstSun" /></td>
+                        <td><input type="checkbox" ng-model="filterObject.availability.secondSun"/></td>
+                        <td ng-if="customTemplate.shift3selected"><input type="checkbox" ng-model="filterObject.availability.thirdSun" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+      </div>
+      </div>
+    </div>
+  </div>
 
 

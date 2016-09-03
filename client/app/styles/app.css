@@ -1,5 +1,5 @@
 body {
-  background-color: #e9ebee;
+  background-color: #fff;
 }
 
 #navbar { 
@@ -103,6 +103,12 @@ span.glyphicon-asterisk {
 
 .panel.panel-primary {
   border-color: #E4E4E4;
+}
+.alert.alert-danger {
+  padding: 5px;
+}
+.alert.alert-danger strong {
+  font-size: 1.5rem;
 }
 /*SIDEBAR STYLING*/
 #wrapper {

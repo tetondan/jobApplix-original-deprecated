@@ -56,46 +56,56 @@
       <thead>
       <tr>
         <th><p>Available:</p></th>
-        <th><p>AM (open-5pm)</p></th>
-        <th><p>PM (5pm-close)</p></th>
+        <th ng-if="!template.customShiftTimes"><p>AM (open-5pm)</p></th>
+        <th ng-if="!template.customShiftTimes"><p>PM (5pm-close)</p></th>
+        <th ng-if="template.customShiftTimes"><p>{{template.shift1.first}} - {{template.shift1.second}}</p></th>
+        <th ng-if="template.customShiftTimes"><p>{{template.shift2.first}} - {{template.shift2.second}}</p></th>
+        <th ng-if="template.shift3selected"><p>{{template.shift3.first}} - {{template.shift3.second}}</p></th>
       </tr>
       </thead>
       <tbody>
       <!-- TODO add an all button -->
       <tr>
         <td>Monday:</td>
-        <td><input type="checkbox" ng-model="application.availability.amMon" /></td>
-        <td><input type="checkbox" ng-model="application.availability.pmMon" /></td>
+        <td><input type="checkbox" ng-model="application.availability.firstMon" /></td>
+        <td><input type="checkbox" ng-model="application.availability.secondMon" /></td>
+        <td ng-if="template.shift3selected"><input type="checkbox" ng-model="application.availability.thirdMon" /></td>
       </tr>
       <tr>
         <td>Tuesday:</td>
-        <td><input type="checkbox" ng-model="application.availability.amTues" /></td>
-        <td><input type="checkbox" ng-model="application.availability.pmTues" /></td>
+        <td><input type="checkbox" ng-model="application.availability.firstTues" /></td>
+        <td><input type="checkbox" ng-model="application.availability.secondTues" /></td>
+        <td ng-if="template.shift3selected"><input type="checkbox" ng-model="application.availability.thirdTues" /></td>
       </tr>
       <tr>
         <td>Wednesday:</td>
-        <td><input type="checkbox" ng-model="application.availability.amWed" /></td>
-        <td><input type="checkbox" ng-model="application.availability.pmWed" /></td>
+        <td><input type="checkbox" ng-model="application.availability.firstWed" /></td>
+        <td><input type="checkbox" ng-model="application.availability.secondWed" /></td>
+        <td ng-if="template.shift3selected"><input type="checkbox" ng-model="application.availability.thirdWed" /></td>
       </tr>
       <tr>
         <td>Thursday:</td>
-        <td><input type="checkbox" ng-model="application.availability.amThurs" /></td>
-        <td><input type="checkbox" ng-model="application.availability.pmThurs" /></td>
+        <td><input type="checkbox" ng-model="application.availability.firstThurs" /></td>
+        <td><input type="checkbox" ng-model="application.availability.secondThurs" /></td>
+        <td ng-if="template.shift3selected"><input type="checkbox" ng-model="application.availability.thirdThurs" /></td>
       </tr>
       <tr>
         <td>Friday</td>
-        <td><input type="checkbox" ng-model="application.availability.amFri" /></td>
-        <td><input type="checkbox" ng-model="application.availability.pmFri" /></td>
+        <td><input type="checkbox" ng-model="application.availability.firstFri" /></td>
+        <td><input type="checkbox" ng-model="application.availability.secondFri" /></td>
+        <td ng-if="template.shift3selected"><input type="checkbox" ng-model="application.availability.thirdFri" /></td>
       </tr>
       <tr>
         <td>Saturday:</td>
-        <td><input type="checkbox" ng-model="application.availability.amSat" /></td>
-        <td><input type="checkbox" ng-model="application.availability.pmSat" /></td>
+        <td><input type="checkbox" ng-model="application.availability.firstSat" /></td>
+        <td><input type="checkbox" ng-model="application.availability.secondSat" /></td>
+        <td ng-if="template.shift3selected"><input type="checkbox" ng-model="application.availability.thirdSat" /></td>
       </tr>
       <tr>
         <td>Sunday:</td>
-        <td><input type="checkbox" ng-model="application.availability.amSun" /></td>
-        <td><input type="checkbox" ng-model="application.availability.pmSun" /></td>
+        <td><input type="checkbox" ng-model="application.availability.firstSun" /></td>
+        <td><input type="checkbox" ng-model="application.availability.secondSun" /></td>
+        <td ng-if="template.shift3selected"><input type="checkbox" ng-model="application.availability.thirdSun" /></td>
       </tr>
       </tbody>
     </table>

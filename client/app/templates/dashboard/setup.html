@@ -41,7 +41,29 @@
       <div class="panel-body" ng-show="controls.pos">        
         <p><input type="checkbox" ng-model="application.position"><span class='panel-text'>What Position are you applying for?</span></p>       
         <p><input type="checkbox" ng-model="application.fullOrPartime"><span class='panel-text'>Are you seeking Full or Partime work?</span></p>      
-        <p><input type="checkbox" ng-model="application.availability"><span class='panel-text'>What is your availability? (days, shifts)</span></p>        
+        <p><input type="checkbox" ng-model="application.availability"><span class='panel-text'>What is your availability? (days, shifts)</span></p> 
+        <div class="panel panel-primary" ng-if="application.availability">
+          <div class="panel-body">
+            <input type="checkbox" ng-model="application.customShiftTimes"><span class='panel-text'>I would Like to enter my own shift start and end times. (current shifts default to: open-5pm and 5pm-close)</span>
+            <div class="col-md-12" ng-hide="!application.customShiftTimes">
+              <div class="col-md-4 panel panel-body">
+                <p>Shift 1: {{application.shift1.first}} - {{application.shift1.second}}</p>
+                <shift-timepicker shift="application.shift1.first" start-or-end="true"></shift-timepicker>
+                <shift-timepicker shift="application.shift1.second" start-or-end="false"></shift-timepicker>
+              </div>
+              <div class="col-md-4 panel panel-body">
+                <p>Shift 2: {{application.shift2.first}} - {{application.shift2.second}}</p>
+                <shift-timepicker shift="application.shift2.first" start-or-end="true"></shift-timepicker>
+                <shift-timepicker shift="application.shift2.second" start-or-end="false"></shift-timepicker>
+              </div>
+              <div class="col-md-4 panel panel-body">
+                <p><input type="checkbox" ng-model="application.shift3selected">Shift 3: {{application.shift3.first}} - {{application.shift3.second}}</p>
+                <shift-timepicker ng-if="application.shift3selected" shift="application.shift3.first" start-or-end="true"></shift-timepicker>
+                <shift-timepicker ng-if="application.shift3selected" shift="application.shift3.second" start-or-end="false"></shift-timepicker>
+              </div>
+            </div>
+          </div>
+        </div>       
         <p><input type="checkbox" ng-model="application.fired"><span class='panel-text'>Have you ever been fired from a job? If so please explain:</span></p>       
         <p><input type="checkbox" ng-model="application.crimes"><span class='panel-text'>Have you ever been convicted of a crime? (other than minor traffic violations) If so please explain:</span></p>   
         <p><input type="checkbox" ng-model="application.drugTest"><span class='panel-text'>Are you willing to submit a pre-employment drug test?</span></p>       

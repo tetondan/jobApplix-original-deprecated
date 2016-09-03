@@ -18,4 +18,7 @@ angular.module('myApp.tabs', [])
       $scope.chosen = {}
       $scope.chosen[group] = true
     }
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
   })
