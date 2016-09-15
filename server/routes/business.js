@@ -1,8 +1,6 @@
 'use strict'
 const aws = require('aws-sdk');
 const S3_BUCKET = 'jobapplix';
-const AWS_ACCESS_KEY = 'AKIAJNTC2CDY6U2ZBVHA';
-const AWS_SECRET_ACCESS_KEY = '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';
 const CustomApp = require('../dbModels/customApplication')
 const Application = require('../dbModels/applicationModel')
 const Business = require('../dbModels/businessModel');
