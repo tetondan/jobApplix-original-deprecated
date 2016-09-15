@@ -15,8 +15,6 @@ angular.module('myApp.signupCont', [])
     $scope.isUsernameTaken = false;
     $scope.isCustomUrlTaken = false;
     $scope.noMatch = false;
-    $scope.rejectedClassUsername;
-    $scope.rejectedClassUrl;
     $scope.checkUserName = function(){
       if($scope.business.username == undefined) {return $scope.isUsernameTaken = false};
       BusinessDataServices.checkIfUsernameTaken($scope.business.username)
@@ -24,10 +22,8 @@ angular.module('myApp.signupCont', [])
           if(data){
             $scope.isUsernameTaken = true;
             $scope.business.username = ''
-            $scope.rejectedClassUsername = {'background-color': '#FF9E9E'};
           } else {
             $scope.isUsernameTaken = false;
-            $scope.rejectedClassUsername = {};
           }
         })
     }
@@ -39,10 +35,8 @@ angular.module('myApp.signupCont', [])
           if(data){
             $scope.isCustomUrlTaken = true;
             $scope.business.customUrl = ''
-            $scope.rejectedClassUrl = {'background-color': '#FF9E9E'};
           } else {
             $scope.isCustomUrlTaken = false;
-            $scope.rejectedClassUrl =  {};
           }
         })
     }
@@ -51,7 +45,6 @@ angular.module('myApp.signupCont', [])
       if($scope.business.password !== $scope.confirmPassword){
         $scope.confirmPassword = '';
         $scope.noMatch = true; 
-        $scope.rejectedPassword = {'background-color': '#FF9E9E'};
       } else {
         $scope.noMatch = false;
         $scope.rejectedPassword = {};
@@ -65,7 +58,7 @@ angular.module('myApp.signupCont', [])
       if(!$scope.isCustomUrlTaken && !$scope.isUsernameTaken && !$scope.noMatch){
         BusinessDataServices.businessSignup($scope.business)
           .then( function (data) {
-            $state.go('dashboard.setup')
+            $state.go('dashboard.imageupload')
             //redirect user to page setting up a custom application template.
           });
       };

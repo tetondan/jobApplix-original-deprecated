@@ -12,8 +12,8 @@
   <h1>Job Applix</h1>
   <h4>Please Enter Username and Password to Login</h4>
   <p>Not yet a member? <a ui-sref="dashboard.signup">CLICK HERE</a> to sign up!</p>
-  <div ng-if="error" style='background-color: red;'>
-    <p>Invalid Username or Password, please try again</p>
+  <div class="alert alert-danger" ng-if="error">
+    <strong>Invalid Username or Password, please try again</strong>
   </div>  
   <div class='form-fields'>
     <label>Username:</label>
