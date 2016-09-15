@@ -7,7 +7,7 @@
       <p><strong>Web:</strong> {{businessData.website}}</p>
     </div>
     <div class="col-md-6">
-    <image class="pull-right" src="http://lorempixel.com/200/200/"></image>
+      <image ng-if="businessData.iconURL" style="max-width: 40rem;"class="pull-right" ng-src="{{businessData.iconURL}}"></image>
     </div>
     <div ng-if="!!businessData.about">
       <strong >About the company:</strong>
@@ -15,7 +15,7 @@
         <p>{{businessData.about}}</p>
       </blockquote>
     </div>
-    <div ng-if="!!businessData.about">
+    <div ng-if="!!template.positionDescription">
       <strong>About the position:</strong>
       <blockquote ng-if="template.positionDescription">
         <p>{{template.positionDescription}}</p>

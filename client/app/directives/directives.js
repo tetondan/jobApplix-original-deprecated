@@ -25,6 +25,38 @@ angular.module('myApp.directives', ['myapp.appDataServices'])
       templateUrl: 'app/templates/dashboard/shiftTimePicker.html'
     }
   })
+  .directive('file', function($timeout) {
+    return {
+      restrict: 'AE',
+      scope: {
+        file: '@'
+      },
+      link: function(scope, el, attrs){
+        el.bind('change', function(event){
+          var files = event.target.files;
+          var file = files[0];
+          scope.file = file;
+          scope.$parent.file = file;
+          scope.fileReaderSupported = window.FileReader != null;
+          if (scope.file != null) {
+            var file = scope.file;
+            if (scope.fileReaderSupported && scope.file.type.indexOf('image') > -1) {
+              $timeout(function() {
+                var fileReader = new FileReader();
+                fileReader.readAsDataURL(scope.file);
+                fileReader.onload = function(e) {
+                    $timeout(function(){
+                      scope.$parent.thumbnail.dataUrl = e.target.result;
+                    });
+                }
+              })
+            }
+          }  
+          scope.$apply();
+        });
+      }
+    };
+  })
   .directive('appDirective0', function(){
     return {
       templateUrl: 'app/templates/application/app0.html'

@@ -114,6 +114,24 @@ angular.module('myApp.businessDataServices', [])
         return data.data;
       })
     }
+
+    var gets3signature = function(file){
+      return $http({
+        method: 'GET',
+        url: '/api/business/sign-s3?file-name=' + file.name + '&file-type=' + file.type
+      }).then(function(data){
+        return data.data;
+      })
+    }
+
+    var s3upload = function(file, signature, url){
+      return $http({
+        method: 'PUT',
+        url: signature,
+        data: file,
+        headers: {'Content-Type': file.type}
+      })
+    }
     return {
       'businessSignup': businessSignup,
       'businessLogin': businessLogin,
@@ -122,7 +140,9 @@ angular.module('myApp.businessDataServices', [])
       'saveForm': saveForm,
       'getCurrentForm': getCurrentForm,
       'checkIfUsernameTaken': checkIfUsernameTaken,
-      'checkIfCustomUrlTaken': checkIfCustomUrlTaken
+      'checkIfCustomUrlTaken': checkIfCustomUrlTaken,
+      'gets3signature': gets3signature,
+      's3upload': s3upload
     };
 
   });

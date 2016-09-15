@@ -8,7 +8,7 @@ angular.module('myApp.businessSetup', [])
     $scope.saveForm = function(){
       BusinessDataServices.saveForm($scope.application)
       .then( function (data) {
-        $state.go('businessDashboard')
+        $state.go('dashboard.tabs')
       })
     }
   })

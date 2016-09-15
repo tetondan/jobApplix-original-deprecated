@@ -1,0 +1,31 @@
+<div class='setup'>
+  <div class="panel panel-primary">
+    <div class="panel-body">
+      <h2>Step 1: Upload your custom logo</h2>
+      <p>Now let's upload your logo that will be displayed on your application! If you'd like to skip this step and continue without uploading a custom logo, you can always upload a custom logo later!</p>
+      <button class='btn btn-info' ng-click="continue()">SKIP</button>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-body">
+      <div class="panel panel-primary col-md-6" style="border-width: 0; -webkit-box-shadow: 0 0 0; box-shadow: 0 0 0;">
+        <div class='panel-heading'>
+          <div class='panel-title'><h4>Upload Logo:</h4></div>
+        </div>  
+        <div class="panel-body form-group">
+          <input name="file" type="file" file/>
+          <button class="btn btn-primary" ng-click="filecallout()" ng-if="file && !advance">Upload</button>
+          <button class="btn btn-primary" ng-click="continue()" ng-if="advance">Next Step</button>
+        </div>
+      </div>
+      <div class="panel panel-primary col-md-6" style="border-width: 0;  -webkit-box-shadow: 0 0 0; box-shadow: 0 0 0;">
+        <div class='panel-heading'>
+          <div class='panel-title'><h4>Logo Preview:</h4></div>
+        </div>  
+        <div class="panel-body">
+          <img style="max-height: 200px; width: 200px; display: block; margin-left: auto; margin-right: auto;" ng-src="{{thumbnail.dataUrl}}" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

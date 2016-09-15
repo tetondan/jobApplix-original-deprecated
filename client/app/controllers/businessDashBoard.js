@@ -21,7 +21,7 @@ angular.module('myApp.businessDashBoard', [])
     $scope.saveForm = function(){
       BusinessDataServices.saveForm($scope.application)
       .then( function (data) {
-        $state.go('dashboard.preview')
+        $state.go('dashboard.tabs')
       })
     }
     

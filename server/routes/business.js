@@ -1,10 +1,47 @@
 'use strict'
+const aws = require('aws-sdk');
+const S3_BUCKET = 'jobapplix';
+const AWS_ACCESS_KEY = 'AKIAJNTC2CDY6U2ZBVHA';
+const AWS_SECRET_ACCESS_KEY = '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';
 const CustomApp = require('../dbModels/customApplication')
 const Application = require('../dbModels/applicationModel')
 const Business = require('../dbModels/businessModel');
 const express = require('express');
 const router = express.Router();
 const authController = require('../helpers/auth');
+
+router.route('/business/sign-s3').get(authController.auth, (req,res) => {
+  const s3 = new aws.S3();
+  const fileExtension = req.query['file-name'].split('.')
+  const fileName = req.session.businessId + '.' + fileExtension[fileExtension.length - 1];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 15,
+    ContentType: fileType,
+    ACL: 'public-read'
+  };
+
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if(err){
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+    };
+    Business.update({_id: req.session.businessId}, {iconURL: returnData.url}, function(err, data){ 
+      if(err){
+        console.log(err);
+      }else{
+        res.write(JSON.stringify(returnData));
+        res.end();
+      }
+    })
+  });
+});
 
 //** ALL business routes except signin siginup and logout will require auth.
 

@@ -1,6 +1,6 @@
 (function(){
    var app = angular.module('myApp',['myApp.applicationCont','myApp.splashCont','myApp.signupCont','myApp.loginCont', 'myApp.businessDashBoard', 
-                                     'myApp.businessSetup','myapp.appDataServices','myApp.businessDataServices', 'myApp.directives',
+                                     'myApp.businessSetup','myApp.imageUploadCont','myapp.appDataServices','myApp.businessDataServices', 'myApp.directives',
                                      'myApp.tabs','myApp.filters','ui.router']); 
 
     app.config(['$logProvider','$stateProvider', '$urlRouterProvider', function ( $logProvider, $stateProvider, $urlRouterProvider) {
@@ -52,16 +52,15 @@
           templateUrl: 'app/templates/signup.html',
           controller: 'SignupController'
         })
+        .state('dashboard.imageupload', {
+          url: '/imageupload',
+          templateUrl: 'app/templates/dashboard/imageupload.html',
+          controller: 'ImageUploadController'
+        })
         .state('dashboard.setup', {
           url: '/setup',
           templateUrl: 'app/templates/dashboard/setup.html'
         })
-        
-        .state('dashboard.preview', {
-          url: '/applicationPreview',
-          templateUrl: 'app/templates/appPreview.html'
-        })
-
         .state('dashboard.tabs', {
           url: '/tabs',
           templateUrl: 'app/templates/dashboard/tabs.html',
