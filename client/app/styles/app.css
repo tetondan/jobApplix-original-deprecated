@@ -113,7 +113,9 @@ span.glyphicon-asterisk {
 
 /*images*/
 .thumbnail {
-  width: 200px; 
+  max-width: 300px; 
+  max-height: 300px;
+  width: auto;
   display: block; 
   margin-left: auto; 
   margin-right: auto;
@@ -125,6 +127,11 @@ span.glyphicon-asterisk {
   position: absolute; 
   bottom: 5rem;
   left: 3rem;
+}
+.application-logo {
+  max-width: 300px;
+  max-height: 300px;
+  width: auto;
 }
 /*SIDEBAR STYLING*/
 #wrapper {

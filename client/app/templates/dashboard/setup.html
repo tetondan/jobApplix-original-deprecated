@@ -14,7 +14,7 @@
     </div>    
     <div class="panel panel-primary">
       <div class='panel-heading'>
-        <div class='panel-title'>Basic Information: <div class="pull-right"><span ng-if="!controls.basic">click to expand </span><span class="glyphicon glyphicon-plus" ng-click="controls.basic = !controls.basic"></span></div></div>
+        <div class='panel-title'>Basic Information: <div class="pull-right"><span ng-if="!controls.basic">click to expand </span><span class="glyphicon glyphicon-plus" ng-if="!controls.basic" ng-click="controls.basic = true"></span><span class="glyphicon glyphicon-remove" ng-if="controls.basic" ng-click="controls.basic = false"></span></div></div>
       </div>  
       <div class="panel-body" ng-show="controls.basic">
         <p><input type="checkbox" ng-model="application.basicInfo"><span class='panel-text'>  Full Name, Phone Number, Email Address, City/State, Zip Code</span></p>
@@ -22,7 +22,7 @@
     </div>    
     <div class="panel panel-primary">
       <div class='panel-heading'>
-        <div class='panel-title'>About Your Position: <span class="pull-right glyphicon glyphicon-plus" ng-click="controls.custom = !controls.custom"></span></div>
+        <div class='panel-title'>About Your Position: <span class="pull-right glyphicon glyphicon-plus" ng-if="!controls.custom" ng-click="controls.custom = true"></span><span class="pull-right glyphicon glyphicon-remove" ng-if="controls.custom" ng-click="controls.custom = false"></span></div>
       </div>  
       <div class="panel-body" ng-show="controls.custom">
         <label>Please tell us about your position  (This will be displayed on your application start page):</label>
@@ -35,7 +35,7 @@
     </div>    
     <div class="panel panel-primary">
       <div class='panel-heading'>
-        <div class='panel-title'>Position and Availability:<span class="pull-right glyphicon glyphicon-plus" ng-click="controls.pos = !controls.pos"></span></div>
+        <div class='panel-title'>Position and Availability:<span class="pull-right glyphicon glyphicon-plus" ng-if="!controls.pos" ng-click="controls.pos = true"></span><span class="pull-right glyphicon glyphicon-remove" ng-if="controls.pos" ng-click="controls.pos = false"></span></div>
       </div>  
       <div class="panel-body" ng-show="controls.pos">        
         <p><input type="checkbox" ng-model="application.position"><span class='panel-text'>What Position are you applying for?</span></p>       
@@ -71,7 +71,7 @@
     </div>
     <div class="panel panel-primary">
       <div class='panel-heading'>
-        <div class='panel-title'>Work and Education history, Personal references:<span class="pull-right glyphicon glyphicon-plus" ng-click="controls.history = !controls.history"></span></div>
+        <div class='panel-title'>Work and Education history, Personal references:<span class="pull-right glyphicon glyphicon-plus" ng-if="!controls.history" ng-click="controls.history = true"></span><span class="pull-right glyphicon glyphicon-remove" ng-if="controls.history" ng-click="controls.history = false"></span></div>
       </div>  
       <div class="panel-body" ng-show="controls.history">        
         <p><input type="checkbox" ng-model="application.workReferences"><span class='panel-text'>Please include your most recent work history:</span></p>       
@@ -81,7 +81,7 @@
     </div>
     <div class="panel panel-primary">
       <div class='panel-heading'>
-        <div class='panel-title'>Employment Information:<span class="pull-right glyphicon glyphicon-plus" ng-click="controls.emp = !controls.emp"></span></div>
+        <div class='panel-title'>Employment Information:<span class="pull-right glyphicon glyphicon-plus" ng-if="!controls.emp" ng-click="controls.emp = true"></span><span class="pull-right glyphicon glyphicon-remove" ng-if="controls.emp" ng-click="controls.emp = false"></span></div>
       </div>  
       <div class="panel-body" ng-show="controls.emp">        
         <p><input type="checkbox" ng-model="application.physicalLimitation"><span class='panel-text'>Do you have any physical limitations that would interfere with the job you are applying for?</span></p>     
@@ -98,7 +98,7 @@
     </div>
     <div class="panel panel-primary">
       <div class='panel-heading'>
-        <div class='panel-title'>Specialized Skills and Certifications:<span class="pull-right glyphicon glyphicon-plus" ng-click="controls.skills = !controls.skills"></span></div>
+        <div class='panel-title'>Specialized Skills and Certifications:<span class="pull-right glyphicon glyphicon-plus" ng-if="!controls.skills" ng-click="controls.skills = true"></span><span class="pull-right glyphicon glyphicon-remove" ng-if="controls.skills" ng-click="controls.skills = false"></span></div>
       </div>  
       <div class="panel-body" ng-show="controls.skills">        
         <p><input type="checkbox" ng-model="application.otherLanguages"><span class='panel-text'>Are You Fluent in any other languages? If so, please list them:</span></p>       
@@ -111,7 +111,7 @@
     </div>
     <div class="panel panel-primary">
       <div class='panel-heading'>
-        <div class='panel-title'>Other Information:<span class="pull-right glyphicon glyphicon-plus" ng-click="controls.other = !controls.other"></span></div>
+        <div class='panel-title'>Other Information:<span class="pull-right glyphicon glyphicon-plus" ng-if="!controls.other" ng-click="controls.other = true"></span><span class="pull-right glyphicon glyphicon-remove" ng-if="controls.other" ng-click="controls.other = false"></span></div>
       </div>
       <div class="panel-body" ng-show="controls.other">        
         <p><input type="checkbox" ng-model="application.veteran"><span class='panel-text'>Are you a veteran of a branch of the US Armed Forces?</span></p>     

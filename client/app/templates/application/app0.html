@@ -6,20 +6,24 @@
       <p><strong>Phone:</strong> {{businessData.phone}}</p>
       <p><strong>Web:</strong> {{businessData.website}}</p>
     </div>
-    <div class="col-md-6">
-      <image ng-if="businessData.iconURL" style="max-width: 40rem;"class="pull-right" ng-src="{{businessData.iconURL}}"></image>
+    <div ng-if="businessData.iconURL" class="col-md-6">
+      <image class="application-logo pull-right" ng-src="{{businessData.iconURL}}" />
     </div>
-    <div ng-if="!!businessData.about">
-      <strong >About the company:</strong>
-      <blockquote ng-if="!!businessData.about">
-        <p>{{businessData.about}}</p>
-      </blockquote>
+    <div class="col-md-12">
+      <div ng-if="!!businessData.about">
+        <strong >About the company:</strong>
+        <blockquote ng-if="!!businessData.about">
+          <p>{{businessData.about}}</p>
+        </blockquote>
+      </div>
     </div>
-    <div ng-if="!!template.positionDescription">
-      <strong>About the position:</strong>
-      <blockquote ng-if="template.positionDescription">
-        <p>{{template.positionDescription}}</p>
-      </blockquote>
+    <div class="col-md-12">
+      <div ng-if="!!template.positionDescription" >
+        <strong>About the position:</strong>
+        <blockquote ng-if="template.positionDescription">
+          <p>{{template.positionDescription}}</p>
+        </blockquote>
+      </div>
     </div>
     <strong>Click "Next Step" below to begin your application</strong>
   </div>
