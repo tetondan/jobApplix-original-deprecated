@@ -1,6 +1,6 @@
-body {
+/*body {
   background-color: #fff;
-}
+}*/
 
 #navbar { 
   padding-top: 70px; 
@@ -109,6 +109,22 @@ span.glyphicon-asterisk {
 }
 .alert.alert-danger strong {
   font-size: 1.5rem;
+}
+
+/*images*/
+.thumbnail {
+  width: 200px; 
+  display: block; 
+  margin-left: auto; 
+  margin-right: auto;
+}
+.panel-body.images {
+  height: 350px;
+}
+.upload-button {
+  position: absolute; 
+  bottom: 5rem;
+  left: 3rem;
 }
 /*SIDEBAR STYLING*/
 #wrapper {

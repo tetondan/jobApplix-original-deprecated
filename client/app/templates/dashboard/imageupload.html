@@ -1,8 +1,8 @@
 <div class='setup'>
   <div class="panel panel-primary">
     <div class="panel-body">
-      <h2>Step 1: Upload your custom logo</h2>
-      <p>Now let's upload your logo that will be displayed on your application! If you'd like to skip this step and continue without uploading a custom logo, you can always upload a custom logo later!</p>
+      <h2>Step 2: Upload your custom logo</h2>
+      <p>Now let's select and upload your business's logo. It will be displayed on your application. If you'd like to skip this step and continue without uploading a custom logo, you can always upload your custom logo later.</p>
       <button class='btn btn-info' ng-click="continue()">SKIP</button>
     </div>
   </div>
@@ -12,18 +12,24 @@
         <div class='panel-heading'>
           <div class='panel-title'><h4>Upload Logo:</h4></div>
         </div>  
-        <div class="panel-body form-group">
-          <input name="file" type="file" file/>
-          <button class="btn btn-primary" ng-click="filecallout()" ng-if="file && !advance">Upload</button>
-          <button class="btn btn-primary" ng-click="continue()" ng-if="advance">Next Step</button>
+        <div class="panel-body images form-group">
+          <label for="imageUpload" class="btn btn-lg btn-info" ng-disabled="advance">Select an Image to Upload</label>
+          <input name="file" id="imageUpload" type="file" accept="image/*" style="display: none" file/>
+          <p ng-if="file.size > 2000000" style="color: red;">File must be less than 2mb.</p>
+          <p ng-if="file"><label>File name:</label> {{file.name}}</p>
+          <p ng-if="file"><label>File size:</label> {{file.size/1000000}} mb</p>
+          <img ng-if="uploading" src="/loading.gif" />
+          <label ng-if="advance"> COMPLETE! </label>
+          <button class="btn btn-primary btn-lg upload-button " ng-click="fileUpload()" ng-if="file && !advance">Upload File</button>
+          <button class="btn btn-success btn-lg upload-button" ng-click="continue()" ng-if="advance">Next Step</button>
         </div>
       </div>
       <div class="panel panel-primary col-md-6" style="border-width: 0;  -webkit-box-shadow: 0 0 0; box-shadow: 0 0 0;">
         <div class='panel-heading'>
           <div class='panel-title'><h4>Logo Preview:</h4></div>
         </div>  
-        <div class="panel-body">
-          <img style="max-height: 200px; width: 200px; display: block; margin-left: auto; margin-right: auto;" ng-src="{{thumbnail.dataUrl}}" />
+        <div class="panel-body images">
+          <img class="thumbnail" ng-src="{{thumbnail.dataUrl}}" />
         </div>
       </div>
     </div>
