@@ -24,11 +24,15 @@ angular.module('myApp.businessDashBoard', [])
         $state.go('dashboard.tabs')
       })
     }
-    
-    $scope.logout = function(){
-      BusinessDataServices.businessLogout()
-      .then(function(){
-        $state.go('home')
-      })
+    $scope.toggleSidebar = function(){
+      var sidebar = $('#sidebarId')
+      var content = $('#contentId')
+      if(sidebar.hasClass('sidebar-toggle')){
+        sidebar.removeClass('sidebar-toggle')
+        content.removeClass('content-toggle')
+      } else {
+        sidebar.addClass('sidebar-toggle')
+        content.addClass('content-toggle')
+      }
     }
   })

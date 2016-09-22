@@ -1,25 +1,19 @@
 
-<div id="wrapper" class="apps">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a>
-                        Welcome, {{businessData.name}}!
-                    </a>
-                </li>
-                <li>
-                    <a data-toggle="modal" data-target="#myModal">Availability Filter</a>
-                </li>
-                <li>
-                    <a>Search</a>
-                </li>
+<div id="wrapper" class="apps" ng-init="getBusinessInfo()">
+        <div class="sidebar" id="sidebarId">
+            <img data-toggle="modal" data-target="#logoModal" class="sidebar-img" ng-src="{{businessData.iconURL}}" />
+            <p class="sidebar-name">{{businessData.name}}</p>
+            <ul>
+                <li data-toggle="modal" data-target="#availabilityModal"><a>Availability Filter</a></li>
+                <li data-toggle="modal" data-target="#searchModal"><a>Search</a></li>
+                <li><a>Profile</a></li>
+                <li><a>Custom Application</a></li>
+                <li><a>Analytics</a></li>
+                <li ng-click="logout()"><a>Logout</a></li>
             </ul>
         </div>
-        <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
-        <div id="page-content-wrapper">
+        <div class="content" id="contentId">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
@@ -48,7 +42,7 @@
     </div>
 
 <!-- filter modal -->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="availabilityModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
       <div class="modal-content">
@@ -64,7 +58,7 @@
                         <th ng-if="!customTemplate.customShiftTimes"><p>AM (open-5pm)</p></th>
                         <th ng-if="!customTemplate.customShiftTimes"><p>PM (5pm-close)</p></th>
                         <th ng-if="customTemplate.customShiftTimes"><p>{{customTemplate.shift1.first}} - {{customTemplate.shift1.second}}</p></th>
-                        <th ng-if="customTemplate.customShiftTimes"><p>{{customTemplate.shift1.first}} - {{customTemplate.shift2.second}}</p></th>
+                        <th ng-if="customTemplate.customShiftTimes"><p>{{customTemplate.shift2.first}} - {{customTemplate.shift2.second}}</p></th>
                         <th ng-if="customTemplate.customShiftTimes && customTemplate.shift3selected"><p>{{customTemplate.shift3.first}} - {{customTemplate.shift3.second}}</p></th>
                     </tr>
                 </thead>
@@ -116,6 +110,44 @@
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- search modal -->
+  <div class="modal fade" id="searchModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search Applications</h4>
+        </div>
+        <div class="modal-body">
+            <label>Sorry this feature is not yet available</label>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logo modal -->
+  <div class="modal fade" id="logoModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Upload or Change Logo</h4>
+        </div>
+        <div class="modal-body">
+            <label>Sorry this feature is not yet available</label>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
       </div>
     </div>

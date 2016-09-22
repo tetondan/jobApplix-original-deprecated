@@ -8,7 +8,7 @@ const express = require('express');
 const router = express.Router();
 const authController = require('../helpers/auth');
 
-router.route('/business/sign-s3').get(authController.auth, (req,res) => {
+router.route('/businesses/sign-s3').get(authController.auth, (req,res) => {
   const s3 = new aws.S3();
   const fileExtension = req.query['file-name'].split('.')
   const fileName = req.session.businessId + '.' + fileExtension[fileExtension.length - 1];
@@ -66,7 +66,17 @@ router.route('/businesses/dashboard').get(authController.auth, (req,res) => {
     }
   })
 });
-
+router.route('/businesses/info').get(authController.auth, (req, res) => {
+  Business.find({_id: req.session.businessId})
+    .then((data) => {
+        var businessData = data[0];
+        businessData.password = undefined;
+        businessData._id = undefined;
+        businessData.__v = undefined;
+        businessData.username = undefined;
+        res.status(201).send(data[0]);
+    })
+})
 router.route('/businesses/template').get(authController.auth, (req, res) => {
   CustomApp.find({businessId: req.session.businessId})
     .then((template) => {

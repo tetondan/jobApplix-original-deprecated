@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt')
 
 const signin = (req, res) => {
   var info = req.body;
-  var sess = req.session;
   Business.findOne({username: info.username.toLowerCase()}, (err, results) => {
     if(results === null){
       res.status(404).send("Incorrect Username or Password 1")

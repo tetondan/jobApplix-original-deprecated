@@ -1,5 +1,5 @@
 angular.module('myApp.tabs', [])
-  .controller('TabsController', function($scope, $rootScope, customTemplate){
+  .controller('TabsController', function($state, $scope, $rootScope, customTemplate, BusinessDataServices){
     $scope.filterObject = {
       availability: {}
     }
@@ -18,7 +18,21 @@ angular.module('myApp.tabs', [])
       $scope.chosen = {}
       $scope.chosen[group] = true
     }
-    $(document).ready(function(){
-      $('[data-toggle="tooltip"]').tooltip();
-    });
+    $scope.getBusinessInfo = function(){
+      BusinessDataServices.getBusinessInfo()
+        .then(function(data){
+          if($scope.businessData === undefined){
+            $scope.businessData = data;
+            if(data.iconURL === undefined){
+              $scope.businessData.iconURL = "/NoLogo.jpg";
+            }
+          }          
+        })
+    }
+    $scope.logout = function(){
+      BusinessDataServices.businessLogout()
+      .then(function(){
+        $state.go('home')
+      })
+    }
   })

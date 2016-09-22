@@ -31,6 +31,17 @@ router.route('/applicationUpdateGroup').put( (req, res) => {
     }
   })
 });
+
+router.route('/applicationUpdateComments').put( (req, res) => {
+  Application.findByIdAndUpdate(req.body.id, { $set: { businessComments: req.body.businessComments }}, function(err, data){
+    if(err){
+      console.log(err);
+      res.status(501);
+    } else {
+      res.status(202).send('updated');
+    }
+  })
+});
 //retreives the business info from the database
 router.route('/businesses/:customUrl').get((req, res) => {
   Business.find({customUrl: req.params.customUrl.toLowerCase()}, (err, data) => {

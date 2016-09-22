@@ -95,7 +95,8 @@ const applicationSchema = mongoose.Schema({
   state: String,
   custom1: String,
   custom2: String,
-  businessId: String
+  businessId: String,
+  businessComments: Array
 }, {collection: 'application'});
 
 
