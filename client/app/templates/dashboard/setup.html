@@ -1,10 +1,16 @@
 
   <div class='setup' ng-init='getCurrentForm()'>
-    <div class="panel panel-primary">
+    <div class="panel panel-primary" ng-if="!application.firstTime">
       <div class="panel-body">
         <h2>Step 3: set up your custom application</h2>
         <p>Great, lets set up your custom application! Once again, If you'd like to skip this step and continue without setting up a custom application, we'll set you up with our basic application. (You can always set up a custom application later.)</p>
         <button class='btn btn-info' ng-click='saveForm()'>SKIP</button>
+      </div>
+    </div>  
+    <div class="panel panel-primary" ng-if="application.firstTime">
+      <div class="panel-body">
+        <h2>Update your custom application</h2>
+        <p>Use this form to udate your current custom application, when you are done, just click "Save Custom Application" at the bottom of the page</p>
       </div>
     </div>    
     <div class="panel panel-primary">
@@ -121,7 +127,7 @@
     </div>       
     <div class="panel panel-primary">
       <div class="panel-body">    
-        <button class='btn btn-primary' ng-click='saveForm()'>Preview Application</button>
+        <button class='btn btn-primary' ng-click='saveForm()'>Save Custom Application</button>
       </div>
     </div>    
   </div>

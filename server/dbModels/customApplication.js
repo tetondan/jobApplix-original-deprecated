@@ -42,7 +42,8 @@ var customAppSchema = mongoose.Schema({
   otherComments: Boolean,
   custom1: String,
   custom2: String,
-  positionDescription: String
+  positionDescription: String,
+  firstTime: Boolean
 })
 var Custom = mongoose.model('Custom', customAppSchema);
 

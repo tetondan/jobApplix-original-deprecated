@@ -1,4 +1,5 @@
 <div class="application-body">
+<div ng-if="!template.education" ng-init="$parent.advanceApplication()" />
 <div class="panel panel-primary" ng-if="template.education">
   <div class="panel-heading">
     <div class="panel-title"><h4>Education History</h4></div>

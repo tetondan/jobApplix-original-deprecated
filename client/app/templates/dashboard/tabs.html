@@ -1,15 +1,17 @@
 
 <div id="wrapper" class="apps" ng-init="getBusinessInfo()">
         <div class="sidebar" id="sidebarId">
-            <img data-toggle="modal" data-target="#logoModal" class="sidebar-img" ng-src="{{businessData.iconURL}}" />
+            <div data-toggle="logoTooltip" title="Click to add or update logo" data-placement="bottom">
+                <img  data-toggle="modal" data-target="#logoModal" class="sidebar-img" ng-src="{{businessData.iconURL}}" />
+            </div>
             <p class="sidebar-name">{{businessData.name}}</p>
             <ul>
-                <li data-toggle="modal" data-target="#availabilityModal"><a>Availability Filter</a></li>
-                <li data-toggle="modal" data-target="#searchModal"><a>Search</a></li>
-                <li><a>Profile</a></li>
-                <li><a>Custom Application</a></li>
-                <li><a>Analytics</a></li>
-                <li ng-click="logout()"><a>Logout</a></li>
+                <li data-toggle="modal" data-target="#availabilityModal"><a><span class="glyphicon glyphicon-filter"></span> Availability Filter</a></li>
+                <li data-toggle="modal" data-target="#searchModal"><a><span class="glyphicon glyphicon-search"></span> Search</a></li>
+                <li data-toggle="modal" data-target="#profileModal"><a><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                <li ui-sref="dashboard.setup"><a><span class="glyphicon glyphicon-list-alt"></span> Custom Application</a></li>
+                <li data-toggle="modal" data-target="#analyticsModal"><a><span class="glyphicon glyphicon-dashboard"></span> Analytics</a></li>
+                <li ng-click="logout()"><a><span class="glyphicon glyphicon-off"></span> Logout</a></li>
             </ul>
         </div>
         <!-- Page Content -->
@@ -44,7 +46,6 @@
 <!-- filter modal -->
 <div class="modal fade" id="availabilityModal" role="dialog">
     <div class="modal-dialog">
-        <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -118,14 +119,32 @@
   <!-- search modal -->
   <div class="modal fade" id="searchModal" role="dialog">
     <div class="modal-dialog">
-        <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Search Applications</h4>
         </div>
         <div class="modal-body">
-            <label>Sorry this feature is not yet available</label>
+            <label>Search by any field in the application (Name, Position, Part or Full time, etc.) </label>
+            <input type="text" ng-model="searchParams" class="form-control" placeholder="Enter search terms here:"/>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- analytics modal -->
+  <div class="modal fade" id="analyticsModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Analytics Dashboard</h4>
+        </div>
+        <div class="modal-body">
+            <label>Sorry, this feature is not yet available</label>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -137,20 +156,76 @@
   <!-- Logo modal -->
   <div class="modal fade" id="logoModal" role="dialog">
     <div class="modal-dialog">
-        <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Upload or Change Logo</h4>
         </div>
         <div class="modal-body">
-            <label>Sorry this feature is not yet available</label>
+            <label ng-if="!file">Square logos work best, but any shape will display correctly on Applicaiton.</label>
+            <label ng-if="!file">File size must be less than 2mb</label>
+            <p ng-if="file.size > 2000000" style="color: red;">File must be less than 2mb.</p>
+            <img class="thumbnail" ng-src="{{thumbnail.dataUrl}}" />
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-      </div>
+            <label class="pull-left" style="font-size: 2rem;" ng-if="advance"> COMPLETE! </label>
+            <label for="imageUpload" class="btn btn-lg btn-info pull-left" ng-if="!advance">Select an Image to Upload</label>
+            <input name="file" id="imageUpload" type="file" accept="image/*" style="display: none" file/>
+            <img ng-if="uploading" height="46px"" src="/loading.gif" />
+            <button class="btn btn-lg btn-success" ng-click="fileUpload()" ng-if="file && !advance">Upload File</button>
+            <button type="button" class="btn btn-lg btn-primary" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
 
-
+<!-- profile modal -->
+  <div class="modal fade" id="profileModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Update profile</h4>
+        </div>
+        <div class="modal-body">
+            <p><label>Change User name:</label>
+            <input type="checkbox" ng-model="changeUsername"/></p>
+            <input type="text" class="form-control" ng-model="businessData.username" ng-if="changeUsername">
+            <div class="alert alert-danger" ng-if="isUsernameTaken">
+                <strong>Sorry, that username is already taken</strong>
+            </div>
+            <p><label>Change Business name:</label>
+            <input type="checkbox" ng-model="changeBusinessName"/></p>
+            <input type="text" class="form-control" ng-model="businessData.name" ng-if="changeBusinessName">
+            <p><label>Change Address:</label>
+            <input type="checkbox" ng-model="changeAddress"/></p>
+            <input type="text" class="form-control" ng-model="businessData.address" ng-if="changeAddress">
+            <p><label>Change Email:</label>
+            <input type="checkbox" ng-model="changeEmail"/></p>
+            <input type="text" class="form-control" ng-model="businessData.email" ng-if="changeEmail">
+            <p><label>Change Phone:</label>
+            <input type="checkbox" ng-model="changePhone"/></p>
+            <input type="text" class="form-control" ng-model="businessData.phone" ng-if="changePhone">
+            <p><label>Change Website:</label>
+            <input type="checkbox" ng-model="changeWebsite"/></p>
+            <input type="text" class="form-control" ng-model="businessData.website" placeholder="http://" ng-if="changeWebsite">
+            <p><label >Change Custom Url:</label>
+            <input type="checkbox" ng-model="changeCustomUrl"/></p>
+            <label style="color: red;" ng-if="changeCustomUrl">Note: If you change your custom Url you may not be able to change it back. Also, any applicants that have received your current URL, may not be able to find your application</label>
+            <div class="input-group" ng-if="changeCustomUrl">
+                <span class="input-group-addon" id="basic-addon3">http://www.jobapplix.com/apply/</span>
+                <input type="text" class="form-control" id="basic-url" ng-blur="checkCustomUrl()" ng-model='businessData.customUrl'>
+            </div>
+            <div class="alert alert-danger" ng-if="isCustomUrlTaken">
+                <strong>Sorry, that custom url is already taken</strong>
+            </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-success pull-left" ng-disabled="updated" ng-click="updateBusinessInfo()">Update</button>
+        <img ng-if="updating" height="46px"" src="/loading.gif" />
+        <button type="button" class="btn btn-danger" data-dismiss="modal" ng-if="!updated">Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-if="updated" >Close</button>
+      </div>
+      </div>
+    </div>
+  </div>

@@ -141,6 +141,17 @@ angular.module('myApp.businessDataServices', [])
         return data.data;
       })
     }
+
+    var updateBusinessInfo = function(businessObj){
+      return $http({
+        method: 'PUT',
+        url: '/api/businesses/updateProfile',
+        data: businessObj
+      }).then(function(data){
+        return data;
+      })
+
+    }
     return {
       'businessSignup': businessSignup,
       'businessLogin': businessLogin,
@@ -152,7 +163,8 @@ angular.module('myApp.businessDataServices', [])
       'checkIfCustomUrlTaken': checkIfCustomUrlTaken,
       'gets3signature': gets3signature,
       's3upload': s3upload,
-      'getBusinessInfo': getBusinessInfo
+      'getBusinessInfo': getBusinessInfo,
+      'updateBusinessInfo': updateBusinessInfo
     };
 
   });

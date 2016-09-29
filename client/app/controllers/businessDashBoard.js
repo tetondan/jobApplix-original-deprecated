@@ -19,20 +19,19 @@ angular.module('myApp.businessDashBoard', [])
     }
 
     $scope.saveForm = function(){
+      $scope.application.firstTime = true;
+      console.log($scope.application.firstTime);
       BusinessDataServices.saveForm($scope.application)
       .then( function (data) {
         $state.go('dashboard.tabs')
       })
     }
     $scope.toggleSidebar = function(){
-      var sidebar = $('#sidebarId')
-      var content = $('#contentId')
-      if(sidebar.hasClass('sidebar-toggle')){
-        sidebar.removeClass('sidebar-toggle')
-        content.removeClass('content-toggle')
+      var $sidebar = $('#sidebarId')
+      if($sidebar.hasClass('sidebar-toggle')){
+        $sidebar.removeClass('sidebar-toggle')
       } else {
-        sidebar.addClass('sidebar-toggle')
-        content.addClass('content-toggle')
+        $sidebar.addClass('sidebar-toggle')
       }
     }
   })

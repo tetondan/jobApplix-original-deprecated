@@ -73,7 +73,6 @@ router.route('/businesses/info').get(authController.auth, (req, res) => {
         businessData.password = undefined;
         businessData._id = undefined;
         businessData.__v = undefined;
-        businessData.username = undefined;
         res.status(201).send(data[0]);
     })
 })
@@ -96,7 +95,18 @@ router.route('/businesses/updateApplication').put(authController.auth, (req,res)
         })
     })
 })
-
+router.route('/businesses/updateProfile').put(authController.auth, (req,res) => {
+  const updatedInfo = req.body;
+  Business.update({_id: req.session.businessId},{$set: req.body})
+    .then((data, err) => {
+      if(err){
+        console.log(err);
+        res.status(500).send('Error')
+      } else {
+        res.status(201).send(data);
+      }
+    })
+});
 //this route is used for testing purposes to see if a session cookie has been created and is still active
 router.route('/businesses/test').get(authController.auth, (req,res) => {
   res.send('got it!')
@@ -105,7 +115,17 @@ router.route('/businesses/test').get(authController.auth, (req,res) => {
 
 router.route('/businesses/usernameChecker').put((req,res) => {
   const user = req.body.username ? req.body.username.toLowerCase() : '';
+  const businessId = req.session ? req.session.businessId : null;
   //username customUrl email
+  if(businessId){
+    Business.findOne({_id: businessId})
+      .then((data, err) => {
+        if(user === data.username){
+          res.status(200).send(false);
+          return
+        }
+      })
+  }
   Business.findOne({username: user})
     .then((data, err) => {
       if(err){
@@ -119,7 +139,17 @@ router.route('/businesses/usernameChecker').put((req,res) => {
 })
 router.route('/businesses/customUrlChecker').put((req,res) => {
   const url = req.body.customUrl ? req.body.customUrl.toLowerCase() : '';
+  const businessId = req.session ? req.session.businessId : null;
   //username customUrl email
+  if(businessId){
+    Business.findOne({_id: businessId})
+      .then((data, err) => {
+        if(url === data.customUrl){
+          res.status(200).send(false);
+          return
+        }
+      })
+  }
   Business.findOne({customUrl: url})
     .then((data, err) => {
       if(err){

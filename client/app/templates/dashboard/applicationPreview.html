@@ -7,20 +7,20 @@
       <tr>
         <th><p>Name:</p></th>
         <th><p>Date Applied:</p></th>
-        <th><p>Position:</p></th>
-        <th><p>Email:</p></th>
-        <th><p>Phone:</p></th>
+        <th class="hidden-xs"><p>Position:</p></th>
+        <th class="hidden-xs"><p>Email:</p></th>
+        <th class="hidden-xs"><p>Phone:</p></th>
         <th><p>Move Group:</p></th>
         <th><p>Expand:</p></th>
       </tr>
     </thead>
-    <tbody ng-repeat="application in group | applicationFilter:$parent.filterObject">
+    <tbody ng-repeat="application in group | applicationFilter:$parent.filterObject | searchFilter:$parent.searchParams">
       <tr>
         <td>{{application.firstName}} {{application.middleName}} {{application.lastName}}</td>
         <td>{{application.appliedDate | date}}</td>
-        <td>{{application.position}}</td>
-        <td><a href={{"mailto:" + application.email}}>{{application.email}}</a></td>
-        <td>{{application.phone}}</td>
+        <td class="hidden-xs">{{application.position}}</td>
+        <td class="hidden-xs"><a href={{"mailto:" + application.email}}>{{application.email}}</a></td>
+        <td class="hidden-xs">{{application.phone}}</td>
         <td>
           <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -153,7 +153,7 @@
                     <td>Thursday:</td>
                     <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.firstThurs"></span></td>
                     <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.secondThurs"></span></td>
-                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.secondThurs"></span></td>
+                    <td><span class="glyphicon glyphicon-ok" ng-if="application.availability.thirdThurs"></span></td>
                   </tr>
                   <tr>
                     <td>Friday</td>
