@@ -1,9 +1,21 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
+<!--<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-      <a class="navbar-brand JA-brand" ui-sref="dashboard.tabs">JobApplix.com</a>
-       <ul class="nav navbar-nav pull-right visible-xs visible-sm">
-          <li class="navbar-hamburger" ng-click="toggleSidebar()"><span class="glyphicon glyphicon-menu-hamburger" ></li>
+      <div class="navbar-header">
+        <a class="navbar-brand JA-brand" ui-sref="home">JobApplix.com</a>
+      </div>
+        <ul class="nav navbar-nav pull-right visible-xs visible-sm">
+          <li class="navbar-hamburger" ng-click="toggleSidebar()"><span class="glyphicon glyphicon-menu-hamburger" /></li>
         </ul>
-    </div>
-  </div>
+      </div>
+  </div>-->
+<div id="navbar">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand JA-brand" ui-sref="home">JobApplix.com</a>
+      </div>
+    </div><!-- /.container-fluid -->
+  </nav>
+</div>
 <div ui-view></div>
