@@ -8,18 +8,27 @@
     </div><!-- /.container-fluid -->
   </nav>
 </div>
-<div class="splash-container col-md-6 col-md-offset-3">
-  <h1>Job Applix</h1>
-  <h4>Please Enter Username and Password to Login</h4>
-  <p>Not yet a member? <a ui-sref="dashboard.signup">CLICK HERE</a> to sign up!</p>
-  <div class="alert alert-danger" ng-if="error">
-    <strong>Invalid Username or Password, please try again</strong>
-  </div>  
-  <div class='form-fields'>
-    <label>Username:</label>
-    <input tyep="text" class="form-control" ng-model='business.username'/>
-    <label>Password:</label>
-    <input type="password" class="form-control" ng-model='business.password'/>
-    <button class='btn btn-primary' ng-click='logIn()'>Submit</button>
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h1 style="font-family: 'Kaushan Script', cursive;">JobApplix.com</h1>
+    </div>
+    <div class="panel-body">
+      <h3>Please Enter Username and Password to Login</h3>
+      <p>Not yet a member? <a ui-sref="signup">CLICK HERE</a> to sign up!</p>
+      <div class="alert alert-danger" ng-if="error">
+        <strong>Invalid Username or Password, please try again</strong>
+      </div>  
+      <div class='form-fields'>
+        <label>Username:</label>
+        <input tyep="text" class="form-control" ng-model='business.username'/>
+        <label>Password:</label>
+        <input type="password" class="form-control" ng-model='business.password'/>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button class='btn btn-primary' ng-click='logIn()'>Submit</button>
+    </div>
+    </div>
   </div>
 </div>
