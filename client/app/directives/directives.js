@@ -13,6 +13,17 @@ angular.module('myApp.directives', ['myapp.appDataServices'])
               $state.reload()
             });
         }
+        $scope.addComment = function(groupIndex, appId, comment){
+          console.log("HEREREERE", $scope.group[groupIndex]);
+          var newComment = {}
+          newComment.date = new Date();
+          newComment.comment = comment;
+          $scope.group[groupIndex].businessComments.unshift(newComment)
+          AppDataServices.updateComments(appId, $scope.group[groupIndex].businessComments)
+            .then(function(data){
+              console.log(data)
+            })
+        }
       }
     }
   })

@@ -36,23 +36,12 @@ angular.module('myApp.applicationCont', [])
       };
     $scope.application.workReferences = [];
     $scope.application.personalReferences = [];
+    $scope.application.education = [];
     $scope.advanceApplication = function(){
       var count = $scope.appDirective
       count++
       $scope.appDirective = count;
     }
-
-    // $scope.$watch('form.appForm.$valid', function(){
-    //   if($scope.form.appForm){
-    //     if($scope.form.appForm.$valid){
-    //       console.log($scope.form.appForm)
-    //       $scope.canAdvance = false;
-    //     } else if(!$scope.form.appForm.$valid) {
-    //       console.log($scope.form.appForm)
-    //       $scope.canAdvance = true;
-    //     }
-    //   }
-    // })
 
     $scope.addWorkReference = function(){
       if($scope.application.workReferences.length < 3 ){

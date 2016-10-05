@@ -6,6 +6,7 @@
             </div>
             <p class="sidebar-name">{{businessData.name}}</p>
             <ul>
+                <li ng-click="refreshApps()"><button data-toggle="modal" data-target="#refreshModal" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-refresh"></span> Refresh Applications</button></li>
                 <li data-toggle="modal" data-target="#availabilityModal"><a><span class="glyphicon glyphicon-filter"></span> Availability Filter</a></li>
                 <li data-toggle="modal" data-target="#searchModal"><a><span class="glyphicon glyphicon-search"></span> Search</a></li>
                 <li data-toggle="modal" data-target="#profileModal"><a><span class="glyphicon glyphicon-user"></span> Profile</a></li>
@@ -225,6 +226,19 @@
         <img ng-if="updating" height="46px"" src="/loading.gif" />
         <button type="button" class="btn btn-danger" data-dismiss="modal" ng-if="!updated">Cancel</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" ng-if="updated" >Close</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- refresh modal -->
+  <div class="modal fade" id="refreshModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <p style="font-size: 2.5rem; text-align: center;">Retreiving applications</p>
+            <img style="display: block; margin-left: auto; margin-right: auto;" height="100px" src="/loading.gif" />
+        </div>
       </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ router.route('/applicationSubmit').post((req, res) => {
     }
   })
 })
-//TODO add update group task.
+
 router.route('/applicationUpdateGroup').put( (req, res) => {
   Application.findByIdAndUpdate(req.body.id, { $set: { applicationGroup: req.body.group }}, function(err, data){
     if(err){

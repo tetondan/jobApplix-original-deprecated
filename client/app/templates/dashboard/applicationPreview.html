@@ -6,18 +6,19 @@
     <thead>
       <tr>
         <th><p>Name:</p></th>
-        <th><p>Date Applied:</p></th>
+        <th  class="hidden-xs"><p>Date Applied:</p></th>
         <th class="hidden-xs"><p>Position:</p></th>
         <th class="hidden-xs"><p>Email:</p></th>
         <th class="hidden-xs"><p>Phone:</p></th>
         <th><p>Move Group:</p></th>
+        <th><p>Comments:</p></th>
         <th><p>Expand:</p></th>
       </tr>
     </thead>
     <tbody ng-repeat="application in group | applicationFilter:$parent.filterObject | searchFilter:$parent.searchParams">
       <tr>
         <td>{{application.firstName}} {{application.middleName}} {{application.lastName}}</td>
-        <td>{{application.appliedDate | date}}</td>
+        <td class="hidden-xs">{{application.appliedDate | date}}</td>
         <td class="hidden-xs">{{application.position}}</td>
         <td class="hidden-xs"><a href={{"mailto:" + application.email}}>{{application.email}}</a></td>
         <td class="hidden-xs">{{application.phone}}</td>
@@ -36,13 +37,45 @@
             </ul>
           </div>
         </td>
+        <td><button class="btn btn-warning" ng-click="application.commentsExpanded = !application.commentsExpanded">Comments</button></td>
         <td>
           <span class="glyphicon glyphicon-plus" ng-if="!application.expanded" ng-click="application.expanded = !application.expanded" style="font-size: 2rem"></span>
           <span class="glyphicon glyphicon-remove" ng-if="application.expanded" ng-click="application.expanded = !application.expanded" style="font-size: 2rem"></span>
         </td>
       </tr>
       <tr>
-        <td ng-if="application.expanded" colspan="7">
+        <td ng-if="application.commentsExpanded" colspan="8">
+          <div class="panel">
+            <div class="panel-body col-md-12">
+              <div class="col-md-12">
+                <label>Add a Comment:</label>
+                <textarea class="form-control" rows="2" ng-model="newComment"></textarea>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <button class="btn btn-success" ng-click="addComment(group.indexOf(application), application._id, newComment)">Add Comment to {{application.firstName}} {{application.lastName}}'s application</button>
+              <p> Note: comments can not be seen by applicant, only business owner</p>
+            </div>
+          </div>
+          <div class="panel" ng-if="application.businessComments.length == 0">
+            <div class="panel-body col-md-12">
+              <label style="color: red">No Comments yet</label>
+            </div>
+          </div>
+          <div class="panel" ng-if="application.businessComments.length > 0" ng-repeat="comment in application.businessComments">
+            <div class="pandel-heading">
+              <label>Date:</label><span> {{comment.date | date}}</span>
+            </div>
+            <div class="panel-body col-md-12">
+              <p></p>
+              <label>Comment:</label>
+              <span>{{comment.comment}}</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td ng-if="application.expanded" colspan="8">
           <div class="panel panel-primary">
             <div class="panel-body col-md-12">
               <div class="col-md-6">

@@ -23,7 +23,6 @@ angular.module('myApp.tabs', [])
     $scope.getBusinessInfo = function(){
       BusinessDataServices.getBusinessInfo()
         .then(function(data){
-          console.log(data);
           if($scope.businessData === undefined){
             $scope.businessData = data;
             if(data.iconURL === undefined){
@@ -99,6 +98,16 @@ angular.module('myApp.tabs', [])
         $scope.noMatch = false;
         $scope.rejectedPassword = {};
       }
+    }
+    $scope.refreshApps = function(){
+      $scope.toggleSidebar();
+      BusinessDataServices.getApps()
+        .then(function(data){
+          setTimeout(function(){
+            $scope.apps = data;
+            $('#refreshModal').modal('hide');
+          }, 1000);
+        })
     }
     $scope.closeProfile = function(){ $scope.updated = false;};
     $('[data-toggle="logoTooltip"]').tooltip();

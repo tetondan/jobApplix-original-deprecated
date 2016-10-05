@@ -35,10 +35,25 @@ angular.module('myapp.appDataServices', [])
         $state.go('404');
       })
     }
+
+    var updateComments = function(appId, commentArray){
+      if(commentArray === undefined){ commentArray = []};
+      return $http({
+        method: "PUT",
+        url: '/api/applicationUpdateComments',
+        data: {
+          id: appId,
+          businessComments: commentArray
+        }
+      }).then(function(data){
+        console.log(data);
+      })
+    }
     return {
       'submitApplication': submitApplication,
       'updateApplicationGroup': updateApplicationGroup,
-      'getCustomTemplate': getCustomTemplate
+      'getCustomTemplate': getCustomTemplate,
+      'updateComments': updateComments
     };
 
   });
