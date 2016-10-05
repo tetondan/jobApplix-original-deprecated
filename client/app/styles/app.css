@@ -149,13 +149,25 @@ span.glyphicon-asterisk {
   left: 0rem;
   transition: left 0.2s;
 }
-.sidebar-img {
+.sidebar-img-container {
   width: 5rem;
-  border-radius: 5rem;
+  height: 5rem;
+  border-radius: 0.5rem;
   border: 2px solid dimgrey;
   margin: 2rem 1rem 1rem 1rem;
   background-color: #fff;
   cursor: pointer;
+  overflow: hidden;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sidebar-img {
+  max-width: 5rem;
+  max-height: 5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sidebar-name {
@@ -209,13 +221,18 @@ span.glyphicon-asterisk {
     .sidebar {
       left: 0rem;
     }
-    .sidebar-img {
+    .sidebar-img-container {
       width: 12rem;
-      max-height: 12rem;
-      border-radius: 12rem;
+      height: 12rem;
+      border-radius: 1rem;
       display: block;
       margin-left: auto;
       margin-right: auto;
+      overflow: hidden;
+    }
+    .sidebar-img {
+      max-width: 12rem;
+      max-height: 12rem;
     }
     .content {
       margin-left: 25rem;
