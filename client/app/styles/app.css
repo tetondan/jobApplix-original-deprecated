@@ -45,8 +45,9 @@
 
 .splash-container h1 {
   font-family: 'Kaushan Script', cursive;
-  font-size: 10rem;
+  font-size: 6rem;
   text-shadow: 2px 2px #00449E;
+  text-align: center;
 }
 
 .splash-container div {
@@ -240,6 +241,14 @@ span.glyphicon-asterisk {
     .navbar-hamburger {
       margin-top: 1rem;
     }
+}
+
+@media(min-width: 768px) {
+  .splash-container h1 {
+    font-size: 10rem;
+    text-shadow: 2px 2px #00449E;
+    text-align: center;
+  }
 }
 /*blinky cursor typing*/
 .typed-cursor{
