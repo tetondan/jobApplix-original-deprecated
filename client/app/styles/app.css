@@ -2,12 +2,12 @@
   padding-top: 70px; 
 }*/
 
-.setup {
+/*.setup {
   margin-left: 10vw;
   margin-right: 10vw;
   margin-top: 3vh;
   margin-bottom: 10vh;
-}
+}*/
 
 .panel-body {
   font-size: 1.8rem;
@@ -24,34 +24,10 @@
 .suf {
   width: 10%;
 }
-#splash-background {
-  height: 100vh;
-  width: 100vw;
-  background: url('/JAbackgroundCompressed.jpg') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
+
 .application-employer-check {
   margin-top: 4px;
   margin-bottom: 5px;
-}
-.splash-container {
-  background-color: rgba(0,0,0,0.5);
-  color: rgb(255,255,255);
-  margin-top: 20vh;
-}
-
-.splash-container h1 {
-  font-family: 'Kaushan Script', cursive;
-  font-size: 6rem;
-  text-shadow: 2px 2px #00449E;
-  text-align: center;
-}
-
-.splash-container div {
-  margin-bottom: 2vh;
 }
 
 .apps {
@@ -276,4 +252,167 @@ span.glyphicon-asterisk {
 
 .tag-line {
   font-size: 4rem;
+}
+
+.tag-line-no-blink {
+  font-size: 5rem;
+  font-family: 'Kaushan Script', cursive;
+  text-shadow: 2px 2px 6px black;
+}
+/* splash page */
+.topnav {
+    font-size: 14px; 
+}
+
+.lead {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('/JAbackgroundCompressed.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.intro-message {
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    font-family: 'Kaushan Script', cursive;
+    /*text-shadow: 2px 2px 3px rgba(0,0,0,0.6);*/
+    text-shadow: 2px 2px 6px black;
+    font-size: 10em;
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+@media(max-width:767px) {
+    .intro-message {
+        padding-bottom: 15%;
+    }
+
+    .intro-message > h1 {
+        font-size: 3em;
+    }
+
+    ul.intro-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.intro-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .intro-divider {
+        width: 100%;
+    }
+}
+
+.network-name {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.content-section-a {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
+
+.content-section-b {
+    padding: 50px 0;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading-spacer {
+    float: left;
+    width: 200px;
+    border-top: 3px solid #e7e7e7;
+}
+
+.banner {
+    padding: 100px 0;
+    color: #f8f8f8;
+    background: url(../img/banner-bg.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.banner h2 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 3em;
+}
+
+.banner ul {
+    margin-bottom: 0;
+}
+
+.banner-social-buttons {
+    float: right;
+    margin-top: 0;
+}
+
+@media(max-width:1199px) {
+    ul.banner-social-buttons {
+        float: left;
+        margin-top: 15px;
+    }
+}
+
+@media(max-width:767px) {
+    .banner h2 {
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+        font-size: 3em;
+    }
+
+    ul.banner-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.banner-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+}
+
+footer {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
+
+p.copyright {
+    margin: 15px 0 0;
+}
+
+.splash-quote {
+  font-size: 2.3rem;
+  font-style: oblique;
+  color: darkgrey;
+  text-align: center; 
 }

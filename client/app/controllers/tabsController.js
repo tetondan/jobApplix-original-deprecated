@@ -106,6 +106,7 @@ angular.module('myApp.tabs', [])
           setTimeout(function(){
             $scope.apps = data;
             $('#refreshModal').modal('hide');
+            console.log("+++++++++++++++++",$scope.apps);
           }, 1000);
         })
     }

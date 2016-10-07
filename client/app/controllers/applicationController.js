@@ -4,7 +4,7 @@ angular.module('myApp.applicationCont', [])
     $scope.template = customTemplate.data;
     $scope.appDirective = 0;
     $scope.form = {}
-    // $scope.canAdvance = true;
+    $scope.canAdvance = true;
     $scope.businessData = customTemplate.data.businessId[0];
     $scope.application = {};
     $scope.application.businessId = customTemplate.data.businessId[0]._id;
@@ -36,7 +36,6 @@ angular.module('myApp.applicationCont', [])
       };
     $scope.application.workReferences = [];
     $scope.application.personalReferences = [];
-    $scope.application.education = [];
     $scope.advanceApplication = function(){
       var count = $scope.appDirective
       count++

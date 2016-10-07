@@ -1,5 +1,5 @@
 (function(){
-   var app = angular.module('myApp',['myApp.applicationCont','myApp.splashCont','myApp.signupCont','myApp.loginCont', 'myApp.businessDashBoard', 
+   var app = angular.module('myApp',['myApp.applicationCont','myApp.signupCont','myApp.loginCont', 'myApp.businessDashBoard', 
                                      'myApp.businessSetup','myApp.imageUploadCont','myapp.appDataServices','myApp.businessDataServices', 'myApp.directives',
                                      'myApp.tabs','myApp.filters','ui.router']); 
 
@@ -9,8 +9,7 @@
       $stateProvider
         .state('home', {
           url: '/',
-          templateUrl: 'app/templates/splash.html',
-          controller: 'Splash'
+          templateUrl: 'app/templates/about.html'
         })
         .state('apply', {
           url: '/apply/:businessName',

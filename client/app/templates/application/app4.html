@@ -8,7 +8,7 @@
     <hr>
     <form name="form.appForm">
     <div ng-if="application.workReferences.length === 0">
-      <label> This is my first job.</label><input type="checkbox" ng-model="firstJobCheckbox" required/>
+      <label> This is my first job.</label><input type="checkbox" ng-model="firstJobCheckbox"/>
     </div>
     <div ng-if="!firstJobCheckbox" ng-repeat="ref in application.workReferences track by $index">
       <label>Job #{{$index + 1}}</label>
@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-6">
           <label>Employer Phone Number:<span class="glyphicon glyphicon-asterisk"></span></label>
-          <input type="number" class="form-control" ng-model="ref.phoneNumber" placeholder="XXX-XXX-XXXX" required />
+          <input type="tel" class="form-control" ng-model="ref.phoneNumber" placeholder="XXX-XXX-XXXX" required />
           <label>May we contact this employer?</label>
           <div class="checkbox application-employer-check">
             <label>
