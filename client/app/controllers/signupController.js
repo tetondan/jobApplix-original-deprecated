@@ -1,5 +1,11 @@
 angular.module('myApp.signupCont', [])
   .controller('SignupController', function($state, $scope, $rootScope, BusinessDataServices){
+    $scope.betaPasswordAdvance = false;
+    $scope.betThanYou = false;
+    $scope.betaKeyModel = {
+      betaKey: '',
+      betaKeyEmail: ''
+    };
     $scope.form = {};
     $scope.business = {};
     $scope.business.username = '';
@@ -15,6 +21,27 @@ angular.module('myApp.signupCont', [])
     $scope.isUsernameTaken = false;
     $scope.isCustomUrlTaken = false;
     $scope.noMatch = false;
+    $scope.betaEmailExists = false;
+    $scope.betaEnterEmail = function(){
+      BusinessDataServices.betaEmail($scope.betaKeyModel.betaKeyEmail)
+      .then(function(data){
+        if(data){
+          $scope.betaEmailExists = true;
+        } else {
+          $scope.betaThankYou = true;
+        }
+      })
+    }
+    $scope.betaKeyEnter = function(){
+      BusinessDataServices.betaKeyCheck($scope.betaKeyModel.betaKey)
+      .then(function(data){
+        if(data){
+          $scope.betaPasswordAdvance = true; 
+        } else {
+          $scope.betaNoAdvance = true;
+        }
+      })
+    }
     $scope.checkUserName = function(){
       if($scope.business.username == undefined) {return $scope.isUsernameTaken = false};
       BusinessDataServices.checkIfUsernameTaken($scope.business.username)

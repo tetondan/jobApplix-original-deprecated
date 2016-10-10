@@ -1,6 +1,26 @@
 angular.module('myApp.businessDataServices', [])
   .factory('BusinessDataServices', function ($http) {
-    
+  
+    var betaKeyCheck = function(betaKey){
+      return $http({
+        method: 'PUT',
+        url: '/api/businesses/betakeycheck',
+        data: { betaKey: betaKey }
+      })
+      .then(function(data){
+        return data.data;
+      })
+    };
+    var betaEmail = function(email){
+      return $http({
+        method: "POST",
+        url: '/api/businesses/betaemail',
+        data: { betaEmail: email}
+      })
+      .then(function(data){
+        return data.data;
+      })
+    };
     var businessSignup = function(business){
       return $http({
         method: 'POST',
@@ -8,9 +28,9 @@ angular.module('myApp.businessDataServices', [])
         data: business
       })
       .then(function(data){
-        return data
-      })}
-    
+        return data;
+      })
+    };
     var businessLogin = function(userAndPass){
         return $http({
           method: 'POST',
@@ -20,16 +40,16 @@ angular.module('myApp.businessDataServices', [])
         .then(function(data){
           return data;
         })
-    }
+    };
 
     var businessLogout = function(){
       return $http({
         method: 'GET',
         url: '/api/businesses/logout'
       }).then(function(){
-        return
+        return;
       })
-    }
+    };
     
     var getApps = function(){
       return $http({
@@ -74,7 +94,7 @@ angular.module('myApp.businessDataServices', [])
         }
         return appGroups
       })
-    }
+    };
     
     var getCurrentForm = function(){
       return $http({
@@ -83,7 +103,7 @@ angular.module('myApp.businessDataServices', [])
       }).then( function (appTemplate){
         return appTemplate;
       })
-    }
+    };
 
     var saveForm = function(application){
       return $http({
@@ -93,7 +113,7 @@ angular.module('myApp.businessDataServices', [])
       }).then(function(data){
         return data;
       })
-    }
+    };
 
     var checkIfUsernameTaken = function(name){
       if(name === undefined) return false;
@@ -104,7 +124,8 @@ angular.module('myApp.businessDataServices', [])
       }).then(function(data){
         return data.data;
       })
-    }
+    };
+
     var checkIfCustomUrlTaken = function(customUrl){
       return $http({
         method: 'PUT',
@@ -113,7 +134,7 @@ angular.module('myApp.businessDataServices', [])
       }).then(function(data){
         return data.data;
       })
-    }
+    };
 
     var gets3signature = function(file){
       return $http({
@@ -122,7 +143,7 @@ angular.module('myApp.businessDataServices', [])
       }).then(function(data){
         return data.data;
       })
-    }
+    };
 
     var s3upload = function(file, signature, url){
       return $http({
@@ -131,7 +152,7 @@ angular.module('myApp.businessDataServices', [])
         data: file,
         headers: {'Content-Type': file.type}
       })
-    }
+    };
 
     var getBusinessInfo = function(){
       return $http({
@@ -140,7 +161,7 @@ angular.module('myApp.businessDataServices', [])
       }).then( function(data){
         return data.data;
       })
-    }
+    };
 
     var updateBusinessInfo = function(businessObj){
       return $http({
@@ -150,8 +171,8 @@ angular.module('myApp.businessDataServices', [])
       }).then(function(data){
         return data;
       })
+    };
 
-    }
     return {
       'businessSignup': businessSignup,
       'businessLogin': businessLogin,
@@ -164,7 +185,9 @@ angular.module('myApp.businessDataServices', [])
       'gets3signature': gets3signature,
       's3upload': s3upload,
       'getBusinessInfo': getBusinessInfo,
-      'updateBusinessInfo': updateBusinessInfo
+      'updateBusinessInfo': updateBusinessInfo,
+      'betaKeyCheck': betaKeyCheck,
+      'betaEmail': betaEmail
     };
 
   });
