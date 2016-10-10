@@ -16,7 +16,9 @@ var businessSchema = mongoose.Schema({
   email: {type: String, required: true},
   about: {type: String},
   iconURL: {type: String},
-  subType: {type: Number}
+  subType: {type: Number},
+  newBusiness: {type: Boolean},
+  isBeta: {type: Boolean}
 }, {collection: 'business'});
 
 

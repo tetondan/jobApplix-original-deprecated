@@ -1,13 +1,39 @@
 'use strict'
 const aws = require('aws-sdk');
 const S3_BUCKET = 'jobapplix';
-const CustomApp = require('../dbModels/customApplication')
-const Application = require('../dbModels/applicationModel')
+const CustomApp = require('../dbModels/customApplication');
+const Application = require('../dbModels/applicationModel');
 const Business = require('../dbModels/businessModel');
+const BetaDetails = require('../dbModels/betaDetails');
 const express = require('express');
 const router = express.Router();
 const authController = require('../helpers/auth');
 
+router.route('/businesses/betakeycheck').put((req, res) => {
+  const betaKeys = ['JAeb2016']
+  if(betaKeys.indexOf(req.body.betaKey) > -1){
+    res.send(true);
+  } else {
+    res.send(false);
+  }
+})
+
+router.route('/businesses/betaemail').post( (req, res) => {
+  const email = req.body.betaEmail ? req.body.betaEmail.toLowerCase() : '';
+  BetaDetails.findOne({betaEmail: email})
+    .then( (data, err) => {
+      if(err !== undefined){
+        console.log(err);
+      } else if(data === null){
+        var newEmail = new BetaDetails({betaEmail: email});
+        newEmail.save((err, data) =>{
+          res.send(false);
+        });
+      } else {
+        res.send(true);
+      }
+    })
+})
 router.route('/businesses/sign-s3').get(authController.auth, (req,res) => {
   const s3 = new aws.S3();
   const fileExtension = req.query['file-name'].split('.')
