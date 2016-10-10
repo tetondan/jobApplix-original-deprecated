@@ -1,7 +1,7 @@
 angular.module('myApp.signupCont', [])
   .controller('SignupController', function($state, $scope, $rootScope, BusinessDataServices){
     $scope.betaPasswordAdvance = false;
-    $scope.betThanYou = false;
+    $scope.betaThankYou = false;
     $scope.betaKeyModel = {
       betaKey: '',
       betaKeyEmail: ''
@@ -67,9 +67,9 @@ angular.module('myApp.signupCont', [])
           }
         })
     }
-
+    $scope.confirmPassword = {};
     $scope.passwordsMatch = function(){
-      if($scope.business.password !== $scope.confirmPassword){
+      if($scope.business.password !== $scope.confirmPassword.confirmPassword){
         $scope.confirmPassword = '';
         $scope.noMatch = true; 
       } else {

@@ -29,7 +29,7 @@
       <p></p>
       <label>If you do not have an early Beta key please enter your email address below to be involved in the next round of Beta keys:</label>
       <div class="alert alert-danger" ng-if="betaEmailExists">
-        <strong>Your email is already entered, thank your for your support! We will email you when our next round of beta keys are released!</strong>
+        <strong>Your email is already entered, thank you for your support! We will email you when our next round of beta keys are released!</strong>
       </div>
       <input type="text" class="form-control" ng-model="betaKeyModel.betaKeyEmail" placeholder="example@email.com"/>
       <p></p>
@@ -70,7 +70,7 @@
         <label>Business Name:<span class="glyphicon glyphicon-asterisk"></span>(Name of your business)</label>
         <input type='text' class='form-control' ng-model='business.name' required/>
         <label> Confirm Password:<span class="glyphicon glyphicon-asterisk"></span></label>
-        <input class='form-control' ng-model="confirmPassword" ng-blur="passwordsMatch()" type="password" required/>
+        <input class='form-control' ng-model="confirmPassword.confirmPassword" ng-blur="passwordsMatch()" type="password" required/>
         <div class="alert alert-danger" ng-if="noMatch">
           <strong>Your passwords do not match</strong>
         </div>
