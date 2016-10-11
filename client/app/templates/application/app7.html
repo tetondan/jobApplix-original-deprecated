@@ -3,7 +3,8 @@
   <div class="panel-heading">
     <div class="panel-title"><h4>Employment Information</h4></div>
   </div>  
-  <div class="panel-body">   
+  <div class="panel-body">
+      <label ng-if="empInfoChecker">Please click "Next Step" below to continue</label>   
       <form name="form.appForm"></form>    
       <div class="form-group" ng-if="template.physicalLimitation">
       <!-- physical limitations -->
@@ -125,5 +126,5 @@
     </div>
   </div>
 </div>
-<span class="glyphicon glyphicon-exclamation-sign"> Note: not answering a question will automatically default the answer to "No"</span>
+<span class="glyphicon glyphicon-exclamation-sign" ng-if="!empInfoChecker"> Note: not answering a question will automatically default the answer to "No"</span>
 </div>

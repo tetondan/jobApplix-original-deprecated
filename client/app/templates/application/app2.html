@@ -5,10 +5,12 @@
     <div class='panel-title'><h4>Position and Availability</h4></div>
   </div>
   <div class="panel-body">
+    <div ng-if="posAndAvailChecker">
+      <label>Please click "Next Step" below to continue</label>
     <form name='form.appForm'>
     <div class="form-group" ng-if="template.position">
       <label>What position are you applying for?<span class="glyphicon glyphicon-asterisk"></span></label>
-      <input type="text" class="form-control" ng-model="application.position" placeholder="Position" required/>
+      <input type="text" class="form-control" ng-model="application.position" placeholder="Position" />
     </div>
     <div class="form-group" ng-if="template.fullOrPartime">
       <label>Are you applying for Full or Partime work?</label><span>  {{application.fullOrPartime}}</span>
@@ -46,11 +48,11 @@
     </div>
     <div class="form-group" ng-if="template.custom1">
       <label>{{template.custom1}}<span class="glyphicon glyphicon-asterisk"></span></label>
-      <input type="text" class="form-control" ng-model="application.custom1" required/>
+      <input type="text" class="form-control" ng-model="application.custom1" />
     </div>
     <div class="form-group" ng-if="template.custom2">
       <label>{{template.custom2}}<span class="glyphicon glyphicon-asterisk"></span></label>
-      <input type="text" class="form-control" ng-model="application.custom2" required/>
+      <input type="text" class="form-control" ng-model="application.custom2" />
     </div>
     <table class='table table-reponsive table-striped' ng-if="template.availability">
       <thead>
@@ -110,8 +112,8 @@
       </tbody>
     </table>
     </form>
-    <span class="glyphicon glyphicon-asterisk">Required</span>
+    <span class="glyphicon glyphicon-asterisk" ng-if="!posAndAvailChecker">Required</span>
   </div>
 </div>
-<span class="glyphicon glyphicon-exclamation-sign"> Note: not answering a question will automatically default the answer to 'No'</span>
+<span class="glyphicon glyphicon-exclamation-sign" ng-if="!posAndAvailChecker"> Note: not answering a question will automatically default the answer to 'No'</span>
 </div>

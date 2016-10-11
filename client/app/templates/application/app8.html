@@ -4,6 +4,7 @@
     <div class="panel-title"><h4>Specialized Skills and Certifications</h4></div>
   </div>  
   <div class="panel-body">  
+    <label ng-if="specSkillsChecker">Please click "Next Step" below to continue.</label>
     <form name="form.appForm"></form> 
     <div class="form-group" ng-if="template.specializedSkills">
       <label>Do you have any specialized skills or training?</label>
@@ -80,5 +81,5 @@
   </div>
 </div>
 </div>
-<span class="glyphicon glyphicon-exclamation-sign"> Note: not answering a question will automatically default the answer to "No"</span>
+<span class="glyphicon glyphicon-exclamation-sign" ng-if="!specSkillsChecker"> Note: not answering a question will automatically default the answer to "No"</span>
 </div>

@@ -1,10 +1,12 @@
 <div class="application-body">
-<div ng-if="!template.education" ng-init="$parent.advanceApplication()" />
-<div class="panel panel-primary" ng-if="template.education">
+<div class="panel panel-primary">
   <div class="panel-heading">
     <div class="panel-title"><h4>Education History</h4></div>
   </div>  
-  <div class="panel-body">
+  <div class="panel-body" ng-if="!template.education">
+    <label>Please click "Next Step" below to continue</label>
+  </div>
+  <div class="panel-body" ng-if="template.education">
     <form name="form.appForm"></form>
     <label>Please list all Education history:</label>
     <div ng-repeat="(schoolType, school) in application.education">

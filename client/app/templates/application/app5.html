@@ -1,10 +1,12 @@
 <div class="application-body">
-<div class="panel panel-primary" ng-if="template.personalReferences">
+<div class="panel panel-primary" >
   <div class="panel-heading">
     <div class="panel-title"><h4>Personal References</h4></div>
   </div>
-  <div class="panel-body"> 
-    <form name="form.appForm"> 
+  <div class="panel-body" ng-if="!template.personalReferences">
+    <label>Please click "Next Step" below to continue</label>
+  </div> 
+  <div class="panel-body" ng-if="template.personalReferences"> 
     <label>Please list up to three personal references whom you are not related to:</label>
     <div ng-repeat="pRefs in application.personalReferences track by $index">
       <hr>
@@ -12,13 +14,13 @@
       <div class="form-group">
         <div class="col-md-6">
           <label>Name:<span class="glyphicon glyphicon-asterisk"></span></label>
-          <input type="text" class="form-control" ng-model="pRefs.name" placeholder="Reference"s Name" required>
+          <input type="text" class="form-control" ng-model="pRefs.name" placeholder="Reference"s Name">
           <label>Phone number:<span class="glyphicon glyphicon-asterisk"></span></label>
-          <input type="tel" class="form-control" ng-model="pRefs.phone" placeholder="XXX-XXX-XXXX" required>
+          <input type="tel" class="form-control" ng-model="pRefs.phone" placeholder="XXX-XXX-XXXX">
         </div>
         <div class="col-md-6">
           <label>Relationship:<span class="glyphicon glyphicon-asterisk"></span></label>
-          <input type="text" class="form-control" ng-model="pRefs.relationship" placeholder="Relationship: work/school/etc" required>
+          <input type="text" class="form-control" ng-model="pRefs.relationship" placeholder="Relationship: work/school/etc">
           <label>Email:</label>
           <input type="email" class="form-control" ng-model="pRefs.email" placeholder="email@address.com">
         </div>
@@ -28,7 +30,7 @@
         </div>
         <div class="col-md-3">
           <label>Years Known:<span class="glyphicon glyphicon-asterisk"></span></label>
-          <input type="number" class="form-control" ng-model="pRefs.yearsKnown" required></p>
+          <input type="number" class="form-control" ng-model="pRefs.yearsKnown"></p>
         </div>
         <div class="col-md-12">
           <br>

@@ -1,9 +1,10 @@
 <div class="application-body">
 <div class='panel panel-primary'>
   <div class='panel-heading'>
-    <div class='panel-title'><h4>Previous History</h4><small>(Checking yes to any of these questions does NOT automatically exclude you from the position)</small></div>
+    <div class='panel-title'><h4>Previous History</h4><small ng-if="!prevHistoryChecker">(Checking yes to any of these questions does NOT automatically exclude you from the position)</small></div>
   </div>
   <div class="panel-body">
+    <label>Please click "Next Step" below to continue</label>
     <form name="form.appForm"></form>
     <div class="form-group" ng-if="template.fired">
       <label>Have you ever been fired or asked to resign from a position?</label>
@@ -33,5 +34,5 @@
     </div>
   </div>
 </div>
-<span class="glyphicon glyphicon-exclamation-sign"> Note: not answering a question will automatically default the answer to 'No'</span>
+<span class="glyphicon glyphicon-exclamation-sign" ng-if="!prevHistoryChecker"> Note: not answering a question will automatically default the answer to 'No'</span>
 </div>

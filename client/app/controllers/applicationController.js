@@ -41,6 +41,11 @@ angular.module('myApp.applicationCont', [])
       count++
       $scope.appDirective = count;
     }
+    $scope.reverseApplication = function(){
+      var count = $scope.appDirective
+      count--
+      $scope.appDirective = count;
+    }
 
     $scope.addWorkReference = function(){
       if($scope.application.workReferences.length < 3 ){
@@ -73,6 +78,16 @@ angular.module('myApp.applicationCont', [])
         })
       }
     }
+    $scope.posAndAvailChecker = (!$scope.template.position && !$scope.template.fullOrPartime && !$scope.template.backgroundCheck && 
+                                 !$scope.template.drugTest && !$scope.template.custom1 && !$scope.template.custom2 && !$scope.template.availability);
+    $scope.prevHistoryChecker = (!$scope.template.fired && !$scope.template.crimes);
+    $scope.empInfoChecker = (!$scope.template.physicalLimitation && !$scope.template.authWorkInUS && 
+                            !$scope.template.validDriversLicense && !$scope.template.overFourteen && !$scope.template.overSixteen && 
+                            !$scope.template.overEighteen && !$scope.template.overTwentyone && !$scope.template.overtime && 
+                            !$scope.template.permanent && !$scope.template.otherLanguages && !$scope.template.adequateTrans );
+    $scope.specSkillsChecker = (!$scope.template.specializedSkills && !$scope.template.computerRepair && !$scope.template.softwareExperience && 
+                                !$scope.template.proffesionalCerts && !$scope.template.typingSpeed && !$scope.template.veteran && 
+                                !$scope.template.dateAvailableToBeinWork && !$scope.template.otherComments);
     //submit application to server. 
     $scope.submit = function(){
       var application = $scope.application;
