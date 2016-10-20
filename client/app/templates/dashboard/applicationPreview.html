@@ -57,20 +57,17 @@
               <p> Note: Comments can NOT be seen by applicants, ONLY the business owner</p>
             </div>
           </div>
-          <div class="panel" ng-if="application.businessComments.length == 0">
-            <div class="panel-body col-md-12">
+          <div ng-if="application.businessComments.length === 0">
+            <div class="panel panel-body col-md-12">
               <label style="color: red">No Comments yet</label>
             </div>
           </div>
-          <div class="panel" ng-if="application.businessComments.length > 0" ng-repeat="comment in application.businessComments">
-            <div class="pandel-heading">
-              <label>Date:</label><span> {{comment.date | date}}</span>
-            </div>
-            <div class="panel-body col-md-12">
-              <p></p>
-              <label>Comment:</label>
-              <span>{{comment.comment}}</span>
-            </div>
+          <div ng-if="application.businessComments.length > 0" ng-repeat="comment in application.businessComments" >
+              <div class="panel panel-body col-md-12">
+                <label>Date:</label><span> {{comment.date | date}} :</span>
+                <p></p>
+                <span>{{comment.comment}}</span>
+              </div>
           </div>
         </td>
       </tr>

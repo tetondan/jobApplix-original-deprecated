@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 
 var betaSchema = mongoose.Schema({
+  appliedDate: {type: Date, default: Date.now },
   betaEmail: String
 }, {collection: 'betaDetails'});
 
