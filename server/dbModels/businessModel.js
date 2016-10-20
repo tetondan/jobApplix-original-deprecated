@@ -25,14 +25,3 @@ var businessSchema = mongoose.Schema({
 var Business = mongoose.model('Business', businessSchema);
 
 module.exports = Business;
-
-
-// {
-//   "username": "JobApplix",
-//   "password": "test1",
-//   "name": "Daniel Frehner",
-//   "address": "123 Fake st.",
-//   "phone": "9099478131",
-//   "website": "http://www.jobApplix.com",
-//   "email": "jobApplix@gmail.com"
-// }

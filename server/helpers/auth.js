@@ -1,40 +1,47 @@
+'use strict'
+
 const Business = require('../dbModels/businessModel')
 const bcrypt = require('bcrypt')
 
-const signin = (req, res) => {
+const signin = ( req, res ) => {
   var info = req.body;
-  Business.findOne({username: info.username.toLowerCase()}, (err, results) => {
-    if(results === null){
-      res.status(404).send("Incorrect Username or Password 1")
+  Business.findOne({ username: info.username.toLowerCase() }, ( err, results ) => {
+    if( results === null ){
+      res.status(401).send("Incorrect Username or Password")
     } else {
       logIn(info.password, results.password)
-        .then((isPass) => {
+        .then( ( isPass ) => {
           if(isPass === true){
             req.session.businessId = results._id
             results.password = undefined
             results._id = undefined
             results.__v = undefined
-            results.username = undefined
             res.status(200).send(results)
           } else {
-            res.status(404).send("Incorrect Username or Password 2")
+            res.status(401).send("Incorrect Username or Password")
           }
         })
-        .catch((err) => {
-          res.status(404).send("Incorrect Username or Password 3")
+        .catch( ( err ) => {
+          res.status(500).send("Incorrect Username or Password")
         })
     }
   })
 };
 
-const signup = (req, res) => {
+const signup = ( req, res ) => {
   var businessObj = req.body
-  Business.findOne({username: businessObj.username.toLowerCase()}, (err, results) => {
-    if(results !== null){
+  //check if username supplied
+  if(!businessObj.username || !businessObj.password) { 
+    res.status(404).send("Username and password required");
+    return
+  }
+
+  Business.findOne({ username: businessObj.username.toLowerCase() }, ( err, results ) => {
+    if( results !== null ){
       res.status(401).send("Business name already taken")
     } else {
       setPass(businessObj.password)
-        .then((passHash) => {
+        .then( ( passHash ) => {
           businessObj.password = passHash;
           businessObj.username = businessObj.username.toLowerCase();
           businessObj.customUrl = businessObj.customUrl.toLowerCase()
@@ -42,25 +49,25 @@ const signup = (req, res) => {
           business.save((err, data) => {
             if(err){
               console.log(err)
-              res.status(400)
+              res.status(500)
             } else {
               req.session.businessId = data._id
               res.status(201).send(data);
             }
           })
         })
-        .catch((err) => {
-          res.status(401).send(err)
+        .catch( ( err ) => {
+          res.status(500).send(err)
         })      
     }
   })
 };
 
-const setPass = (passString) => {
-  return new Promise((resolve, reject) => {
-    bcrypt.genSalt(10, (err, salt) => {    
-      bcrypt.hash(passString, salt, (err, passHash) => {
-        if(!err) {
+const setPass = ( passString ) => {
+  return new Promise( ( resolve, reject ) => {
+    bcrypt.genSalt(10, ( err, salt ) => {    
+      bcrypt.hash(passString, salt, ( err, passHash ) => {
+        if( !err ) {
           resolve(passHash);
         } else {
           reject(err);
@@ -70,10 +77,10 @@ const setPass = (passString) => {
   })
 }
 
-const logIn = (passString, encryptedPass) => {
-  return new Promise((resolve, reject) => {
-    bcrypt.compare(passString, encryptedPass, (err, res) => {
-      if(!err){
+const logIn = ( passString, encryptedPass ) => {
+  return new Promise( ( resolve, reject ) => {
+    bcrypt.compare(passString, encryptedPass, ( err, res ) => {
+      if( !err ){
         resolve(res)
       } else {
         reject(err)
@@ -82,16 +89,12 @@ const logIn = (passString, encryptedPass) => {
   })
 }
 
-const auth = function(req, res, next) {
-  if (req.session.businessId)
+const auth = ( req, res, next ) => {
+  if ( req.session.businessId )
     return next();
   else
     return res.sendStatus(401);
 };
 
 
-module.exports = {
-  signup: signup,
-  signin: signin,
-  auth: auth
-};
+module.exports = { signup, signin, auth };

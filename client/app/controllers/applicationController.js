@@ -95,12 +95,13 @@ angular.module('myApp.applicationCont', [])
       application.education.college.type = undefined;
       application.education.tradeSchool.type = undefined;
       AppDataServices.submitApplication(application)
-      .then( function (data) {
-        $scope.advanceApplication();
-        //redirect user to page thanking them for submitting an application and supplying a link to return to main page.
-      });
+        .then( function (data) {
+          $scope.advanceApplication();
+         //redirect user to page thanking them for submitting an application and supplying a link to return to main page.
+        });
     };
+
     window.onbeforeunload = function(){
-      return 'Using the back button will delete all of your info. You will be prompted to edit your application at the end. Are you sure you want to leave?';
+      return 'Using the back button will delete all of your info. Please use the back button at the bottom of the page. Are you sure you want to leave?';
     };
   })

@@ -7,23 +7,19 @@ const business = require('./routes/business.js');
 const apply = require('./routes/apply.js')
 const MongoStore = require('connect-mongo')(session);
 
-module.exports = (app, express) => {
-  //TODO!! implement session
-  app.use(session({
+module.exports = ( app, express ) => {
+
+  app.use( session( {
     secret: 'JOBAPPLiX_420_6969',
     resave: true,
     saveUninitialized: true,
-    cookie: {},
+    cookie: { maxAge: null},
     store: new MongoStore({
-    url: process.env.CUSTOMCONNSTR_MONGOLAB_URI_JOBAPPLIX || 'mongodb://localhost/jobApplix'
-    //other advanced options
-  })
+      url: process.env.CUSTOMCONNSTR_MONGOLAB_URI_JOBAPPLIX || 'mongodb://localhost/jobApplix'
+    })
   }));
-  //using body parser allows us to get the body out of the reguest object
   app.use(bodyParser.json());
-  //serves the index page and all of the front end code.
   app.use(express.static(__dirname+'/../client'));
-  //serve the following routes:
   app.use('/api',business);
   app.use('/api', apply);
 }

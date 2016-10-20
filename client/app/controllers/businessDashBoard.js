@@ -20,7 +20,6 @@ angular.module('myApp.businessDashBoard', [])
 
     $scope.saveForm = function(){
       $scope.application.firstTime = true;
-      console.log($scope.application.firstTime);
       BusinessDataServices.saveForm($scope.application)
       .then( function (data) {
         $state.go('dashboard.tabs')

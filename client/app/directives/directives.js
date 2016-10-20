@@ -21,7 +21,7 @@ angular.module('myApp.directives', ['myapp.appDataServices'])
           $scope.group[groupIndex].businessComments.unshift(newComment)
           AppDataServices.updateComments(appId, $scope.group[groupIndex].businessComments)
             .then(function(data){
-              console.log(data)
+              
             })
         }
       }

@@ -14,6 +14,7 @@ const applicationSchema = mongoose.Schema({
   zip: String,
   position: String,
   backgroundCheck: Boolean,
+  location: String,
   availability: {
     firstMon: Boolean,
     secondMon: Boolean,

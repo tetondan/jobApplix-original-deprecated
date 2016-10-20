@@ -1,6 +1,6 @@
 'use strict'
 
-const CustomApp = require('../dbModels/customApplication')
+const CustomApp = require('../dbModels/customApplication');
 const Application = require('../dbModels/applicationModel');
 const Business = require('../dbModels/businessModel')
 const express = require('express');
@@ -8,22 +8,23 @@ const router = express.Router();
 
 
 //submit an application to a business
-router.route('/applicationSubmit').post((req, res) => {
+router.route('/applicationSubmit').post( ( req, res ) => {
   const appInfo = req.body;
   let application = new Application(appInfo)
-  application.save((err) => {
-    if(err){
+
+  application.save( ( err ) => {
+    if( err ){
       console.log(err)
-      res.sendStatus(400)
+      res.sendStatus(500)
     } else {
-      res.status(201).send({message: "Application submitted successfully"});
+      res.status(201).send("Application submitted successfully");
     }
-  })
-})
+  });
+});
 
-router.route('/applicationUpdateGroup').put( (req, res) => {
-  Application.findByIdAndUpdate(req.body.id, { $set: { applicationGroup: req.body.group }}, function(err, data){
-    if(err){
+router.route('/applicationUpdateGroup').put( ( req, res ) => {
+  Application.findByIdAndUpdate(req.body.id, { $set: { applicationGroup: req.body.group }}, ( err, data ) => {
+    if( err ){
       console.log(err);
       res.status(501);
     } else {
@@ -32,9 +33,9 @@ router.route('/applicationUpdateGroup').put( (req, res) => {
   })
 });
 
-router.route('/applicationUpdateComments').put( (req, res) => {
-  Application.findByIdAndUpdate(req.body.id, { $set: { businessComments: req.body.businessComments }}, function(err, data){
-    if(err){
+router.route('/applicationUpdateComments').put( ( req, res ) => {
+  Application.findByIdAndUpdate(req.body.id, { $set: { businessComments: req.body.businessComments }}, ( err, data ) => {
+    if( err ){
       console.log(err);
       res.status(501);
     } else {
@@ -42,19 +43,20 @@ router.route('/applicationUpdateComments').put( (req, res) => {
     }
   })
 });
+
 //retreives the business info from the database
-router.route('/businesses/:customUrl').get((req, res) => {
-  Business.find({customUrl: req.params.customUrl.toLowerCase()}, (err, data) => {
-    if(err) {
+router.route('/businesses/:customUrl').get( ( req, res ) => {
+  Business.find({ customUrl: req.params.customUrl.toLowerCase() }, ( err, data ) => {
+    if( err ) {
       console.log(err)
-      res.sendStatus(404)
-    } else if(data.length === 0){
+      res.sendStatus(500)
+    } else if( data.length === 0 ){
       res.sendStatus(404);
     } else {
       let businessData = data[0];
-      CustomApp.findOne({businessId: businessData._id})
+      CustomApp.findOne({ businessId: businessData._id })
                .populate('businessId')
-               .exec((err, app) => {
+               .exec( ( err, app ) => {
                   if(err){
                     console.log(err)
                     res.status(500)
