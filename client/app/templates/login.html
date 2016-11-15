@@ -23,7 +23,7 @@
         <label>Username:</label>
         <input tyep="text" class="form-control" ng-model='business.username'/>
         <label>Password:</label>
-        <input type="password" class="form-control" ng-model='business.password' ng-keypress="($event.which === 13)?logIn():null"/>
+        <input type="password" class="form-control" ng-model='business.password' ng-keyup="($event.which === 13) ? logIn() : null"/>
       </div>
     </div>
     <div class="panel-footer">

@@ -66,12 +66,30 @@
           <input type="checkbox" ng-model="application.veteran"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
           <input type="checkbox" /><label>No</label>
         </label>
+      </div>
+      <div ng-if='application.veteran'>
+        <label>What dates did you serve?</label>
+        <input type='text' class="form-control" ng-model='application.militaryDatesServed' />
+      </div> 
+      <div ng-if='application.veteran'>
+        <label>Did you receive any on the job training that should be considered for this position?</label>
+        <textarea class="form-control" rows="3" ng-model="application.militaryTraining"></textarea>
       </div>    
     </div>
-    <div class="form-group" ng-if="template.dateAvailableToBeinWork">
+    <div class="form-group" ng-if="template.dateAvailableToBeginWork">
     <!-- date available to begin -->
       <label>What is the date you will be available to begin work?</label>
       <input type="date" class="form-control" ng-model="application.dateAvailableToBeginWork">
+    </div>
+    <div class="form-group" ng-if="template.dateAvailableToEndWork">
+    <!-- date available to begin -->
+      <label>What is the latest date you will be available to work (end date)?</label>
+      <input type="date" class="form-control" ng-model="application.dateAvailableToEndWork">
+    </div>
+    <div class="form-group" ng-if="template.specialInterests">
+    <!-- other comments -->
+      <label>What are your personal hobbies or special interests?</label>
+      <textarea class="form-control" rows="3" ng-model="application.specialInterests"></textarea>
     </div>
     <div class="form-group" ng-if="template.otherComments">
     <!-- other comments -->

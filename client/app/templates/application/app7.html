@@ -5,7 +5,21 @@
   </div>  
   <div class="panel-body">
       <label ng-if="empInfoChecker">Please click "Next Step" below to continue</label>   
-      <form name="form.appForm"></form>    
+      <form name="form.appForm"></form>  
+      <div class="form-group" ng-if="template.relativesEmployed">
+      <!-- physical limitations -->
+        <label>Do you have any relatives or close friends that are currently employed by us?</label>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="application.relativesEmployed"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="checkbox" /><label>No</label>
+          </label>
+        </div>   
+        <div ng-if='application.relativesEmployed'>
+          <label>Please list their name(s):</label>
+          <input type='text' class="form-control" ng-model='application.relativesEmployedWho' />
+        </div> 
+      </div>  
       <div class="form-group" ng-if="template.physicalLimitation">
       <!-- physical limitations -->
         <label>Do you have any limitations that would not allow you to perform the duties of this position?</label>
@@ -18,7 +32,7 @@
       </div>
       <div class="form-group" ng-if="template.authWorkInUS">
       <!-- auth to work in US -->
-        <label>Are you Authorized to work in the United States of America, and can you furnish proof?</label>
+        <label>Are you authorized to work in the United States of America, and can you furnish proof?</label>
         <div class="checkbox">
           <label>            
             <input type="checkbox" ng-model="application.authWorkInUS"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
@@ -28,7 +42,7 @@
       </div>
       <div class="form-group" ng-if="template.validDriversLicense">
       <!-- drivers license -->
-        <label>If needed for the job, do you currently have a valid drivers license?</label>
+        <label>If needed for the job, do you currently have a valid driver's license?</label>
         <div class="checkbox">
           <label>   
             <input type="checkbox" ng-model="application.driversLicense"><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>

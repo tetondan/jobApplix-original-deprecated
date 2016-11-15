@@ -79,15 +79,17 @@ angular.module('myApp.applicationCont', [])
       }
     }
     $scope.posAndAvailChecker = (!$scope.template.position && !$scope.template.fullOrPartime && !$scope.template.backgroundCheck && 
-                                 !$scope.template.drugTest && !$scope.template.custom1 && !$scope.template.custom2 && !$scope.template.availability);
-    $scope.prevHistoryChecker = (!$scope.template.fired && !$scope.template.crimes);
+                                 !$scope.template.drugTest && !$scope.template.custom1 && !$scope.template.custom2 && !$scope.template.availability &&
+                                 !$scope.template.anyPosition && !$scope.template.referalSource);
+    $scope.prevHistoryChecker = (!$scope.template.fired && !$scope.template.crimes && !$scope.template.appliedBefore && !$scope.template.everEmployed
+                                  && !$scope.template.currentlyEmployed);
     $scope.empInfoChecker = (!$scope.template.physicalLimitation && !$scope.template.authWorkInUS && 
                             !$scope.template.validDriversLicense && !$scope.template.overFourteen && !$scope.template.overSixteen && 
                             !$scope.template.overEighteen && !$scope.template.overTwentyone && !$scope.template.overtime && 
-                            !$scope.template.permanent && !$scope.template.otherLanguages && !$scope.template.adequateTrans );
+                            !$scope.template.permanent && !$scope.template.otherLanguages && !$scope.template.adequateTrans && !$scope.template.relativesEmployed);
     $scope.specSkillsChecker = (!$scope.template.specializedSkills && !$scope.template.computerRepair && !$scope.template.softwareExperience && 
                                 !$scope.template.proffesionalCerts && !$scope.template.typingSpeed && !$scope.template.veteran && 
-                                !$scope.template.dateAvailableToBeinWork && !$scope.template.otherComments);
+                                !$scope.template.dateAvailableToBeinWork && !$scope.template.otherComments && !$scope.template.specialInterests);
     //submit application to server. 
     $scope.submit = function(){
       var application = $scope.application;

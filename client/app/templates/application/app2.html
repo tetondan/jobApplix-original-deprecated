@@ -10,8 +10,19 @@
     </div>
     <form name='form.appForm'>
     <div class="form-group" ng-if="template.position">
-      <label>What position are you applying for?<span class="glyphicon glyphicon-asterisk"></span></label>
+      <label>What position(s) are you applying for?<span class="glyphicon glyphicon-asterisk"></span></label>
       <input type="text" class="form-control" ng-model="application.position" placeholder="Position" />
+    </div>
+    <div ng-if="template.anyPosition">
+      <div class="form-group">
+        <label>If offered, would you be willing to accept any position?</label>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="application.anyPosition" /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type='checkbox' /><label>No</label>
+          </label>
+        </div>
+      </div>
     </div>
     <div class="form-group" ng-if="template.fullOrPartime">
       <label>Are you applying for Full or Partime work?</label><span>  {{application.fullOrPartime}}</span>
@@ -54,6 +65,26 @@
     <div class="form-group" ng-if="template.custom2">
       <label>{{template.custom2}}<span class="glyphicon glyphicon-asterisk"></span></label>
       <input type="text" class="form-control" ng-model="application.custom2" />
+    </div>
+    <div class="form-group" ng-if="template.fullOrPartime">
+      <label>How did you hear about the position?</label><span>  {{application.referalSource}}</span>
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Choose One:
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <li><a ng-click="application.referalSource = 'Internet'">Internet</a></li>
+          <li><a ng-click="application.referalSource = 'School/College'">School/College</a></li>
+          <li><a ng-click="application.referalSource = 'Walk in'">Walk In</a></li>
+          <li><a ng-click="application.referalSource = 'Employee referal'">Employee Referal</a></li>
+          <li><a ng-click="application.referalSource = 'Other'">Other</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="form-group" ng-if="['Internet', 'Employee referal', 'Other'].indexOf(application.referalSource) > -1">
+      <label>Please provide more details about how you heard of the position (name of website, employee, etc.):<span class="glyphicon glyphicon-asterisk"></span></label>
+      <input type="text" class="form-control" ng-model="application.referalComment" placeholder="More Details" />
     </div>
     <table class='table table-reponsive table-striped' ng-if="template.availability">
       <thead>

@@ -4,7 +4,7 @@
     <div class='panel-title'><h4>Previous History</h4><small ng-if="!prevHistoryChecker">(Checking yes to any of these questions does NOT automatically exclude you from the position)</small></div>
   </div>
   <div class="panel-body">
-    <label>Please click "Next Step" below to continue</label>
+    <label ng-if="prevHistoryChecker">Please click "Next Step" below to continue</label>
     <form name="form.appForm"></form>
     <div class="form-group" ng-if="template.fired">
       <label>Have you ever been fired or asked to resign from a position?</label>
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="form-group" ng-if="template.crimes">
-      <label>Have you ever been conviced of a crime(do not count traffic violations)?</label>
+      <label>Have you ever been conviced of a crime (do not include minor traffic violations)?</label>
       <div class='checkbox'>
         <label>
           <input type='checkbox' ng-model='application.crimes' /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
@@ -31,6 +31,50 @@
         <label>Please explain:</label>
         <input type='text' class="form-control" ng-model='application.crimesExplanation' />
       </div>  
+    </div>
+    <div class="form-group" ng-if="template.appliedBefore">
+      <label>Have you ever applied for a position with us?</label>
+      <div class="checkbox">
+        <label>
+          <input type='checkbox' ng-model='application.appliedBefore' /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+          <input type='checkbox' /><label>No</label>
+        </label>  
+      </div>
+      <div ng-if='application.appliedBefore'>
+        <label>When?</label>
+        <input type='text' class="form-control" ng-model='application.appliedBeforeWhen' />
+      </div>
+    </div>
+    <div class="form-group" ng-if="template.everEmployed">
+      <label>Have you ever been employed by us?</label>
+      <div class="checkbox">
+        <label>
+          <input type='checkbox' ng-model='application.everEmployed' /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+          <input type='checkbox' /><label>No</label>
+        </label>  
+      </div>
+      <div ng-if='application.everEmployed'>
+        <label>Please provide more details (date, position, etc.):</label>
+        <input type='text' class="form-control" ng-model='application.everEmployedWhen' />
+      </div>
+    </div>
+    <div class="form-group" ng-if="template.currentlyEmployed">
+      <label>Are you currently employed?</label>
+      <div class="checkbox">
+        <label>
+          <input type='checkbox' ng-model='application.currentlyEmployed' /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+          <input type='checkbox' /><label>No</label>
+        </label>  
+      </div>
+      <div ng-if='application.currentlyEmployed && template.contactCurrentEmployer'>
+        <label>May we contact your current employer?</label>
+        <div class="checkbox">
+        <label>
+          <input type='checkbox' ng-model='application.contactCurrentEmployer' /><label>Yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+          <input type='checkbox' /><label>No</label>
+        </label>  
+      </div>
+      </div>
     </div>
   </div>
 </div>

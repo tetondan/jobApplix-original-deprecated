@@ -91,13 +91,29 @@ const applicationSchema = mongoose.Schema({
   proffesionalCerts: String,
   typingSpeed: String, 
   veteran: Boolean,
+  militaryDatesServed: String,
+  militaryTraining: String,
   dateAvailableToBeginWork: String,
+  dateAvailableToEndWork: String,
   otherComments: String,
   state: String,
   custom1: String,
   custom2: String,
   businessId: String,
-  businessComments: Array
+  businessComments: Array,
+  anyPosition: Boolean,
+  referalSource: String,
+  referalComment: String,
+  appliedBefore: Boolean,
+  appliedBeforeWhen: String,
+  everEmployed: Boolean,
+  everEmployedWhen: String,
+  relativesEmployed: Boolean,
+  relativesEmployedWho: String,
+  currentlyEmployed: Boolean,
+  contactCurrentEmployer: Boolean,
+  contactCurrentEmployerReason: String,
+  specialInterests: String
 }, {collection: 'application'});
 
 

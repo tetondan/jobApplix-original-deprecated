@@ -76,75 +76,99 @@
           <div class="panel panel-primary">
             <div class="panel-body col-md-12">
               <div class="col-md-6">
-                <p><strong>Name:</strong> {{application.firstName}} {{application.middleName}} {{application.lastName}}</p>
-                <p><strong>Phone Number:</strong> {{application.phone}}</p>
-                <p><strong>Email: </strong><a href={{"mailto:"+application.email}}>{{application.email}}</a></p>
+                <p>Name: <strong>{{application.firstName}} {{application.middleName}} {{application.lastName}}</strong></p>
+                <p>Phone Number: <strong>{{application.phone}}</strong></p>
+                <p>Email: <a href={{"mailto:"+application.email}}><strong>{{application.email}}</strong></a></p>
                 <div ng-if='customTemplate.fullOrPartime'>
-                  <p><strong>Applicant prefers to work:</strong> {{application.fullOrPartime}}</p>
+                  <p>Applicant prefers to work: <strong>{{application.fullOrPartime}}</strong></p>
+                </div>
+                <div ng-if="customTemplate.referalSource">
+                  <p>Referal source: <strong>{{application.referalSource ? application.referalSource : "None provided"}}</strong></p>
+                  <p ng-if="application.referalComment">(Referal) More Information: <strong>{{application.referalComment}}</strong></p>
                 </div>
               </div>
               <div class="col-md-6">
-                <p><strong>Date Applied: </strong> {{application.appliedDate | date}}</p>
-                <p><strong>City:</strong> {{application.city}}</p>
-                <p><strong>Zip:</strong> {{application.zip}}</p>
-                <p><strong>Position Applying For:</strong> {{application.position}}</p>
+                <p>Date Applied:  <strong>{{application.appliedDate | date}}</strong></p>
+                <p>City: <strong>{{application.city}}</strong></p>
+                <p>Zip: <strong>{{application.zip}}</strong></p>
+                <p>Position Applying For: <strong>{{application.position}}</strong></p>
+                <p ng-if="customTemplate.anyPosition">Willing to accept any position? <strong>{{application.anyPosition ? "Yes" : "No"}}</strong></p>
               </div>
             </div>
             <div class="panel-body col-md-12">
               <div class="col-md-6">
+                <div ng-if='customTemplate.appliedBefore'>
+                  <p>Have you ever applied for a position with us?: <strong>{{application.appliedBefore ? 'Yes' : 'No'}}</strong></p>
+                  <p ng-if='application.appliedBefore'>When? <strong>{{application.appliedBeforeWhen}}</strong></p>
+                </div>
                 <div ng-if='customTemplate.fired'>
-                  <p><strong>Employee has previously been fired or asked to resign:</strong> {{application.fired ? 'Yes' : 'No'}}</p>
-                  <p ng-if='application.fired'><strong>Explanation:</strong> {{application.firedExplanation || 'No explanation given'}}</p>
+                  <p>Have you previously been fired or asked to resign: <strong>{{application.fired ? 'Yes' : 'No'}}</strong></p>
+                  <p ng-if='application.fired'>Explanation: <strong>{{application.firedExplanation || 'No explanation given'}}</strong></p>
                 </div>
                 <div ng-if='customTemplate.crimes'>
-                  <p><strong>Employee has previously been convicted of a crime:</strong> {{application.crimes ? 'Yes' : 'No'}}</p>
-                  <p ng-if='application.fired'><strong>Explanation:</strong> {{application.crimesExplanation || 'No explanation given'}}</p>
+                  <p>Have you previously been convicted of a crime: <strong>{{application.crimes ? 'Yes' : 'No'}}</strong></p>
+                  <p ng-if='application.fired'>Explanation: <strong>{{application.crimesExplanation || 'No explanation given'}}</strong></p>
                 </div>
                 <div ng-if='customTemplate.validDriversLicense'>
-                  <p><strong>If required for the position, do you currently have a valid drivers license?:</strong> {{application.validDriversLicense ? 'Yes' : 'No'}}</p>
-                  <p ng-if='application.validDriversLicense'><strong>What is the number and state?</strong> {{application.validDriversLicenseNumber}}</p>
+                  <p>If required for the position, do you currently have a valid drivers license?: <strong>{{application.validDriversLicense ? 'Yes' : 'No'}}</strong></p>
+                  <p ng-if='application.validDriversLicense'>What is the number and state? <strong>{{application.validDriversLicenseNumber}}</strong></p>
                 </div>
                 <div ng-if='customTemplate.overtime'>
-                  <p><strong>Are you able to work overtime if necessary?</strong> {{application.overtime ? 'Yes' : 'No'}}</p>
+                  <p>Are you able to work overtime if necessary? <strong>{{application.overtime ? 'Yes' : 'No'}}</strong></p>
                 </div>
                 <div ng-if='customTemplate.permanent'>
-                  <p><strong>Are you applying for a permanent position?</strong> {{application.permanent ? 'Yes' : 'No'}}</p>
+                  <p>Are you applying for a permanent position? <strong>{{application.permanent ? 'Yes' : 'No'}}</strong></p>
                 </div>
                 <div ng-if='customTemplate.physicalLimitation'>
-                  <p><strong>Do you have any physical limitations that would prevent you from performing the duties of this position?</strong> {{application.physicalLimitation ? 'Yes' : 'No'}}</p>
+                  <p>Do you have any physical limitations that would prevent you from performing the posted duties of this position? <strong>{{application.physicalLimitation ? 'Yes' : 'No'}}</strong></p>
+                </div>
+                <div ng-if='customTemplate.relativesEmployed'>
+                  <p>Do you have any close friends or relatives working for us?: <strong>{{application.relativesEmployed ? 'Yes' : 'No'}}</strong></p>
+                  <p ng-if='application.relativesEmployed'>Who? <strong>{{application.relativesEmployedWho}}</strong></p>
                 </div>
               </div>
               <div class="col-md-6">
+                <div ng-if='customTemplate.everEmployed'>
+                  <p>Have you ever been employed with us?: <strong>{{application.everEmployed ? 'Yes' : 'No'}}</strong></p>
+                  <p ng-if='application.everEmployed'>When? <strong>{{application.everEmployedWhen}}</strong></p>
+                </div>
+                <div ng-if='customTemplate.currentlyEmployed'>
+                  <p>Are you currently employed?: <strong>{{application.currentlyEmployed ? 'Yes' : 'No'}}</strong></p>
+                  <p ng-if='application.currentlyEmployed && customTemplate.contactCurrentEmployer'>May we contact your current employer? <strong>{{application.contactCurrentEmployer}}</strong></p>
+                </div>
                 <div ng-if='customTemplate.backgroundCheck'>
-                  <p><strong>Willing to submit a background check?</strong> {{application.backgroundCheck ? 'Yes' : 'No'}}</p>
+                  <p>Willing to submit a background check? <strong>{{application.backgroundCheck ? 'Yes' : 'No'}}</strong></p>
                 </div>
                 <div ng-if='customTemplate.drugTest'>
-                  <p><strong>Willing to submit a pre-employment drug test:</strong> {{application.drugTest ? 'Yes' : 'No'}}</p>
+                  <p>Willing to submit a pre-employment drug test: <strong>{{application.drugTest ? 'Yes' : 'No'}}</strong></p>
                 </div>
                 <div ng-if='customTemplate.overFourteen'>
-                  <p><strong>Are you 14 years old or older?</strong> {{application.overFourteen ? 'Yes' : 'No'}}</p>
+                  <p>Are you 14 years old or older? <strong>{{application.overFourteen ? 'Yes' : 'No'}}</strong></p>
                 </div>
                 <div ng-if='customTemplate.overSixteen'>
-                  <p><strong>Are you 16 years old or older?</strong> {{application.overSixteen ? 'Yes' : 'No'}}</p>
+                  <p>Are you 16 years old or older? <strong>{{application.overSixteen ? 'Yes' : 'No'}}</strong></p>
                 </div>
                 <div ng-if='customTemplate.overEighteen'>
-                  <p><strong>Are you 18 years old or older?</strong> {{application.overEighteen ? 'Yes' : 'No'}}</p>
+                  <p>Are you 18 years old or older? <strong>{{application.overEighteen ? 'Yes' : 'No'}}</strong></p>
                 </div>
                 <div ng-if='customTemplate.overTwentyone'>
-                  <p><strong>Are you 21 years old or older?</strong> {{application.overTwentyone ? 'Yes' : 'No'}}</p>
+                  <p>Are you 21 years old or older? <strong>{{application.overTwentyone ? 'Yes' : 'No'}}</strong></p>
                 <div ng-if='customTemplate.authWorkInUs'>
-                  <p><strong>Are you auhtorized to work in the US?</strong>{{application.authWorkInUS ? 'Yes' : 'No'}}</p>
+                  <p>Are you auhtorized to work in the US?<strong>{{application.authWorkInUS ? 'Yes' : 'No'}}</strong></p>
                 </div>
                 <div ng-if='customTemplate.dateAvailableToBeginWork'>
-                  <p><strong>What is the date you are available to begin work?</strong> {{application.dateAvailableToBeginWork | date}}</p>
+                  <p>What is the earliest date you are available to work? <strong>{{application.dateAvailableToBeginWork | date}}</strong></p>
+                </div>
+                <div ng-if='customTemplate.dateAvailableToEndWork'>
+                  <p>What is the latest date you are available to work? <strong>{{application.dateAvailableToEndWork | date}}</strong></p>
                 </div>
                 </div>
                 <div ng-if='customTemplate.otherLanguages'>
-                  <p><strong>Do you fluently speak a language other than English?</strong> {{application.otherLanguages ? 'Yes' : 'No'}}</p>
-                  <p ng-if="application.otherLanguages"><strong>Which Languages?</strong> {{application.whichLanguages}}</p>
+                  <p>Do you fluently speak a language other than English? <strong>{{application.otherLanguages ? 'Yes' : 'No'}}</strong></p>
+                  <p ng-if="application.otherLanguages">Which Languages? <strong>{{application.whichLanguages}}</strong></p>
                 </div>
                 <div ng-if='customTemplate.adequateTrans'>
-                  <p><strong>Do you have adequate transportation to and from work?</strong> {{application.adequateTrans ? 'Yes' : 'No'}}</p>
+                  <p>Do you have adequate transportation to and from work? <strong>{{application.adequateTrans ? 'Yes' : 'No'}}</strong></p>
                 </div>
               </div>
             </div>
@@ -213,20 +237,20 @@
               <div ng-repeat="workRef in application.workReferences track by $index">
                 <p><strong>Work Reference #{{$index + 1}}</strong></p>
                 <div class='col-md-6'>
-                  <p>Employer Name: {{workRef.employerName}}</p>
-                  <p>Employer Address: {{workRef.address}}</p>
-                  <p>Phone Number: {{workRef.phoneNumber}}</p>
-                  <p>Employee Title: {{workRef.title}}</p>
-                  <p>Starting Date: {{workRef.startDate | date}}</p>
-                  <p>Ending Date: {{workRef.endDate | date}}</p>
+                  <p>Employer Name: <strong>{{workRef.employerName}}</strong></p>
+                  <p>Employer Address: <strong>{{workRef.address}}</strong></p>
+                  <p>Phone Number: <strong>{{workRef.phoneNumber}}</strong></p>
+                  <p>Employee Title: <strong>{{workRef.title}}</strong></p>
+                  <p>Starting Date: <strong>{{workRef.startDate | date}}</strong></p>
+                  <p>Ending Date: <strong>{{workRef.endDate | date}}</strong></p>
                 </div>
                 <div class='col-md-6'>
-                  <p>Supervisor Name: {{workRef.supervisorName}}</p>
-                  <p>Employee Duties: {{workRef.duties}}</p>
-                  <p>Starting Pay: {{workRef.startingPay}}</p>
-                  <p>Ending Pay: {{workRef.endingPay}}</p>
-                  <p>Reson for Leaving: {{workRef.reasonForLeaving}}</p>
-                  <p>Can contact this employer?: {{ workRef.canContact ? 'Yes' : 'No'}}</p>
+                  <p>Supervisor Name: <strong>{{workRef.supervisorName}}</strong></p>
+                  <p>Employee Duties: <strong>{{workRef.duties}}</strong></p>
+                  <p>Starting Pay: <strong>{{workRef.startingPay}}</strong></p>
+                  <p>Ending Pay: <strong>{{workRef.endingPay}}</strong></p>
+                  <p>Reson for Leaving: <strong>{{workRef.reasonForLeaving}}</strong></p>
+                  <p>Can contact this employer?: <strong>{{ workRef.canContact ? 'Yes' : 'No'}}</strong></p>
                 </div>
               </div>
             </div>
@@ -235,16 +259,16 @@
                 <strong style="color: red">No Personal References Given</strong>
               </div>
               <div ng-repeat="persRef in application.personalReferences track by $index">
-                <p><strong>Personl Reference #{{$index + 1}}</strong></p>
+                <p><strong>Personal Reference #{{$index + 1}}</strong></p>
                 <div class='col-md-6'>
-                  <p>Name: {{persRef.name}}</p>
-                  <p>Phone Number: {{persRef.phone}}</p>
-                  <p>Email: {{persRef.email}}</p>
+                  <p>Name: <strong>{{persRef.name}}</strong></p>
+                  <p>Phone Number: <strong>{{persRef.phone}}</strong></p>
+                  <p>Email: <strong>{{persRef.email}}</strong></p>
                 </div>
                 <div class='col-md-6'>
-                  <p>Address: {{persRef.address}}</p>
-                  <p>Relationship: {{persRef.relationship}}</p>
-                  <p>Years known: {{persRef.yearsKnown}}</p>
+                  <p>Address: <strong>{{persRef.address}}</strong></p>
+                  <p>Relationship: <strong>{{persRef.relationship}}</strong></p>
+                  <p>Years known: <strong>{{persRef.yearsKnown}}</strong></p>
                 </div>
               </div>
             </div>
@@ -254,46 +278,51 @@
                   <p><strong>{{school === 'tradeSchool' ? "Trade School" : school === 'college' ? 'College' : 'High School'}}</strong><strong ng-if="value.schoolName === ''" style="color: red;"> None Given</strong></p>
                 </div>  
                 <div class='col-md-6' ng-if="!(value.schoolName === '')">
-                  <p>School Name: {{value.schoolName}}</p>
-                  <p>Location: {{value.location}}</p>
-                  <p>Years Completed: {{value.yearsCompleted}}</p>  
+                  <p>School Name: <strong>{{value.schoolName}}</strong></p>
+                  <p>Location: <strong>{{value.location}}</strong></p>
+                  <p>Years Completed: <strong>{{value.yearsCompleted}}</strong></p>  
                 </div>
                 <div class='col-md-6' ng-if="!(value.schoolName === '')">
-                  <p>Field of study: {{value.fieldOfStudy}}</p>
-                  <p>Degree Earned: {{value.degree}}</p>
+                  <p>Field of study: <strong>{{value.fieldOfStudy}}</strong></p>
+                  <p>Degree Earned: <strong>{{value.degree}}</strong></p>
                 </div>  
               </div>
             </div>
             <div class='panel-body col-md-12'>
               <div ng-if='customTemplate.custom1'>
-                <p><strong>{{customTemplate.custom1}}</strong> {{application.custom1}}</p>
+                <p>{{customTemplate.custom1}} <strong>{{application.custom1}}</strong></p>
               </div>
               <div ng-if='customTemplate.custom2'>
-                <p><strong>{{customTemplate.custom2}}</strong> {{application.custom2}}</p>
+                <p>{{customTemplate.custom2}} <strong>{{application.custom2}}</strong></p>
               </div>
               <div ng-if='customTemplate.specializedSkills'>
-                <p><strong>Do you have any other specialized skills or qualifications?</strong> {{application.specializedSkills ? 'Yes' : 'No'}}</p>
-                <p ng-if="application.specializedSkills"><strong>Please list them:</strong> {{application.specializedSkillsList}}</p>
+                <p>Do you have any other specialized skills or qualifications? <strong>{{application.specializedSkills ? 'Yes' : 'No'}}</strong></p>
+                <p ng-if="application.specializedSkills">Please list them: <strong>{{application.specializedSkillsList}}</strong></p>
               </div>
               <div ng-if='customTemplate.computerRepair'>
-                <p><strong>Are you authorized or ceritified to operate or repair any computer hardware or systems?</strong> {{application.computerRepair ? 'Yes' : 'No'}}</p>
-                <p ng-if="application.specializedSkills"><strong>Please list them:</strong> {{application.computerRepairList}}</p>
+                <p>Are you authorized or ceritified to operate or repair any computer hardware or systems? <strong>{{application.computerRepair ? 'Yes' : 'No'}}</strong></p>
+                <p ng-if="application.specializedSkills">Please list them: <strong>{{application.computerRepairList}}</strong></p>
               </div>
               <div ng-if='customTemplate.softwareExperience'>
-                <p><strong>Are you certified, authorized, skilled, or experienced in the use of any software?</strong> {{application.softwareExperience ? 'Yes' : 'No'}}</p>
-                <p ng-if="application.softwareExperience"><strong>Please list them:</strong> {{application.softwareExperienceList}}</p>
+                <p>Are you certified, authorized, skilled, or experienced in the use of any software? <strong>{{application.softwareExperience ? 'Yes' : 'No'}}</strong></p>
+                <p ng-if="application.softwareExperience">Please list them: <strong>{{application.softwareExperienceList}}</strong></p>
               </div>
               <div ng-if='customTemplate.proffesionalCerts'>
-                <p><strong>If you have any proffessional ceritications please list them here:</strong> {{application.proffesionalCerts}}</p>
+                <p>If you have any proffessional certifications please list them here: <strong>{{application.proffesionalCerts ? application.proffesionalCerts : "None provided"}}</strong></p>
               </div>
               <div ng-if='customTemplate.typingSpeed'>
-                <p><strong>What is your average typing speed?</strong> {{application.typingSpeed}} WPM</p>
+                <p>What is your average typing speed? <strong>{{application.typingSpeed ? application.typingSpeed + "WPM" : "None provided"}}</strong> </p>
               </div>
               <div ng-if='customTemplate.veteran'>
-                <p><strong>Are you a verteran of the United States Armed Services?</strong> {{application.veteran ? 'Yes' : 'No'}}</p>
+                <p>Are you a verteran of the United States Armed Services? <strong>{{application.veteran ? 'Yes' : 'No'}}</strong></p>
+                <p ng-if="application.veteran">What dates did you serve? <strong>{{application.militaryDatesServed ? application.militaryDatesServed : 'None provided'}}</strong></p>
+                <p ng-if="application.veteran">Did you receive any special on the job training (military)? <strong>{{application.militaryTraining ? application.militaryTraining : 'None provided'}}</strong></p>
               </div>
               <div ng-if='customTemplate.otherComments'>
-                <p><strong>Do you have any other comments you would like to add?</strong> {{application.otherComments ? application.otherComments : 'None'}}</p>
+                <p>Do you have any hobbies or special interests? <strong>{{application.specialInterests ? application.specialInterests : "None Provided"}}</strong></p>
+              </div>
+              <div ng-if='customTemplate.otherComments'>
+                <p>Do you have any other comments you would like to add? <strong>{{application.otherComments ? application.otherComments : "None Provided"}}</strong></p>
               </div>
             </div>
           </div>

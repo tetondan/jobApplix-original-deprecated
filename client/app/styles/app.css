@@ -51,6 +51,9 @@
 .navbar-progressbar {
   width: 70%;
   margin-top: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 span.glyphicon-asterisk {
@@ -225,29 +228,6 @@ span.glyphicon-asterisk {
     text-shadow: 2px 2px #00449E;
     text-align: center;
   }
-}
-/*blinky cursor typing*/
-.typed-cursor{
-    opacity: 1;
-    -webkit-animation: blink 0.7s infinite;
-    -moz-animation: blink 0.7s infinite;
-    animation: blink 0.7s infinite;
-    font-size: 4rem;
-}
-@keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
-}
-@-webkit-keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
-}
-@-moz-keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
 }
 
 .tag-line {

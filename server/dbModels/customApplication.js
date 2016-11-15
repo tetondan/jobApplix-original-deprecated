@@ -39,11 +39,20 @@ var customAppSchema = mongoose.Schema({
   typingSpeed: Boolean,
   veteran: Boolean,
   dateAvailableToBeginWork: Boolean,
+  dateAvailableToEndWork: Boolean,
   otherComments: Boolean,
   custom1: String,
   custom2: String,
   positionDescription: String,
-  firstTime: Boolean
+  firstTime: Boolean,
+  anyPosition: Boolean,
+  referalSource: Boolean,
+  appliedBefore: Boolean,
+  everEmployed: Boolean,
+  relativesEmployed: Boolean,
+  currentlyEmployed: Boolean,
+  contactCurrentEmployer: Boolean,
+  specialInterests: Boolean
 })
 var Custom = mongoose.model('Custom', customAppSchema);
 

@@ -15,7 +15,7 @@
     </div>    
     <div class="panel panel-primary">
       <div class="panel-body">
-        <p>Simply click on the checkbox next to the questions you would like to see on your custom application</p>
+        <p>Simply click on the checkbox next to the questions you would like to see on your custom application. (Follow up questions in parenthesis)</p>
       </div>
     </div>    
     <div class="panel panel-primary">
@@ -31,7 +31,7 @@
         <div class='panel-title'>About Your Position: <span class="pull-right glyphicon glyphicon-plus" ng-if="!controls.custom" ng-click="controls.custom = true"></span><span class="pull-right glyphicon glyphicon-remove" ng-if="controls.custom" ng-click="controls.custom = false"></span></div>
       </div>  
       <div class="panel-body" ng-show="controls.custom">
-        <label>Please tell us about your position  (This will be displayed on your application start page):</label>
+        <label>Please tell us about your open position  (This will be displayed on your application start page):</label>
         <textarea class="form-control" rows="4" ng-model="application.positionDescription"></textarea>
         <input type="checkbox" ng-model="controls.custom1"><span class='panel-text'><label>Custom Application Question 1:</label>
         <input type="text" class="form-control" ng-show="controls.custom1" ng-model="application.custom1" placeholder="Enter your custom question here"/>
@@ -44,12 +44,19 @@
         <div class='panel-title'>Position and Availability:<span class="pull-right glyphicon glyphicon-plus" ng-if="!controls.pos" ng-click="controls.pos = true"></span><span class="pull-right glyphicon glyphicon-remove" ng-if="controls.pos" ng-click="controls.pos = false"></span></div>
       </div>  
       <div class="panel-body" ng-show="controls.pos">        
-        <p><input type="checkbox" ng-model="application.position"><span class='panel-text'>What Position are you applying for?</span></p>       
-        <p><input type="checkbox" ng-model="application.fullOrPartime"><span class='panel-text'>Are you seeking Full or Partime work?</span></p>      
+        <p><input type="checkbox" ng-model="application.position"><span class='panel-text'>What position are you applying for?</span></p>   
+        <p><input type="checkbox" ng-model="application.anyPosition"><span class='panel-text'>Would you be willing to accept any position?</span></p> 
+        <p><input type="checkbox" ng-model="application.referalSource"><span class='panel-text'>How did you hear about the position?</span></p>
+        <p><input type="checkbox" ng-model="application.fullOrPartime"><span class='panel-text'>Are you seeking full or part time work?</span></p> 
+        <p><input type="checkbox" ng-model="application.appliedBefore"><span class='panel-text'>Have you ever applied for a position with us? (When?)</span></p> 
+        <p><input type="checkbox" ng-model="application.everEmployed"><span class='panel-text'>Have you ever been employed by us? (When?)</span></p>   
+        <p><input type="checkbox" ng-model="application.relativesEmployed"><span class='panel-text'>Do you have any relatives or close friends working for us? (Please provide their names)</span></p> 
+        <p><input type="checkbox" ng-model="application.currentlyEmployed"><span class='panel-text'>Are you currently employed?</span></p>
+        <p><input type="checkbox" ng-model="application.contactCurrentEmployer"><span class='panel-text'>May we contact your current employer? (If no, please provide a reason)</span></p>
         <p><input type="checkbox" ng-model="application.availability"><span class='panel-text'>What is your availability? (days, shifts)</span></p> 
         <div class="panel panel-primary" ng-if="application.availability">
           <div class="panel-body">
-            <input type="checkbox" ng-model="application.customShiftTimes"><span class='panel-text'>I would Like to enter my own shift start and end times. (current shifts default to: open-5pm and 5pm-close)</span>
+            <input type="checkbox" ng-model="application.customShiftTimes"><span class='panel-text'>Please click here if you (business owner) would like to enter your own shift times to be displayed on your custom application. (current shifts default to: open-5pm and 5pm-close)</span>
             <div class="col-md-12" ng-hide="!application.customShiftTimes">
               <div class="col-md-4 panel panel-body">
                 <p>Shift 1: {{application.shift1.first}} - {{application.shift1.second}}</p>
@@ -69,8 +76,8 @@
             </div>
           </div>
         </div>       
-        <p><input type="checkbox" ng-model="application.fired"><span class='panel-text'>Have you ever been fired from a job? If so please explain:</span></p>       
-        <p><input type="checkbox" ng-model="application.crimes"><span class='panel-text'>Have you ever been convicted of a crime? (other than minor traffic violations) If so please explain:</span></p>   
+        <p><input type="checkbox" ng-model="application.fired"><span class='panel-text'>Have you ever been fired from a job? (If so please explain)</span></p>       
+        <p><input type="checkbox" ng-model="application.crimes"><span class='panel-text'>Have you ever been convicted of a crime, other than minor traffic violations? (If so please explain)</span></p>   
         <p><input type="checkbox" ng-model="application.drugTest"><span class='panel-text'>Are you willing to submit a pre-employment drug test?</span></p>       
         <p><input type="checkbox" ng-model="application.backgroundCheck"><span class='panel-text'>Are you willing to consent to a pre-employment background check?</span></p>
       </div>
@@ -80,9 +87,9 @@
         <div class='panel-title'>Work and Education history, Personal references:<span class="pull-right glyphicon glyphicon-plus" ng-if="!controls.history" ng-click="controls.history = true"></span><span class="pull-right glyphicon glyphicon-remove" ng-if="controls.history" ng-click="controls.history = false"></span></div>
       </div>  
       <div class="panel-body" ng-show="controls.history">        
-        <p><input type="checkbox" ng-model="application.workReferences"><span class='panel-text'>Please include your most recent work history:</span></p>       
-        <p><input type="checkbox" ng-model="application.personalReferences"><span class='panel-text'>Pleaase include three personal references (not related to you):</span></p>
-        <p><input type="checkbox" ng-model="application.education"><span class='panel-text'>Please include your education history:</span></p>
+        <p><input type="checkbox" ng-model="application.workReferences"><span class='panel-text'>Please include your most recent work history.</span></p>       
+        <p><input type="checkbox" ng-model="application.personalReferences"><span class='panel-text'>Please include personal references.</span></p>
+        <p><input type="checkbox" ng-model="application.education"><span class='panel-text'>Please include your education history.</span></p>
       </div>
     </div>
     <div class="panel panel-primary">
@@ -91,7 +98,7 @@
       </div>  
       <div class="panel-body" ng-show="controls.emp">        
         <p><input type="checkbox" ng-model="application.physicalLimitation"><span class='panel-text'>Do you have any physical limitations that would interfere with the job you are applying for?</span></p>     
-        <p><input type="checkbox" ng-model="application.authWorkInUS"><span class='panel-text'>Are you authorized to work in the United States? If offered employment will you be able to furnish proof?</span></p>      
+        <p><input type="checkbox" ng-model="application.authWorkInUS"><span class='panel-text'>Are you authorized to work in the United States? (If offered employment will you be able to furnish proof?)</span></p>      
         <p><input type="checkbox" ng-model="application.validDriversLicense"><span class='panel-text'>If required for the job, do you have a valid driver's license?</span></p>  
         <p><input type="checkbox" ng-model="application.overFourteen"><span class='panel-text'>Are you over 14?</span></p>
         <p><input type="checkbox" ng-model="application.overSixteen"><span class='panel-text'>Are you over 16?</span></p>
@@ -107,11 +114,12 @@
         <div class='panel-title'>Specialized Skills and Certifications:<span class="pull-right glyphicon glyphicon-plus" ng-if="!controls.skills" ng-click="controls.skills = true"></span><span class="pull-right glyphicon glyphicon-remove" ng-if="controls.skills" ng-click="controls.skills = false"></span></div>
       </div>  
       <div class="panel-body" ng-show="controls.skills">        
-        <p><input type="checkbox" ng-model="application.otherLanguages"><span class='panel-text'>Are You Fluent in any other languages? If so, please list them:</span></p>       
-        <p><input type="checkbox" ng-model="application.specializedSkills"><span class='panel-text'>Other qualifications such as special skills, abilities, or honors that you feel should be considered (Please list below)</span></p>     
-        <p><input type="checkbox" ng-model="application.computerRepair"><span class='panel-text'>Types of computers, hardware, and other equipment you are authorized to operate or repair?</span></p>
-        <p><input type="checkbox" ng-model="application.softwareExperience"><span class='panel-text'>Types of software, you are authorized, expeiernce, and or skilled to operate or repair?</span></p>      
-        <p><input type="checkbox" ng-model="application.proffesionalCerts"><span class='panel-text'>Do you hold any professional licenses, certifications, or registrations? (if so please list them)</span></p>    
+        <p><input type="checkbox" ng-model="application.otherLanguages"><span class='panel-text'>Are You Fluent in any other languages? (If so, please list them)</span></p>       
+        <p><input type="checkbox" ng-model="application.specializedSkills"><span class='panel-text'>Other qualifications such as special skills, abilities, or honors that you feel should be considered? (If so, please list them)</span></p>     
+        <p><input type="checkbox" ng-model="application.computerRepair"><span class='panel-text'>Please list any types of computers, hardware, and other equipment you are authorized to operate or repair?</span></p>
+        <p><input type="checkbox" ng-model="application.softwareExperience"><span class='panel-text'>Please list any types of software, you are authorized, expeiernce, and or skilled to operate or repair?</span></p>      
+        <p><input type="checkbox" ng-model="application.proffesionalCerts"><span class='panel-text'>Do you hold any professional licenses, certifications, or registrations? (If so, please list them)</span></p> 
+        <p><input type="checkbox" ng-model="application.specialInterests"><span class='panel-text'>What are your hobbies and/or special interests?</span></p>  
         <p><input type="checkbox" ng-model="application.typingSpeed"><span class='panel-text'>What is your current typing speed? (WPM)</span></p>
       </div>
     </div>
@@ -120,8 +128,9 @@
         <div class='panel-title'>Other Information:<span class="pull-right glyphicon glyphicon-plus" ng-if="!controls.other" ng-click="controls.other = true"></span><span class="pull-right glyphicon glyphicon-remove" ng-if="controls.other" ng-click="controls.other = false"></span></div>
       </div>
       <div class="panel-body" ng-show="controls.other">        
-        <p><input type="checkbox" ng-model="application.veteran"><span class='panel-text'>Are you a veteran of a branch of the US Armed Forces?</span></p>     
-        <p><input type="checkbox" ng-model="application.dateAvailableToBeginWork"><span class='panel-text'>When are you available to start?</span></p>      
+        <p><input type="checkbox" ng-model="application.veteran"><span class='panel-text'>Are you a veteran of a branch of the US Armed Forces? (If so, please list dates served and any training you may have received related to the position you are applying for)</span></p>     
+        <p><input type="checkbox" ng-model="application.dateAvailableToBeginWork"><span class='panel-text'>When are you available to start (Start date)?</span></p>
+        <p><input type="checkbox" ng-model="application.dateAvailableToEndWork"><span class='panel-text'>What is the latest date you are able to work (End date)?</span></p>      
         <p><input type="checkbox" ng-model="application.otherComments"><span class='panel-text'>Do you have any other comments you would like to add?</span></p>
       </div>
     </div>       
