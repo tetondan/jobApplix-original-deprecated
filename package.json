@@ -18,7 +18,7 @@
   "homepage": "https://github.com/tetondan/jobApplix#readme",
   "dependencies": {
     "aws-sdk": "^2.6.2",
-    "bcrypt": "^0.8.6",
+    // "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
     "bower": "1.7.2",
     "connect-mongo": "^1.2.0",

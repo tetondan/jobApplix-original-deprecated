@@ -1,7 +1,7 @@
 'use strict'
 
 const Business = require('../dbModels/businessModel')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt-nodejs')
 
 const signin = ( req, res ) => {
   var info = req.body;
@@ -66,7 +66,7 @@ const signup = ( req, res ) => {
 const setPass = ( passString ) => {
   return new Promise( ( resolve, reject ) => {
     bcrypt.genSalt(10, ( err, salt ) => {    
-      bcrypt.hash(passString, salt, ( err, passHash ) => {
+      bcrypt.hash(passString, salt, null, ( err, passHash ) => {
         if( !err ) {
           resolve(passHash);
         } else {

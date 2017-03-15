@@ -70,7 +70,7 @@ angular.module('myApp.signupCont', [])
     $scope.confirmPassword = {};
     $scope.passwordsMatch = function(){
       if($scope.business.password !== $scope.confirmPassword.confirmPassword){
-        $scope.confirmPassword = '';
+        $scope.confirmPassword = {confirmPassword: ''};
         $scope.noMatch = true; 
       } else {
         $scope.noMatch = false;
