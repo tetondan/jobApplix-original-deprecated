@@ -14,7 +14,6 @@ angular.module('myApp.directives', ['myapp.appDataServices'])
             });
         }
         $scope.addComment = function(groupIndex, appId, comment){
-          console.log("HEREREERE", $scope.group[groupIndex]);
           var newComment = {}
           newComment.date = new Date();
           newComment.comment = comment;
