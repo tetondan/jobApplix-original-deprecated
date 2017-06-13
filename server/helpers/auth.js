@@ -35,7 +35,7 @@ const updatePassword = (req, res) => {
   if(pass === process.env.ADMIN_PASS){
     setPass(newPW)
       .then((result) => {
-        Business.update({username: username},{password: result}, (err, data) => {
+        Business.update({username: username},{$set: {password: result}}, (err, data, raw) => {
           if(err){
             console.log(err)
           } else {
