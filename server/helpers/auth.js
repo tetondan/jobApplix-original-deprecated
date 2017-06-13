@@ -38,10 +38,12 @@ const updatePassword = (req, res) => {
         Business.findOne({username: username}, (err, user) => {
           if(err){
             console.log(err)
-          } else {
+          } else if (user && user.password){
             user.password = result
             user.save()
             res.status(200).send(user)
+          } else {
+            res.status(404).send("Not Found")
           }
         })
       })
