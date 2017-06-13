@@ -35,11 +35,13 @@ const updatePassword = (req, res) => {
   if(pass === process.env.ADMIN_PASS){
     setPass(newPW)
       .then((result) => {
-        Business.update({username: username},{$set: {password: result}}, (err, data, raw) => {
+        Business.findOne({username: username}, (err, user) => {
           if(err){
             console.log(err)
           } else {
-            res.status(200).send(data)
+            user.password = result
+            user.save()
+            res.status(200).send(user)
           }
         })
       })
