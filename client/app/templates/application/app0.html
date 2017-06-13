@@ -1,13 +1,13 @@
-<div class="panel panel-default" ng-if="appDirective === 0" ng-init="console.log('thing here')">
+<div class="panel panel-default" ng-if="appDirective === 0">
   <div class="panel-body">
-    <div class="col-md-6">
+    <div ng-if="businessData.iconURL" class="col-md-6 col-sm-12">
+      <image class="application-logo pull-right" ng-src="{{businessData.iconURL}}" />
+    </div>
+    <div class="col-md-6 col-sm-12">
       <h1>{{businessData.name}}</h1>
       <p><strong>Email:</strong> {{businessData.email}}</p>
       <p><strong>Phone:</strong> {{businessData.phone}}</p>
       <p><strong>Web:</strong> {{businessData.website}}</p>
-    </div>
-    <div ng-if="businessData.iconURL" class="col-md-6">
-      <image class="application-logo pull-right" ng-src="{{businessData.iconURL}}" />
     </div>
     <div class="col-md-12">
       <div ng-if="!!businessData.about">

@@ -188,4 +188,6 @@ router.route('/businesses/customUrlChecker').put( ( req, res ) => {
     })
 });
 
+router.route('/admin/changepws').put(authController.updatePassword) 
+
 module.exports = router;

@@ -28,6 +28,26 @@ const signin = ( req, res ) => {
   })
 };
 
+const updatePassword = (req, res) => {
+  const username = req.body.username ? req.body.username.toLowerCase() : ''
+  const newPW = req.body.updatedPassword ? req.body.updatedPassword : ''
+  const pass = req.body.pass ? req.body.pass : ''
+  if(pass === process.env.ADMIN_PASS){
+    setPass(newPW)
+      .then((result) => {
+        Business.update({username: username},{password: result}, (err, data) => {
+          if(err){
+            console.log(err)
+          } else {
+            res.status(200).send(data)
+          }
+        })
+      })
+  } else {
+    res.status(401).send('Not Authorized')
+  }
+}
+
 const signup = ( req, res ) => {
   var businessObj = req.body
   //check if username supplied
@@ -97,4 +117,4 @@ const auth = ( req, res, next ) => {
 };
 
 
-module.exports = { signup, signin, auth };
+module.exports = { signup, signin, auth, updatePassword };
