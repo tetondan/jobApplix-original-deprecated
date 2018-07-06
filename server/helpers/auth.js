@@ -66,7 +66,9 @@ const signup = ( req, res ) => {
     } else {
       setPass(businessObj.password)
         .then( ( passHash ) => {
+          // TODO: remove this and make password hashing a part of a Schema.pre hook
           businessObj.password = passHash;
+          // TODO: remove theses and use regEx in your Mongo queries
           businessObj.username = businessObj.username.toLowerCase();
           businessObj.customUrl = businessObj.customUrl.toLowerCase()
           var business = new Business(businessObj);

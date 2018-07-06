@@ -173,6 +173,16 @@ angular.module('myApp.businessDataServices', [])
       })
     };
 
+    var sendStripeToken = function(token, amt, len, id){
+      return $http({
+        method: 'POST',
+        url: 'api/businesses/payment',
+        data: {token, amt, len, id }
+      }).then( (data) => {
+        return data
+      })
+    }
+
     return {
       'businessSignup': businessSignup,
       'businessLogin': businessLogin,
@@ -187,7 +197,8 @@ angular.module('myApp.businessDataServices', [])
       'getBusinessInfo': getBusinessInfo,
       'updateBusinessInfo': updateBusinessInfo,
       'betaKeyCheck': betaKeyCheck,
-      'betaEmail': betaEmail
+      'betaEmail': betaEmail,
+      'sendStripeToken': sendStripeToken
     };
 
   });

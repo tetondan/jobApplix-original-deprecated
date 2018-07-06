@@ -1,5 +1,5 @@
 angular.module('myApp.imageUploadCont', [])
-  .controller('ImageUploadController', function($state, $scope, $rootScope, $timeout, BusinessDataServices){
+  .controller('ImageUploadController', function($state, $scope, BusinessDataServices){
     $scope.advance = false;
     $scope.continue = function(){
       $state.go('dashboard.setup')

@@ -1,4 +1,4 @@
- <div id="navbar">
+<div id="navbar">
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -8,97 +8,81 @@
   </nav>
 </div>
 <div style="margin-top: 70px" class="splash-bg">
-<div class="col-md-10 col-md-offset-1">
-  <div class="panel panel-primary" ng-if="!betaPasswordAdvance && !betaThankYou">
-    <div class='panel-heading'>
-      <div class='panel-title'><h4>Advance Beta</h4></div>
-    </div>
-    <div class='panel-body'>
-      <label>Thank you for your interest in JobApplix.com!</label>
-      <p>We are currently in the process of building the next level in customizable staffing solutions for businesses.</p>
-      <p>If you have received an early Beta key, please enter it below to proceed. If not please enter an email address we can reach you at to get you started with the next round of Beta keys.</p>
-      <p>Thank you!</p>
-      <p>JobApplix.com team</p>
-      <label>Enter Your Early Beta Key:</label>
-      <div class="alert alert-danger" ng-if="betaNoAdvance">
-        <strong>Your beta key does not match, please re-enter your Beta key or enter your email below to sign up for the next round of Beta keys</strong>
+  <div class="col-md-10 col-md-offset-1">
+    <div class='panel panel-primary' ng-if="paymentAdvance">
+      <div class='panel-heading'>
+        <div class='panel-title'><h4>Registration: Step 1</h4></div>
       </div>
-      <input type="text" class="form-control" ng-model="betaKeyModel.betaKey" placeholder="Early Beta Key"/>
-      <p></p>
-      <button class="btn btn-lrg btn-primary" ng-click="betaKeyEnter()">Submit Your Beta Key</button>
-      <p></p>
-      <label>If you do not have an early Beta key please enter your email address below to be involved in the next round of Beta keys:</label>
-      <div class="alert alert-danger" ng-if="betaEmailExists">
-        <strong>Your email is already entered, thank you for your support! We will email you when our next round of beta keys are released!</strong>
-      </div>
-      <input type="text" class="form-control" ng-model="betaKeyModel.betaKeyEmail" placeholder="example@email.com"/>
-      <p></p>
-       <button class="btn btn-lrg btn-primary" ng-click="betaEnterEmail()">Submit Your Email</button>
+      <div class='panel-body'>
+        <form name="form.appForm">
+        <div class='form-group col-md-6'>
+          <label>Username:(You will use this to log in)<span class="glyphicon glyphicon-asterisk"></span></label>
+          <input type='text' class="form-control" ng-blur="checkUserName()" ng-model='business.username' required/>
+          <div class="alert alert-danger" ng-if="isUsernameTaken">
+            <strong>Sorry, that username is already taken</strong>
+          </div>
+          <label>Password:<span class="glyphicon glyphicon-asterisk"></span></label>
+          <input type="password" class='form-control' ng-model='business.password' required/>
+          <div class="alert alert-danger" ng-if="noMatch">
+            <strong>Your passwords do not match</strong>
+          </div>
+          <label>Phone Number:</label>
+          <input type='tel' class='form-control' ng-model='business.phone' placeholder='(xxx)xxx-xxx'/>
+          <label>Email:<span class="glyphicon glyphicon-asterisk"></span></label>
+          <input type='email' class='form-control' ng-model='business.email' required/>
+        </div>
+        <div class="col-md-6">
+          <label>Business Name:<span class="glyphicon glyphicon-asterisk"></span>(Name of your business)</label>
+          <input type='text' class='form-control' ng-model='business.name' required/>
+          <label> Confirm Password:<span class="glyphicon glyphicon-asterisk"></span></label>
+          <input class='form-control' ng-model="confirmPassword.confirmPassword" ng-blur="passwordsMatch()" type="password" required/>
+          <div class="alert alert-danger" ng-if="noMatch">
+            <strong>Your passwords do not match</strong>
+          </div>
+          <label>Address:</label>
+          <input class='form-control' type='text' ng-model='business.address'/>
+          <label>Website:</label>
+          <input class='form-control' type='text' ng-model='business.website'/>
+        </div>  
+        <div class='col-md-12'>
+          <label for="custom-url">Your custom URL (this will be the address you give to applicants)<span class="glyphicon glyphicon-asterisk"></span>:</label>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon3">http://www.jobapplix.com/apply/</span>
+            <input type="text" class="form-control" id="basic-url" ng-blur="checkCustomUrl()" ng-model='business.customUrl' required>
+          </div>
+          <div class="alert alert-danger" ng-if="isCustomUrlTaken">
+            <strong>Sorry, that custom url is already taken</strong>
+          </div>
+        </div> 
+        <div class="col-md-12">
+          <label>Tell us about your business: (This will be displayed on your application start page)</label>
+          <textarea class="form-control" rows="3" ng-model="business.about"></textarea>
+        </div>
+        </form>
+        <div class='col-md-12'> 
+          <label></label>
+          <button class="btn btn-primary btn-lg btn-block" ng-disabled="!form.appForm.$valid" ng-click='businessSignUp()'>Next: Finish Registration</button>
+          <span class="glyphicon glyphicon-asterisk">Required</span>
+        </div>  
     </div>
   </div>
-    <div class="panel panel-primary" ng-if="!betaPasswordAdvance && betaThankYou">
+  <div class='panel panel-primary' ng-if="!paymentAdvance">
     <div class='panel-heading'>
-      <div class='panel-title'><h4>Thank you!</h4></div>
+      <div class='panel-title'><h4>Subscription Plans</h4></div>
     </div>
     <div class='panel-body'>
-      <label>Thank you for participating in the JobApplix beta. We will email you with instructions when our next round of Beta keys are released. In the mean time, feel free to email <a href="mailto:jobapplix@gmail.com">JobApplix@gmail.com</a> with any suggestions you have!</label>
-    </div>
-    </div>
-  <div class='panel panel-primary' ng-if="betaPasswordAdvance && !betaThankYou">
-    <div class='panel-heading'>
-      <div class='panel-title'><h4>Thank you for participating in our early Beta program, please fill out this form to continue.</h4></div>
-    </div>
-    <div class='panel-body'>
-      <form name="form.appForm">
-      <div class='form-group col-md-6'>
-        <label>Username:(You will use this to log in)<span class="glyphicon glyphicon-asterisk"></span></label>
-        <input type='text' class="form-control" ng-blur="checkUserName()" ng-model='business.username' required/>
-        <div class="alert alert-danger" ng-if="isUsernameTaken">
-          <strong>Sorry, that username is already taken</strong>
-        </div>
-        <label>Password:<span class="glyphicon glyphicon-asterisk"></span></label>
-        <input type="password" class='form-control' ng-model='business.password' required/>
-        <div class="alert alert-danger" ng-if="noMatch">
-          <strong>Your passwords do not match</strong>
-        </div>
-        <label>Phone Number:</label>
-        <input type='tel' class='form-control' ng-model='business.phone' placeholder='(xxx)xxx-xxx'/>
-        <label>Email:<span class="glyphicon glyphicon-asterisk"></span></label>
-        <input type='email' class='form-control' ng-model='business.email' required/>
+      <h2>Please Select a Subscription Plan</h2>
+      <div class='well payment-box' ng-class="paymentMonth" ng-click="selectMonth()">
+        <h3>Monthly</h3>
+        <h4>No commitment month to month pricing. Auto-renewed each month.</h4>
+        <h2>$39.99 month</h2>
       </div>
-      <div class="col-md-6">
-        <label>Business Name:<span class="glyphicon glyphicon-asterisk"></span>(Name of your business)</label>
-        <input type='text' class='form-control' ng-model='business.name' required/>
-        <label> Confirm Password:<span class="glyphicon glyphicon-asterisk"></span></label>
-        <input class='form-control' ng-model="confirmPassword.confirmPassword" ng-blur="passwordsMatch()" type="password" required/>
-        <div class="alert alert-danger" ng-if="noMatch">
-          <strong>Your passwords do not match</strong>
-        </div>
-        <label>Address:</label>
-        <input class='form-control' type='text' ng-model='business.address'/>
-        <label>Website:</label>
-        <input class='form-control' type='text' ng-model='business.website'/>
-      </div>  
-      <div class='col-md-12'>
-        <label for="custom-url">Your custom URL (this will be the address you give to applicants)<span class="glyphicon glyphicon-asterisk"></span>:</label>
-        <div class="input-group">
-          <span class="input-group-addon" id="basic-addon3">http://www.jobapplix.com/apply/</span>
-          <input type="text" class="form-control" id="basic-url" ng-blur="checkCustomUrl()" ng-model='business.customUrl' required>
-        </div>
-        <div class="alert alert-danger" ng-if="isCustomUrlTaken">
-          <strong>Sorry, that custom url is already taken</strong>
-        </div>
-      </div> 
-      <div class="col-md-12">
-        <label>Tell us about your business: (This will be displayed on your application start page)</label>
-        <textarea class="form-control" rows="3" ng-model="business.about"></textarea>
+      <div class='well payment-box' ng-class="paymentYear" ng-click="selectYear()">
+        <h3>Yearly</h3>
+        <h4>Enjoy one year guaranteed uninterupted service. Plus save $179.99 yearly over the monthly rate</h4>
+        <h2>$299.99 year</h2>
       </div>
-      </form>
-      <div class='col-md-12'> 
-        <label></label>
-        <button class="btn btn-primary btn-lg btn-block" ng-disabled="!form.appForm.$valid" ng-click='businessSignUp()'>Next: Create your custom application</button>
-        <span class="glyphicon glyphicon-asterisk">Required</span>
-      </div>  
+      <button class="btn btn-primary btn-lg btn-block" ng-if='!processing' ng-click='openStripe()'>Setup Payment</button>
+      <img ng-if="processing" class="img-responsive center-block" src="/loading.gif" />
   </div>
-</div>
 </div>

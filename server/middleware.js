@@ -8,9 +8,9 @@ const apply = require('./routes/apply.js')
 const MongoStore = require('connect-mongo')(session);
 
 module.exports = ( app, express ) => {
-
+  console.log(process.env)
   app.use( session( {
-    secret: 'JOBAPPLiX_420_6969',
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
     cookie: { maxAge: null},
@@ -20,6 +20,6 @@ module.exports = ( app, express ) => {
   }));
   app.use(bodyParser.json());
   app.use(express.static(__dirname+'/../client'));
-  app.use('/api',business);
+  app.use('/api/businesses',business);
   app.use('/api', apply);
 }

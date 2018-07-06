@@ -18,9 +18,13 @@ var businessSchema = mongoose.Schema({
   iconURL: {type: String},
   subType: {type: Number},
   newBusiness: {type: Boolean},
-  isBeta: {type: Boolean}
+  isBeta: {type: Boolean},
+  stripeCustomerId: String,
+  expires: Date,
+  autopay: {type: Boolean, default: true},
+  expired: {type: Boolean, default: true},
+  subType: String
 }, {collection: 'business'});
-
 
 var Business = mongoose.model('Business', businessSchema);
 

@@ -396,3 +396,11 @@ p.copyright {
   color: darkgrey;
   text-align: center; 
 }
+
+.payment-box {
+  cursor: pointer;
+}
+
+.payment-box.payment-selected {
+  border: 4px solid rgba(47,108,175, 0.7);
+}

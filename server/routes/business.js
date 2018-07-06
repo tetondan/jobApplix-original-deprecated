@@ -1,42 +1,19 @@
 'use strict'
 
+const express = require('express');
 const aws = require('aws-sdk');
+const stripe = require('stripe')("sk_test_BQokikJOvBiI2HlWgH4olfQ2");
 const S3_BUCKET = 'jobapplix';
+
 const CustomApp = require('../dbModels/customApplication');
 const Application = require('../dbModels/applicationModel');
 const Business = require('../dbModels/businessModel');
-const BetaDetails = require('../dbModels/betaDetails');
-const express = require('express');
-const router = express.Router();
+
 const authController = require('../helpers/auth');
 
-router.route('/businesses/betakeycheck').put( ( req, res ) => {
-  const betaKeys = ['JAeb2016']
-  if(betaKeys.indexOf(req.body.betaKey) > -1){
-    res.send(true);
-  } else {
-    res.send(false);
-  }
-});
+const router = express.Router();
 
-router.route('/businesses/betaemail').post( ( req, res ) => {
-  const email = req.body.betaEmail ? req.body.betaEmail.toLowerCase() : '';
-  BetaDetails.findOne({ betaEmail: email })
-    .then( ( data, err ) => {
-      if(err !== undefined){
-        console.log(err);
-      } else if(data === null){
-        var newEmail = new BetaDetails({ betaEmail: email });
-        newEmail.save( ( err, data ) =>{
-          res.send(false);
-        });
-      } else {
-        res.send(true);
-      }
-    })
-});
-
-router.route('/businesses/sign-s3').get(authController.auth, (req, res) => {
+router.route('/sign-s3').get(authController.auth, (req, res) => {
   const s3 = new aws.S3();
   const fileExtension = req.query['file-name'].split('.')
   const fileName = req.session.businessId + '.' + fileExtension[fileExtension.length - 1];
@@ -70,17 +47,17 @@ router.route('/businesses/sign-s3').get(authController.auth, (req, res) => {
 });
 
 //route all auth routes to the auth helper
-router.route('/businesses/signin').post(authController.signin);
-router.route('/businesses/signup').post(authController.signup);
+router.route('/signin').post(authController.signin);
+router.route('/signup').post(authController.signup);
 
 //this route allows the business to logoff and destroy the session
-router.route('/businesses/logout').get( ( req, res ) => {
+router.route('/logout').get( ( req, res ) => {
   req.session.destroy();
   res.redirect('/')
 });
 
 //this route will be served as soon as a business logs on it will retrieve all applications. 
-router.route('/businesses/dashboard').get(authController.auth, ( req, res ) => {
+router.route('/dashboard').get(authController.auth, ( req, res ) => {
   Application.find({businessId: req.session.businessId}, ( err, data ) => {
     if(err){
       console.log(err);
@@ -93,7 +70,7 @@ router.route('/businesses/dashboard').get(authController.auth, ( req, res ) => {
   })
 });
 
-router.route('/businesses/info').get(authController.auth, ( req, res ) => {
+router.route('/info').get(authController.auth, ( req, res ) => {
   Business.find({ _id: req.session.businessId })
     .then( ( data ) => {
         var businessData = data[0];
@@ -104,7 +81,7 @@ router.route('/businesses/info').get(authController.auth, ( req, res ) => {
     });
 });
 
-router.route('/businesses/template').get( authController.auth, ( req, res ) => {
+router.route('/template').get( authController.auth, ( req, res ) => {
   CustomApp.find({ businessId: req.session.businessId })
     .then( ( template ) => {
       res.status(201).send(template);
@@ -112,7 +89,7 @@ router.route('/businesses/template').get( authController.auth, ( req, res ) => {
 });
 
 //this route will allow the business to create or update thier custom application specifications. 
-router.route('/businesses/updateApplication').put(authController.auth, ( req, res ) => {
+router.route('/updateApplication').put(authController.auth, ( req, res ) => {
   const updatedCustomApp = req.body;
   updatedCustomApp.businessId = req.session.businessId;
   CustomApp.remove({ businessId: updatedCustomApp.businessId })
@@ -125,7 +102,7 @@ router.route('/businesses/updateApplication').put(authController.auth, ( req, re
     });
 });
 
-router.route('/businesses/updateProfile').put( authController.auth, ( req, res ) => {
+router.route('/updateProfile').put( authController.auth, ( req, res ) => {
   const updatedInfo = req.body;
   Business.update({ _id: req.session.businessId },{ $set: req.body })
     .then( ( data, err ) => {
@@ -138,7 +115,7 @@ router.route('/businesses/updateProfile').put( authController.auth, ( req, res )
     });
 });
 
-router.route('/businesses/usernameChecker').put( ( req, res ) => {
+router.route('/usernameChecker').put( ( req, res ) => {
   const user = req.body.username ? req.body.username.toLowerCase() : '';
   const businessId = req.session ? req.session.businessId : null;
   //username customUrl email
@@ -163,7 +140,7 @@ router.route('/businesses/usernameChecker').put( ( req, res ) => {
     });
 });
 
-router.route('/businesses/customUrlChecker').put( ( req, res ) => {
+router.route('/customUrlChecker').put( ( req, res ) => {
   const url = req.body.customUrl ? req.body.customUrl.toLowerCase() : '';
   const businessId = req.session ? req.session.businessId : null;
   //username customUrl email
@@ -188,6 +165,73 @@ router.route('/businesses/customUrlChecker').put( ( req, res ) => {
     })
 });
 
+//retreives the business info from the database
+router.route('/:customUrl').get( ( req, res ) => {
+  Business.find({ customUrl: req.params.customUrl.toLowerCase() }, ( err, data ) => {
+    if( err ) {
+      console.log(err)
+      res.sendStatus(500)
+    } else if( data.length === 0 ){
+      res.sendStatus(404);
+    } else {
+      let businessData = data[0];
+      CustomApp.findOne({ businessId: businessData._id })
+               .populate('businessId')
+               .exec( ( err, app ) => {
+                  if(err){
+                    console.log(err)
+                    res.status(500)
+                  } else if(app === null){
+                    res.status(404);
+                  } else {
+                    app.businessId[0].password = undefined;
+                    app.businessId[0].__v = undefined;
+                    app.businessId[0].username = undefined;
+                    res.status(200).send(app)
+                  }
+               })
+    }
+  })
+});
+
+router.route('/payment').post( async ( req, res ) => {
+  const { token, amt, len, id } = req.body;
+  try {
+    const customer = await stripe.customers.create({
+      source: token
+    })
+    const charge = await stripe.charges.create({
+      customer: customer.id,
+      amount: amt,
+      currency: 'usd'
+    })
+
+    var d = new Date();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var day = d.getDate();
+    let expDate = len === 'year' 
+      ? new Date( year + 1, month, day ) 
+      : new Date( year, month + 1, day )
+
+    const businessDetails = {
+      stripeCustomerId: customer.id,
+      expired: false,
+      expires: expDate,
+      subType: len
+    }
+    const updatedBusiness = await Business.findByIdAndUpdate(id, businessDetails, {new: true})
+    if(updatedBusiness !== null){
+      res.sendStatus(204)
+    } else {
+      throw new Error('no business')
+    }
+  } catch(err){
+    res.sendStatus(500)
+    return
+  }
+
+})
 router.route('/admin/changepws').put(authController.updatePassword) 
 
 module.exports = router;

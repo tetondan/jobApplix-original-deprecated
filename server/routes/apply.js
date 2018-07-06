@@ -44,33 +44,4 @@ router.route('/applicationUpdateComments').put( ( req, res ) => {
   })
 });
 
-//retreives the business info from the database
-router.route('/businesses/:customUrl').get( ( req, res ) => {
-  Business.find({ customUrl: req.params.customUrl.toLowerCase() }, ( err, data ) => {
-    if( err ) {
-      console.log(err)
-      res.sendStatus(500)
-    } else if( data.length === 0 ){
-      res.sendStatus(404);
-    } else {
-      let businessData = data[0];
-      CustomApp.findOne({ businessId: businessData._id })
-               .populate('businessId')
-               .exec( ( err, app ) => {
-                  if(err){
-                    console.log(err)
-                    res.status(500)
-                  } else if(app === null){
-                    res.status(404);
-                  } else {
-                    app.businessId[0].password = undefined;
-                    app.businessId[0].__v = undefined;
-                    app.businessId[0].username = undefined;
-                    res.status(200).send(app)
-                  }
-               })
-    }
-  })
-});
-
 module.exports = router;
