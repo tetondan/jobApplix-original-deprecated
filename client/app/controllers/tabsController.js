@@ -26,7 +26,7 @@ angular.module('myApp.tabs', [])
           if($scope.businessData === undefined){
             $scope.businessData = data;
             if(data.iconURL === undefined){
-              $scope.businessData.iconURL = "/NoLogo.jpg";
+              $scope.businessData.iconURL = "/assets/NoLogo.jpg";
             }
           }          
         })
@@ -38,7 +38,7 @@ angular.module('myApp.tabs', [])
       })
     }
     $scope.uploading = false;
-    $scope.thumbnail = {dataUrl: '/no_image.png'};
+    $scope.thumbnail = {dataUrl: '/assets/no_image.png'};
     $scope.fileUpload = function(){
       if($scope.file && $scope.file.size > 2000000) {
         alert('Sorry, file size must be under 2MB');

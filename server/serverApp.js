@@ -4,6 +4,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const db = require ('./dbConfig.js')
 const Application = require('./dbModels/applicationModel');
+require('./SubscriptionCron');
 
 require('./middleware')(app, express);
 

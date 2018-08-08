@@ -9,7 +9,6 @@ angular.module('myApp.businessSetup', [])
       
       BusinessDataServices.saveForm($scope.application)
       .then( function (data) {
-        console.log("HERE");
         // $state.go('dashboard.tabs')
       })
     }

@@ -18,7 +18,7 @@
           <p ng-if="file.size > 2000000" style="color: red;">File must be less than 2mb.</p>
           <p ng-if="file"><label>File name:</label> {{file.name}}</p>
           <p ng-if="file"><label>File size:</label> {{file.size/1000000}} mb</p>
-          <img ng-if="uploading" src="/loading.gif" />
+          <img ng-if="uploading" src="/assets/loading.gif" />
           <label ng-if="advance"> COMPLETE! </label>
           <button class="btn btn-primary btn-lg upload-button " ng-click="fileUpload()" ng-if="file && !advance">Upload File</button>
           <button class="btn btn-success btn-lg upload-button" ng-click="continue()" ng-if="advance">Next Step</button>

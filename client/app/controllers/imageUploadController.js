@@ -5,7 +5,7 @@ angular.module('myApp.imageUploadCont', [])
       $state.go('dashboard.setup')
     };
     $scope.uploading = false;
-    $scope.thumbnail = {dataUrl: '/no_image.png'};
+    $scope.thumbnail = {dataUrl: '/assets/no_image.png'};
     $scope.fileUpload = function(){
       if($scope.file && $scope.file.size > 2000000) {
         alert('Sorry, file size must be under 2MB');

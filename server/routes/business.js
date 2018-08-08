@@ -2,8 +2,12 @@
 
 const express = require('express');
 const aws = require('aws-sdk');
-const stripe = require('stripe')("sk_test_BQokikJOvBiI2HlWgH4olfQ2");
-const S3_BUCKET = 'jobapplix';
+
+const stripe = require('stripe')(process.env.STRIPE_KEY_TEST);
+
+// AWS Credentials are automatically loaded from env variables.
+const S3_BUCKET = 'jobapplixs3';
+
 
 const CustomApp = require('../dbModels/customApplication');
 const Application = require('../dbModels/applicationModel');
@@ -227,11 +231,12 @@ router.route('/payment').post( async ( req, res ) => {
       throw new Error('no business')
     }
   } catch(err){
+    console.log(err)
     res.sendStatus(500)
     return
   }
-
 })
+
 router.route('/admin/changepws').put(authController.updatePassword) 
 
 module.exports = router;

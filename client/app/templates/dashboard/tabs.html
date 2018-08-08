@@ -172,7 +172,7 @@
             <label class="pull-left" style="font-size: 2rem;" ng-if="advance"> COMPLETE! </label>
             <label for="imageUpload" class="btn btn-lg btn-info pull-left" ng-if="!advance">Select an Image to Upload</label>
             <input name="file" id="imageUpload" type="file" accept="image/*" style="display: none" file/>
-            <img ng-if="uploading" height="46px"" src="/loading.gif" />
+            <img ng-if="uploading" height="46px"" src="/assets/loading.gif" />
             <button class="btn btn-lg btn-success" ng-click="fileUpload()" ng-if="file && !advance">Upload File</button>
             <button type="button" class="btn btn-lg btn-primary" data-dismiss="modal">Close</button>
         </div>
@@ -223,7 +223,7 @@
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-success pull-left" ng-disabled="updated" ng-click="updateBusinessInfo()">Update</button>
-        <img ng-if="updating" height="46px"" src="/loading.gif" />
+        <img ng-if="updating" height="46px"" src="/assets/loading.gif" />
         <button type="button" class="btn btn-danger" data-dismiss="modal" ng-if="!updated">Cancel</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" ng-if="updated" >Close</button>
       </div>
@@ -237,7 +237,7 @@
       <div class="modal-content">
         <div class="modal-body">
             <p style="font-size: 2.5rem; text-align: center;">Retreiving applications</p>
-            <img style="display: block; margin-left: auto; margin-right: auto;" height="100px" src="/loading.gif" />
+            <img style="display: block; margin-left: auto; margin-right: auto;" height="100px" src="/assets/loading.gif" />
         </div>
       </div>
       </div>

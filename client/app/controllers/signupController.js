@@ -22,7 +22,7 @@ angular.module('myApp.signupCont', [])
     $scope.paymentMonth = '';
     $scope.paymentYear = '';
     $scope.length = '';
-    $scope.price = 3999;
+    $scope.price = 2999;
 
     $scope.businessId = '';
     $scope.processing = false;
@@ -81,7 +81,7 @@ angular.module('myApp.signupCont', [])
       $scope.paymentYear = '';
       $scope.paymentMonth = 'payment-selected';
       $scope.length = 'month'
-      $scope.price = 3999;
+      $scope.price = 2999;
     }
 
     $scope.selectYear = function(){
@@ -107,10 +107,11 @@ angular.module('myApp.signupCont', [])
     $scope.openStripe = function(){
       handler.open({
         name: 'JobApplix.com',
-        description: 'Subscription',
+        description: $scope.price === 2999 ? "Subscription - 30 day free trial" : "Yearly Subscription",
         zipCode: true,
         email: false,
-        amount: $scope.price
+        amount: $scope.price,
+        image: "../../assets/Icon50.png"
       });
     }
   })
