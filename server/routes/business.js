@@ -3,7 +3,7 @@
 const express = require('express');
 const aws = require('aws-sdk');
 
-const stripe = require('stripe')(process.env.STRIPE_KEY_TEST);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // AWS Credentials are automatically loaded from env variables.
 const S3_BUCKET = 'jobapplixs3';
