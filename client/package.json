@@ -1,0 +1,12 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@bower_components/angular": "angular/bower-angular#~1.5.7",
+    "@bower_components/angular-ui-router": "angular-ui/angular-ui-router-bower#~0.3.1",
+    "@bower_components/bootstrap": "twbs/bootstrap#~3.3.6",
+    "@bower_components/jquery": "jquery/jquery-dist#1.9.1 - 2"
+  }
+}
