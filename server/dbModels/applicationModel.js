@@ -114,7 +114,7 @@ const applicationSchema = mongoose.Schema({
   contactCurrentEmployer: Boolean,
   contactCurrentEmployerReason: String,
   specialInterests: String
-}, {collection: 'application'});
+}, {collection: 'application', timestamps: true});
 
 
 const Application = mongoose.model('Application', applicationSchema);

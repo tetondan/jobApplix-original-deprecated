@@ -24,7 +24,7 @@ var businessSchema = mongoose.Schema({
   autopay: {type: Boolean, default: true},
   expired: {type: Boolean, default: true},
   subType: String
-}, {collection: 'business'});
+}, {collection: 'business', timestamps: true});
 
 var Business = mongoose.model('Business', businessSchema);
 
